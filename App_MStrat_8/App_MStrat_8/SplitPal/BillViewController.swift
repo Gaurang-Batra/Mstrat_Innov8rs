@@ -14,12 +14,12 @@ class Cellclass: UITableViewCell {
 class BillViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
   
 
-  
+    @IBOutlet weak var categorybutton: UIButton!
+    
     @IBOutlet weak var titletextfield: UITextField!
     
     @IBOutlet weak var pricetextfield: UITextField!
     
-    @IBOutlet weak var categorybutton: UIButton!
     
     
     @IBOutlet weak var paidbytextfield: UITextField!
