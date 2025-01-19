@@ -20,7 +20,6 @@ class ViewAllCensusTableViewCell: UITableViewCell {
     
     @IBOutlet weak var titlelabel: UILabel!
     
-   
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -28,18 +27,14 @@ class ViewAllCensusTableViewCell: UITableViewCell {
         viewintable.layer.cornerRadius = 10  // Adjust the corner radius value as needed
         viewintable.clipsToBounds = true
         
-        viewintable.layer.cornerRadius = 10  // Adjust the corner radius value as needed
-               viewintable.clipsToBounds = true      // Ensure contents are clipped to rounded corners
-               
-               // Add shadow under the viewintable
-               viewintable.layer.shadowColor = UIColor.black.cgColor
-               viewintable.layer.shadowOpacity = 0.4
-               viewintable.layer.shadowOffset = CGSize(width: 0, height: 5)
-               viewintable.layer.shadowRadius = 7
-               viewintable.layer.masksToBounds = false  // Allow the shadow to extend beyond the view bounds
-// Ensure contents are clipped to rounded corners
+        // Add shadow under the viewintable
+        viewintable.layer.shadowColor = UIColor.black.cgColor
+        viewintable.layer.shadowOpacity = 0.4
+        viewintable.layer.shadowOffset = CGSize(width: 0, height: 5)
+        viewintable.layer.shadowRadius = 7
+        viewintable.layer.masksToBounds = false  // Allow the shadow to extend beyond the view bounds
         
-        // Round corners for the expense image to make it circular (optional)
+        // Optional: Round corners for the expense image to make it circular (if needed)
 //        expenseimage.layer.cornerRadius = expenseimage.frame.height / 2
 //        expenseimage.clipsToBounds = true
 //        
@@ -48,11 +43,15 @@ class ViewAllCensusTableViewCell: UITableViewCell {
 //        expenseimage.layer.borderWidth = 1.0
         
         // Optional: Round corners for the entire cell (if desired)
-//        self.layer.cornerRadius = 10
-//        self.layer.masksToBounds = true
+        self.layer.cornerRadius = 10
+        self.layer.masksToBounds = true
+        
+        // Ensure categorylabel can handle multiline text
+        categorylabel.numberOfLines = 0  // Allow for multiple lines if needed
+        categorylabel.textAlignment = .left // Align text to the left, adjust if necessary
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
+        super.setSelected(selected, animated: animated)
     }
 }

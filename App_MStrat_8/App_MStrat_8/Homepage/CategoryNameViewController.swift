@@ -1,105 +1,105 @@
-//
-//  CategoryNameViewController.swift
-//  App_MStrat_8
-//
-//  Created by student-2 on 14/01/25.
-//
-
 import UIKit
 
 class CategoryNameViewController: UIViewController {
-
+    
     @IBOutlet var CategoryButton: [UIButton]!
-    
-  
-    
-    
-       @IBOutlet weak var recurringSwitch: UISwitch!
-    
-      // StackView containing Duration label and textField
-       @IBOutlet weak var calendarButton: UIButton!
-    
+    @IBOutlet weak var itemNameTextField: UITextField!
+    @IBOutlet weak var amountTextField: UITextField!
+    @IBOutlet weak var recurringSwitch: UISwitch!
+    @IBOutlet weak var calendarButton: UIButton!
     @IBOutlet weak var durationlabel: UILabel!
-    
     @IBOutlet weak var Enterdedline: UILabel!
-    
     @IBOutlet weak var deadlineview: UIView!
-    
-    
-    // Properties
-       private let datePicker = UIDatePicker()
-       let images = ["icons8-car-16", "icons8-house-16", "icons8-food-bar-16", "icons8-shopping-cart-16", "icons8-multiple-choice-16", "icons8-gym-16"]
-       var selectedImage: UIImage?
 
-       // MARK: - Lifecycle
-       override func viewDidLoad() {
-           super.viewDidLoad()
+    private let datePicker = UIDatePicker()
+    private let categories: [ExpenseCategory] = [.car, .rent, .grocery, .gym, .other]
+    private var selectedCategory: ExpenseCategory? // To store the selected category
+    private var selectedImage: UIImage?
 
-           // Set initial visibility of duration-related views to hidden
-           
-           recurringSwitch.isOn = false
-           deadlineview.isHidden = true
-           calendarButton.isHidden = true
-           durationlabel.isHidden = true
-           Enterdedline.isHidden = true
+    // MARK: - Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        recurringSwitch.isOn = false
+        deadlineview.isHidden = true
+        calendarButton.isHidden = true
+        durationlabel.isHidden = true
+        Enterdedline.isHidden = true
 
-           // Setup category buttons with images
-           for (index, button) in CategoryButton.enumerated() {
-               if index < images.count {
-                   let image = UIImage(named: images[index])
-                   button.setImage(image, for: .normal)
-               }
-           }
+        // Setup category buttons with images only (no titles)
+        for (index, button) in CategoryButton.enumerated() {
+            if index < categories.count {
+                let category = categories[index]
+                button.setImage(category.associatedImage, for: .normal)
+                button.setTitle(nil, for: .normal) // Remove the title
+                button.tag = index // Assign a tag for identification
+                button.addTarget(self, action: #selector(categoryButtonTapped(_:)), for: .touchUpInside)
 
-           // Add target for switch toggle
-           recurringSwitch.addTarget(self, action: #selector(switchToggled), for: .valueChanged)
-       }
+                // Adjust the image view content mode if necessary
+                button.imageView?.contentMode = .scaleAspectFit
+            }
+        }
 
-       // MARK: - Actions
-     
-
-       @objc func switchToggled() {
-           // Toggle visibility based on switch state
-           let isSwitchOn = recurringSwitch.isOn
-           deadlineview.isHidden = !isSwitchOn
-           calendarButton.isHidden = !isSwitchOn
-           durationlabel.isHidden = !isSwitchOn
-           Enterdedline.isHidden = !isSwitchOn
-       }
-       @IBAction func cancelButtonTapped(_ sender: Any) {
-           self.dismiss(animated: true, completion: nil)
-       }
-    
-    @IBAction func calendarButtonTapped(_ sender: UIButton) {
-           // Present the DatePicker
-           showDatePicker()
-       }
-
-       // Function to present the DatePicker
-       func showDatePicker() {
-           // Add the date picker to the view
-           view.addSubview(datePicker)
-           
-           // Set the date picker's frame position
-           datePicker.frame = CGRect(x: 0, y: view.frame.height - datePicker.frame.height, width: view.frame.width, height: datePicker.frame.height)
-           
-           // Animate its appearance
-           UIView.animate(withDuration: 0.3) {
-               self.datePicker.frame.origin.y -= self.datePicker.frame.height
-           }
-       }
-
-
-       
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        // Add target for switch toggle
+        recurringSwitch.addTarget(self, action: #selector(switchToggled), for: .valueChanged)
     }
-    */
 
+    // MARK: - Actions
+    @objc func switchToggled() {
+        // Toggle visibility based on switch state
+        let isSwitchOn = recurringSwitch.isOn
+        deadlineview.isHidden = !isSwitchOn
+        calendarButton.isHidden = !isSwitchOn
+        durationlabel.isHidden = !isSwitchOn
+        Enterdedline.isHidden = !isSwitchOn
+    }
+
+    @IBAction func calendarButtonTapped(_ sender: UIButton) {
+        showDatePicker()
+    }
+
+    func showDatePicker() {
+        view.addSubview(datePicker)
+        datePicker.frame = CGRect(x: 0, y: view.frame.height - datePicker.frame.height, width: view.frame.width, height: datePicker.frame.height)
+        UIView.animate(withDuration: 0.3) {
+            self.datePicker.frame.origin.y -= self.datePicker.frame.height
+        }
+    }
+
+    @objc func categoryButtonTapped(_ sender: UIButton) {
+        let categoryIndex = sender.tag
+        selectedCategory = categories[categoryIndex] // Select the category
+        selectedImage = selectedCategory?.associatedImage // Get the associated image
+        print("Selected category: \(selectedCategory?.rawValue ?? "None")") // Debugging print
+    }
+
+    @IBAction func addexpenseTapped(_ sender: Any) {
+        // Validate and capture user input
+        guard let itemName = itemNameTextField.text, !itemName.isEmpty,
+              let amountText = amountTextField.text, let amount = Int(amountText),
+              let selectedCategory = selectedCategory,
+              let selectedImage = selectedImage else {
+            print("Please provide valid input.")
+            return
+        }
+
+        // Determine if the expense is recurring and capture duration
+        let isRecurring = recurringSwitch.isOn
+        let duration = isRecurring ? datePicker.date : nil
+
+        // Add the new expense to the data model
+        ExpenseDataModel.shared.addExpense(
+            itemName: itemName,
+            amount: amount,
+            image: selectedImage,
+            category: selectedCategory,
+            duration: duration,
+            isRecurring: isRecurring
+        )
+
+        // Dismiss or navigate back
+        self.dismiss(animated: true) {
+            NotificationCenter.default.post(name: NSNotification.Name("ExpenseAdded"), object: nil)
+        }
+    }
 }

@@ -4,16 +4,25 @@
 //
 //  Created by student-2 on 26/12/24.
 //
-
 import Foundation
 import UIKit
 
 enum ExpenseCategory: String, CaseIterable {
-    case car = "Car rent "
-    case rent = "home Rent"
+    case car = "Car Rent"
+    case rent = "Home Rent"
     case grocery = "Grocery"
     case gym = "Gym"
     case other = "Other"
+
+    var associatedImage: UIImage {
+        switch self {
+        case .car: return UIImage(named: "icons8-car-16") ?? UIImage()
+        case .rent: return UIImage(named: "icons8-rent-50") ?? UIImage()
+        case .grocery: return UIImage(named: "icons8-grocery-50") ?? UIImage()
+        case .gym: return UIImage(named: "icons8-gym-50") ?? UIImage()
+        case .other: return UIImage(named: "icons8-other-50") ?? UIImage()
+        }
+    }
 }
 
 struct Expense {
@@ -21,8 +30,7 @@ struct Expense {
     var itemName: String
     var amount: Int
     var image: UIImage
-//    var category: ExpenseCategory
-    var category : String
+    var category: ExpenseCategory
     var duration: Date?
     var isRecurring: Bool
 }
@@ -31,8 +39,8 @@ let firstExpense = Expense(
     id: 1,
     itemName: "Buy a New Laptop",
     amount: 1200,
-    image: UIImage(named: "icons8-car-16") ?? UIImage(),
-    category: "Car",
+    image: ExpenseCategory.car.associatedImage,
+    category: .car,
     duration: DateFormatter().date(from: "2024-01-15"),
     isRecurring: false
 )
@@ -41,8 +49,8 @@ let secondExpense = Expense(
     id: 2,
     itemName: "Vacation Fund",
     amount: 3000,
-    image: UIImage(named: "icons8-grocery-50") ?? UIImage(),
-    category: "home Rent",
+    image: ExpenseCategory.rent.associatedImage,
+    category: .rent,
     duration: DateFormatter().date(from: "2024-06-01"),
     isRecurring: true
 )
@@ -51,68 +59,38 @@ let thirdExpense = Expense(
     id: 3,
     itemName: "Emergency Savings",
     amount: 5000,
-    image: UIImage(named: "icons8-grocery-50") ?? UIImage(),
-    category: "Grocery",
+    image: ExpenseCategory.grocery.associatedImage,
+    category: .grocery,
     duration: DateFormatter().date(from: "2025-12-31"),
     isRecurring: true
 )
 
-let forthExpense = Expense(
-    id: 1,
-    itemName: "Buy a New Laptop",
-    amount: 1200,
-    image: UIImage(named: "icons8-car-16") ?? UIImage(),
-    category: "Car",
+let fourthExpense = Expense(
+    id: 4,
+    itemName: "Pay Car Insurance",
+    amount: 1500,
+    image: ExpenseCategory.car.associatedImage,
+    category: .car,
     duration: DateFormatter().date(from: "2020-01-15"),
     isRecurring: false
 )
 
-let FifthExpense = Expense(
-    id: 2,
-    itemName: "Vacation Fund",
+let fifthExpense = Expense(
+    id: 5,
+    itemName: "Monthly Rent",
     amount: 3000,
-    image: UIImage(named: "icons8-grocery-50") ?? UIImage(),
-    category: "home Rent",
+    image: ExpenseCategory.rent.associatedImage,
+    category: .rent,
     duration: DateFormatter().date(from: "2025-06-01"),
     isRecurring: true
 )
 
 let sixthExpense = Expense(
-    id: 3,
-    itemName: "Emergency Savings",
-    amount: 5000,
-    image: UIImage(named: "icons8-grocery-50") ?? UIImage(),
-    category: "Grocery",
-    duration: DateFormatter().date(from: "2025-12-31"),
-    isRecurring: true
-)
-
-let seventhExpense = Expense(
-    id: 1,
-    itemName: "Buy a New Laptop",
-    amount: 1200,
-    image: UIImage(named: "icons8-car-16") ?? UIImage(),
-    category: "Car",
-    duration: DateFormatter().date(from: "2025-01-15"),
-    isRecurring: false
-)
-
-let eightthExpense = Expense(
-    id: 2,
-    itemName: "Vacation Fund",
-    amount: 3000,
-    image: UIImage(named: "icons8-grocery-50") ?? UIImage(),
-    category: "home Rent",
-    duration: DateFormatter().date(from: "2025-06-01"),
-    isRecurring: true
-)
-
-let ninethExpense = Expense(
-    id: 3,
-    itemName: "Emergency Savings",
-    amount: 5000,
-    image: UIImage(named: "icons8-grocery-50") ?? UIImage(),
-    category: "Grocery",
+    id: 6,
+    itemName: "Grocery Shopping",
+    amount: 200,
+    image: ExpenseCategory.grocery.associatedImage,
+    category: .grocery,
     duration: DateFormatter().date(from: "2025-12-31"),
     isRecurring: true
 )
@@ -125,28 +103,28 @@ class ExpenseDataModel {
         expenses.append(firstExpense)
         expenses.append(secondExpense)
         expenses.append(thirdExpense)
-        expenses.append(forthExpense)
-        expenses.append(FifthExpense)
+        expenses.append(fourthExpense)
+        expenses.append(fifthExpense)
         expenses.append(sixthExpense)
-        expenses.append(seventhExpense)
-        expenses.append(eightthExpense)
-        expenses.append(ninethExpense)
     }
 
     func getAllExpenses() -> [Expense] {
         return self.expenses
     }
 
-//    func addExpense(_ expense: Expense) {
-//        if ExpenseCategory.allCases.contains(expense.category) {
-//            expenses.append(expense)
-//            AllowanceDataModel.shared.deductExpense(fromAllowance: 0, expenseAmount: Double(expense.amount))
-//        } else {
-//            print("Invalid category. Expense not added.")
-//        }
-//    }
-    
-        
+    func addExpense(itemName: String, amount: Int, image: UIImage, category: ExpenseCategory, duration: Date?, isRecurring: Bool) {
+        // Generate a new ID by incrementing the last expense's ID (or default to 1 if the array is empty)
+        let newId = (expenses.last?.id ?? 0) + 1
+
+        // Create a new expense object
+        let newExpense = Expense(id: newId, itemName: itemName, amount: amount, image: image, category: category, duration: duration, isRecurring: isRecurring)
+
+        // Insert the new expense at the beginning of the array
+        expenses.insert(newExpense,at: 0)
+
+        // Optionally print or debug the new expense added
+        print("New expense added: \(newExpense.itemName) with ID \(newExpense.id)")
+    }
 
     func checkRecurringExpenses() {
         let currentDate = Date()
@@ -159,6 +137,35 @@ class ExpenseDataModel {
             }
         }
     }
+    
+    func groupExpensesByDate() -> [String: [Expense]] {
+           var groupedByDate: [String: [Expense]] = [:]
+           let dateFormatter = DateFormatter()
+           dateFormatter.dateFormat = "yyyy-MM-dd" // Format can be adjusted based on requirements
+           
+           // Grouping expenses by their duration
+           for expense in expenses {
+               guard let expenseDate = expense.duration else { continue } // Skip if there's no duration
+               let dateKey = dateFormatter.string(from: expenseDate)
+               
+               if groupedByDate[dateKey] == nil {
+                   groupedByDate[dateKey] = []
+               }
+               groupedByDate[dateKey]?.append(expense)
+           }
+
+           return groupedByDate
+       }
+    func groupedExpenses() -> [[Expense]] {
+           let groupedByDate = groupExpensesByDate()
+           return groupedByDate.values.map { $0 }
+       }
+
+       // Return section titles (date strings) sorted
+       func sectionTitles() -> [String] {
+           let groupedByDate = groupExpensesByDate()
+           return groupedByDate.keys.sorted()
+       }
 
     private func promptUserForRecurringExpense(_ expense: Expense) {
         print("Do you want to add \(expense.itemName) again?")

@@ -1,114 +1,106 @@
-//
-//  ViewAllCensusViewController.swift
-//  App_MStrat_8
-//
-//  Created by student-2 on 15/01/25.
-//
 import UIKit
 
 class ViewAllCensusViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+
     @IBOutlet weak var tableView: UITableView! // Connect this to your storyboard's table
     var expenses: [Expense] = []
-        var groupedExpenses: [[Expense]] = []  // Array to store grouped expenses by date
-        var sectionDates: [String] = []  // Dates for sections
-        
-        override func viewDidLoad() {
-            super.viewDidLoad()
+    var groupedExpenses: [[Expense]] = []
+    var sectionTitles: [String] = []
 
-            // Assign delegates
-            tableView.delegate = self
-            tableView.dataSource = self
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
-            // Load expenses from the shared data model
-            expenses = ExpenseDataModel.shared.getAllExpenses()
+        tableView.delegate = self
+        tableView.dataSource = self
 
-            // Sort and group expenses by date
-            groupExpensesByDate()
+        expenses = ExpenseDataModel.shared.getAllExpenses()
 
-            // Remove the separator lines between table cells
-            tableView.separatorStyle = .none
+        // Group expenses by date (duration)
+        groupExpensesByDate()
 
-            // Round corners of the table view
-            tableView.layer.cornerRadius = 15  // Adjust the corner radius as needed
-            tableView.clipsToBounds = true      // Ensure content is clipped to rounded corners
+        tableView.separatorStyle = .none
+        tableView.layer.cornerRadius = 15
+        tableView.clipsToBounds = true
 
-            // Set row height for table view
-            tableView.estimatedRowHeight = 100
-            tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableView.automaticDimension
+
+        tableView.reloadData()
+    }
+
+    // MARK: - Table View Delegate Methods
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+
+    // MARK: - Table View Data Source Methods
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return groupedExpenses.count
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return groupedExpenses[section].count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ViewAllCensusTableViewCell", for: indexPath) as? ViewAllCensusTableViewCell else {
+            fatalError("Unable to dequeue ViewAllCensusTableViewCell")
         }
 
-        // MARK: - Table View Delegate Methods
+        let expense = groupedExpenses[indexPath.section][indexPath.row]
 
-        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            return 100 // Fixed height for each row
-        }
+        // Debugging: Check if category is being set
+        print("Expense Category: \(expense.category.rawValue)")
 
-        // MARK: - Table View Data Source Methods
+        // Configure cell with expense details
+        cell.expenseimage.image = expense.image
+        cell.pricelabel.text = "$\(expense.amount)"
+        cell.categorylabel.text = expense.category.rawValue.trimmingCharacters(in: .whitespacesAndNewlines)  // Display category name
+        cell.titlelabel.text = expense.itemName
 
-        func numberOfSections(in tableView: UITableView) -> Int {
-            return groupedExpenses.count  // Return the number of sections based on the grouped expenses
-        }
+        return cell
+    }
 
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return groupedExpenses[section].count  // Return the number of rows for the current section
-        }
+    // MARK: - Custom Header Setup
 
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ViewAllCensusTableViewCell", for: indexPath) as? ViewAllCensusTableViewCell else {
-                fatalError("Unable to dequeue ViewAllCensusTableViewCell")
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sectionTitles[section]
+    }
+
+    // MARK: - Grouping and Sorting Expenses by Date
+
+    private func groupExpensesByDate() {
+        var groupedByDate: [String: [Expense]] = [:] // Grouped by date
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd" // Format can be adjusted based on requirements
+
+        // Iterate through all expenses and group them by date (duration)
+        for expense in expenses {
+            // Get the date as a string to use as the key for grouping
+            let dateKey = dateFormatter.string(from: expense.duration ?? Date()) // Default to current date if duration is nil
+            
+            // If the dateKey doesn't exist, create a new entry in the dictionary
+            if groupedByDate[dateKey] == nil {
+                groupedByDate[dateKey] = []
             }
 
-            let expense = groupedExpenses[indexPath.section][indexPath.row]
-
-            // Configure the cell with expense data
-            cell.expenseimage.image = expense.image
-            cell.pricelabel.text = "$\(expense.amount)"
-            cell.categorylabel.text = expense.category
-            cell.titlelabel.text = expense.itemName
-
-            return cell
+            // Append the expense to the appropriate date group
+            groupedByDate[dateKey]?.append(expense)
         }
 
-        // MARK: - Custom Header Setup
+        // Flatten the grouped data to be used in the tableView
+        groupedExpenses = groupedByDate.values.map { $0 } // Convert the grouped dictionary into an array of expenses
 
-        func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-            return sectionDates[section]  // Return the date for the current section
-        }
+        // Create section titles from the date keys and sort them in chronological order
+        sectionTitles = Array(groupedByDate.keys).sorted { $0 < $1 } // Sort the dates chronologically
 
-        // MARK: - Grouping and Sorting Expenses by Date
+        // Debugging: Check grouping
+        print("Grouped Expenses: \(groupedExpenses)")
+        print("Section Titles: \(sectionTitles)")
 
-        private func groupExpensesByDate() {
-            // First, sort the expenses by date
-            let sortedExpenses = expenses.sorted { (expense1, expense2) -> Bool in
-                guard let date1 = expense1.duration, let date2 = expense2.duration else {
-                    return false
-                }
-                return date1 < date2  // Sort by date in ascending order
-            }
-            
-            // Group expenses by date after sorting
-            var grouped: [String: [Expense]] = [:]
-            
-            for expense in sortedExpenses {
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd"  // Format the date to display in a readable format
-                let dateString = dateFormatter.string(from: expense.duration ?? Date())
-                
-                if grouped[dateString] == nil {
-                    grouped[dateString] = []
-                }
-                
-                grouped[dateString]?.append(expense)
-            }
-
-            // Assign grouped expenses to the groupedExpenses array
-            groupedExpenses = Array(grouped.values)
-            
-            // Assign section titles (dates)
-            sectionDates = Array(grouped.keys).sorted()  // Sort the section dates (headers)
-        }
-
-        // MARK: - Custom Header Setup
-       
+        // Reload the table view to reflect the changes
+        tableView.reloadData()
+    }
 }
