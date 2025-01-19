@@ -14,4 +14,15 @@ class SetExpenseCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var pricelabel: UILabel!
     
+    func configure(with expense: Expense) {
+            categoryimage.image = expense.image
+            titlelabel.text = expense.itemName
+            pricelabel.text = "$\(expense.amount)"
+            
+            // Optional styling
+            layer.cornerRadius = 10
+            layer.masksToBounds = true
+            backgroundColor = .systemGray6
+        }
+    
 }
