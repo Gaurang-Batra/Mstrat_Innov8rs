@@ -15,6 +15,10 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     @IBOutlet weak var AddExpense: UITextField!
     
+    @IBOutlet weak var totalexpenselabel: UILabel!
+    
+    @IBOutlet weak var remaininfAllowancelabel: UILabel!
+    
     
     var expenses: [Expense] = []  // Declare this variable
     
@@ -44,7 +48,19 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         // Initial load of expenses
         refreshExpenses()
+        updateTotalExpense()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTotalExpense), name: NSNotification.Name("remaininfAllowancelabel"), object: nil)
+            
     }
+    @objc private func updateTotalExpense() {
+        // Calculate the total of all allowances
+        let totalExpense = AllowanceDataModel.shared.getAllAllowances().reduce(0) { $0 + $1.amount }
+        
+        // Update the label
+        remaininfAllowancelabel.text = String(format: " Rs.%.2f", totalExpense)
+    }
+
     
     private func styleTextField(_ textField: UITextField) {
            // Set the height of the text field by modifying its frame
@@ -63,8 +79,8 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
            textField.layer.mask = maskLayer
            
            // Optional: Add a border for visibility
-           textField.layer.borderColor = UIColor.gray.cgColor
-           textField.layer.borderWidth = 1.0
+//           textField.layer.borderColor = UIColor.gray.cgColor
+//           textField.layer.borderWidth = 1.0
        }
 
     // Reload expenses when a new expense is added

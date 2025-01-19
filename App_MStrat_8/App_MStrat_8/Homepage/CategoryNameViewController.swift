@@ -53,7 +53,13 @@ class CategoryNameViewController: UIViewController {
         durationlabel.isHidden = !isSwitchOn
         Enterdedline.isHidden = !isSwitchOn
     }
-
+    
+    
+    @IBAction func cancelbuttontapped(_ sender: Any) {
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func calendarButtonTapped(_ sender: UIButton) {
         showDatePicker()
     }
@@ -68,10 +74,37 @@ class CategoryNameViewController: UIViewController {
 
     @objc func categoryButtonTapped(_ sender: UIButton) {
         let categoryIndex = sender.tag
-        selectedCategory = categories[categoryIndex] // Select the category
-        selectedImage = selectedCategory?.associatedImage // Get the associated image
-        print("Selected category: \(selectedCategory?.rawValue ?? "None")") // Debugging print
+        
+        // Ensure the category index is within bounds
+        guard categoryIndex >= 0, categoryIndex < categories.count else {
+            print("Invalid category index: \(categoryIndex)")
+            return
+        }
+        
+        // Update selected category
+        selectedCategory = categories[categoryIndex]
+        
+        // Update associated image if available
+        selectedImage = selectedCategory?.associatedImage
+        
+        // Debugging print
+        if let categoryName = selectedCategory?.rawValue {
+            print("Selected category: \(categoryName)")
+        } else {
+            print("No category selected")
+        }
+        
+        // Visual feedback for the selected button
+        updateButtonSelection(for: sender)
     }
+
+    // Update button appearance to indicate selection
+    private func updateButtonSelection(for selectedButton: UIButton) {
+        for button in CategoryButton {
+            button.backgroundColor = button == selectedButton ? UIColor.systemBlue : UIColor.systemGray5
+        }
+    }
+
 
     @IBAction func addexpenseTapped(_ sender: Any) {
         // Validate and capture user input

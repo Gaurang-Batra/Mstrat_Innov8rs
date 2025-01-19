@@ -3,6 +3,9 @@ import UIKit
 class AllowanceViewController: UIViewController {
 
     // MARK: - Outlets
+    
+    @IBOutlet weak var Amounttextfield: UITextField!
+    
     @IBOutlet weak var reoccurringSwitch: UISwitch!
     @IBOutlet weak var durationStackView: UIStackView!
     @IBOutlet weak var customButton: UIButton!
@@ -47,4 +50,27 @@ class AllowanceViewController: UIViewController {
                 customButton.setTitle("Custom", for: .normal)
             }
         }
+    
+    @IBAction func savebuttontapped(_ sender: Any) {
+        
+        guard let text = Amounttextfield.text, let enteredAmount = Double(text) else {
+               print("Invalid amount entered")
+               return
+           }
+           
+           // Add the entered amount to the shared allowance model
+           let allowance = Allowance(amount: enteredAmount, isRecurring: reoccurringSwitch.isOn, duration: nil, customDate: allowanceDatePicker.date)
+           AllowanceDataModel.shared.addAllowance(allowance)
+           
+           // Send notification to update the total
+           NotificationCenter.default.post(name: NSNotification.Name("remaininfAllowancelabel"), object: nil)
+           
+           // Clear the text field
+           Amounttextfield.text = ""
+           
+           // Dismiss or provide feedback
+           print("Allowance saved!")
+           self.dismiss(animated: true, completion: nil)
+    }
+    
     }

@@ -8,7 +8,9 @@
 import UIKit
 
 class GoalViewController: UIViewController {
-
+    @IBOutlet weak var savebutton: UIBarButtonItem!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

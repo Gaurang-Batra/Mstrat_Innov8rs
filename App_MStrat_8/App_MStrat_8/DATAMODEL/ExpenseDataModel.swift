@@ -20,7 +20,7 @@ enum ExpenseCategory: String, CaseIterable {
         case .rent: return UIImage(named: "icons8-rent-50") ?? UIImage()
         case .grocery: return UIImage(named: "icons8-grocery-50") ?? UIImage()
         case .gym: return UIImage(named: "icons8-gym-50") ?? UIImage()
-        case .other: return UIImage(named: "icons8-other-50") ?? UIImage()
+        case .other: return UIImage(named: "icons8-group-50") ?? UIImage()
         }
     }
 }
