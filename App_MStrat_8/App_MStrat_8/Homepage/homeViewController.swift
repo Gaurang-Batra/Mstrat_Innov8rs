@@ -3,7 +3,11 @@ import UIKit
 class homeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
    
     @IBOutlet weak var expensebutton: UIButton!
-    @IBOutlet weak var circleView: UIView!
+    
+    
+    @IBOutlet var circleview: [UIView]!
+    
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     var expenses: [Expense] = []  // Declare this variable
@@ -11,7 +15,7 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        makeCircular(view: circleView)
+        circleview.forEach { makeCircular(view: $0) }
         
         expensebutton.layer.cornerRadius = expensebutton.frame.size.width / 2
         expensebutton.clipsToBounds = true
@@ -40,10 +44,11 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
 
     private func makeCircular(view: UIView) {
-        let size = min(view.frame.width, view.frame.height)
-        view.layer.cornerRadius = size / 2
-        view.layer.masksToBounds = true
-    }
+           let size = min(view.frame.width, view.frame.height)
+           view.layer.cornerRadius = size / 2
+           view.layer.masksToBounds = true
+       }
+       
     
     func createLayout() -> UICollectionViewLayout {
         return UICollectionViewCompositionalLayout { sectionIndex, _ in

@@ -15,11 +15,23 @@ class VerifyotpViewController: UIViewController {
     
     @IBOutlet weak var ContinueButton: UIButton!
     
+    @IBOutlet var circleview: [UIView]!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         addUnderline(to: EnterOtptextfield)
+        
+        for view in circleview {
+                   // Ensure the view is a square by setting equal width and height
+                   let size = min(view.frame.width, view.frame.height)
+                   view.frame.size = CGSize(width: size, height: size)
+                   
+                   // Make the view circular
+                   view.layer.cornerRadius = size / 2
+                   view.layer.masksToBounds = true
+               }
        
            }
            

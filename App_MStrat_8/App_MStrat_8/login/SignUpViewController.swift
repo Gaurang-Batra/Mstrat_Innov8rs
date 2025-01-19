@@ -4,64 +4,102 @@
 //
 //  Created by Gaurav on 17/01/25.
 //
-
 import UIKit
 
 class SignUpViewController: UIViewController {
     
-    // Connect these outlets from your storyboard
+    // Outlets
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet var circleview: [UIView]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addUnderline(to: emailTextField)
-        addUnderline(to: nameTextField)
-               addUnderline(to: passwordTextField)
-           }
-           
-           // Function to add underline to a text field
-        private func addUnderline(to textField: UITextField) {
-               let underline = CALayer()
-               underline.frame = CGRect(x: 0, y: textField.frame.height - 2, width: textField.frame.width, height: 2)
-               underline.backgroundColor = UIColor.black.cgColor
-               textField.borderStyle = .none
-               textField.layer.addSublayer(underline)
-           }
-    
-    // Action for the Sign Up button
-    @IBAction func signUpButtonTapped(_ sender: UIButton) {
-        // Validate name
-        guard let name = nameTextField.text, !name.isEmpty else {
-                    showAlert(message: "Please enter your name.")
-                    return
-                }
-                
-                // Validate email
-                guard let email = emailTextField.text, !email.isEmpty else {
-                    showAlert(message: "Please enter your email.")
-                    return
-                }
-                
-                // Validate password
-                guard let password = passwordTextField.text, !password.isEmpty else {
-                    showAlert(message: "Please enter your password.")
-                    return
-                }
-                
-                // If all fields are filled, proceed to the next screen
-        if let verifyVC = storyboard?.instantiateViewController(withIdentifier: "verifypage") {
-            navigationController?.pushViewController(verifyVC, animated: true)
-        } else {
-            showAlert(message: "Unable to navigate to the next screen. Please check your storyboard configuration.")
+        
+        // Add underline to text fields
+        [nameTextField, emailTextField, passwordTextField].forEach {
+            addUnderline(to: $0)
+            $0?.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        }
+        
+        // Disable the sign-up button initially
+        signUpButton.isEnabled = false
+        
+        // Make views circular
+        for view in circleview {
+            let size = min(view.frame.width, view.frame.height)
+            view.frame.size = CGSize(width: size, height: size)
+            view.layer.cornerRadius = size / 2
+            view.layer.masksToBounds = true
         }
     }
     
-    // Helper function to show alert messages
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        [nameTextField, emailTextField, passwordTextField].forEach {
+            addUnderline(to: $0)
+        }
+    }
+    
+    // Action for the Sign Up button
+    @IBAction func signUpButtonTapped(_ sender: UIButton) {
+        guard let name = nameTextField.text, !name.isEmpty else {
+            showAlert(message: "Please enter your name.")
+            return
+        }
+        
+        guard let email = emailTextField.text, isValidEmail(email) else {
+            showAlert(message: "Please enter a valid email address.")
+            return
+        }
+        
+        guard let password = passwordTextField.text, password.count >= 8 else {
+            showAlert(message: "Password must be at least 8 characters long.")
+            return
+        }
+        
+        // Check if the storyboard exists
+        guard let storyboard = storyboard else {
+            showAlert(message: "Storyboard not found.")
+            return
+        }
+        
+        // Navigate to the next screen
+        let verifyVC = storyboard.instantiateViewController(withIdentifier: "verifycode")
+        navigationController?.pushViewController(verifyVC, animated: true)
+    }
+
+    
+    // Helper function to show alerts
     private func showAlert(message: String) {
         let alert = UIAlertController(title: "Input Required", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
+    }
+    
+    // Helper function to add underline to text fields
+    private func addUnderline(to textField: UITextField?) {
+        guard let textField = textField else { return }
+        let underline = CALayer()
+        underline.frame = CGRect(x: 0, y: textField.frame.height - 2, width: textField.frame.width, height: 2)
+        underline.backgroundColor = UIColor.black.cgColor
+        textField.borderStyle = .none
+        textField.layer.addSublayer(underline)
+    }
+    
+    // Helper function to validate email format
+    private func isValidEmail(_ email: String) -> Bool {
+        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: email)
+    }
+    
+    // Enable the sign-up button only when all fields are filled
+    @objc private func textFieldDidChange() {
+        let isFormFilled = !(nameTextField.text?.isEmpty ?? true) &&
+                           !(emailTextField.text?.isEmpty ?? true) &&
+                           !(passwordTextField.text?.isEmpty ?? true)
+        signUpButton.isEnabled = isFormFilled
     }
 }
