@@ -10,12 +10,20 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet var roundcornerciew: [UIView]!
+    
+    
+    @IBOutlet weak var AddExpense: UITextField!
+    
+    
     var expenses: [Expense] = []  // Declare this variable
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         circleview.forEach { makeCircular(view: $0) }
+        
+        roundcornerciew.forEach { roundCorners(of: $0, radius: 10) }
         
         expensebutton.layer.cornerRadius = expensebutton.frame.size.width / 2
         expensebutton.clipsToBounds = true
@@ -32,9 +40,32 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             object: nil
         )
         
+        styleTextField(AddExpense)
+        
         // Initial load of expenses
         refreshExpenses()
     }
+    
+    private func styleTextField(_ textField: UITextField) {
+           // Set the height of the text field by modifying its frame
+           textField.frame.size.height = 45// Set desired height
+           
+           // Round only the left side corners
+           let cornerRadius: CGFloat = 10 // Adjust the corner radius as needed
+           let maskPath = UIBezierPath(
+               roundedRect: textField.bounds,
+               byRoundingCorners: [.topLeft, .bottomLeft],
+               cornerRadii: CGSize(width: cornerRadius, height: cornerRadius)
+           )
+           
+           let maskLayer = CAShapeLayer()
+           maskLayer.path = maskPath.cgPath
+           textField.layer.mask = maskLayer
+           
+           // Optional: Add a border for visibility
+           textField.layer.borderColor = UIColor.gray.cgColor
+           textField.layer.borderWidth = 1.0
+       }
 
     // Reload expenses when a new expense is added
     @objc private func refreshExpenses() {
@@ -42,7 +73,11 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         expenses = ExpenseDataModel.shared.getAllExpenses()
         collectionView.reloadData()
     }
-
+    
+    private func roundCorners(of view: UIView, radius: CGFloat) {
+           view.layer.cornerRadius = radius
+           view.layer.masksToBounds = true
+       }
     private func makeCircular(view: UIView) {
            let size = min(view.frame.width, view.frame.height)
            view.layer.cornerRadius = size / 2
@@ -62,7 +97,7 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
             // Define group size and layout
             let groupSize = NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
+                widthDimension: .fractionalWidth(0.97),
                 heightDimension: .absolute(100)
             )
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
