@@ -1,10 +1,3 @@
-//
-//  LoginViewController.swift
-//  loginpg
-//
-//  Created by Gaurav on 17/01/25.
-//
-
 import UIKit
 
 class LoginViewController: UIViewController {
@@ -75,15 +68,19 @@ class LoginViewController: UIViewController {
             return
         }
         
-        // Check if storyboard exists
-        guard let storyboard = storyboard else {
-            showAlert(message: "Storyboard not found.")
-            return
-        }
+        // Get the stored email and password
+        let storedEmail = UserDefaults.standard.string(forKey: "userEmail") ?? ""
+        let storedPassword = UserDefaults.standard.string(forKey: "userPassword") ?? ""
         
-        // Navigate to the next screen
-        let homeScreenVC = storyboard.instantiateViewController(withIdentifier: "homescreen")
-        navigationController?.pushViewController(homeScreenVC, animated: true)
+        // Check if email and password match the stored values
+        if email == storedEmail && password == storedPassword {
+            // Navigate to the home screen
+            guard let storyboard = storyboard else { return }
+            let homeScreenVC = storyboard.instantiateViewController(withIdentifier: "homescreen")
+            navigationController?.pushViewController(homeScreenVC, animated: true)
+        } else {
+            showAlert(message: "Invalid email or password.")
+        }
     }
     
     // Helper function to show alert messages

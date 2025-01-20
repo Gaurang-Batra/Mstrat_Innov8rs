@@ -1,9 +1,3 @@
-//
-//  SignUpViewController.swift
-//  loginpg
-//
-//  Created by Gaurav on 17/01/25.
-//
 import UIKit
 
 class SignUpViewController: UIViewController {
@@ -60,18 +54,17 @@ class SignUpViewController: UIViewController {
             return
         }
         
-        // Check if the storyboard exists
-        guard let storyboard = storyboard else {
-            showAlert(message: "Storyboard not found.")
-            return
-        }
+        // Save user data to UserDefaults
+        UserDefaults.standard.set(name, forKey: "userName")
+        UserDefaults.standard.set(email, forKey: "userEmail")
+        UserDefaults.standard.set(password, forKey: "userPassword")
         
-        // Navigate to the next screen
+        // Navigate to the verification screen
+        guard let storyboard = storyboard else { return }
         let verifyVC = storyboard.instantiateViewController(withIdentifier: "verifycode")
         navigationController?.pushViewController(verifyVC, animated: true)
     }
 
-    
     // Helper function to show alerts
     private func showAlert(message: String) {
         let alert = UIAlertController(title: "Input Required", message: message, preferredStyle: .alert)

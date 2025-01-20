@@ -13,10 +13,10 @@ struct User {
     var email: String
     var fullname: String
     var password: String
-    var isVerified: Bool
-    var badges: [String]
+    var isVerified: Bool?
+    var badges: [String]?
     var currentGoal: Goal?
-    var expenses: [Expense]
+    var expenses: [Expense]?
 }
 
 let firstUser = User(
