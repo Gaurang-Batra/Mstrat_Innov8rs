@@ -31,7 +31,9 @@ class PersonalInfoViewController: UIViewController {
         // Set placeholder text for the text fields
         Nametextfield.placeholder = "Enter your name"
         PhoneTextfield.placeholder = "Enter your phone number"
-        EmailTextfield.placeholder = "Enter your email address"
+        EmailTextfield.placeholder = "Email address cannot be changed"
+        EmailTextfield.isEnabled = false // Disable email text field for editing
+        EmailTextfield.textColor = UIColor.gray // Optionally, make the text visually distinct
     }
     
     // Function to pre-fill the data from UserDefaults
@@ -54,13 +56,10 @@ class PersonalInfoViewController: UIViewController {
             showAlert(title: "Error", message: "Please enter your name.")
         } else if let phone = PhoneTextfield.text, phone.isEmpty {
             showAlert(title: "Error", message: "Please enter your phone number.")
-        } else if let email = EmailTextfield.text, email.isEmpty {
-            showAlert(title: "Error", message: "Please enter your email address.")
         } else {
             // Save the entered data to UserDefaults
             UserDefaults.standard.set(Nametextfield.text, forKey: "userName")
             UserDefaults.standard.set(PhoneTextfield.text, forKey: "userPhone")
-            UserDefaults.standard.set(EmailTextfield.text, forKey: "userEmail")
             
             // Show success alert
             let alertController = UIAlertController(

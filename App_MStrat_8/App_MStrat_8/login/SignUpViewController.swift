@@ -9,8 +9,12 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet var circleview: [UIView]!
     
+    @IBOutlet weak var eyebutton: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        passwordTextField.isSecureTextEntry = true
         
         // Add underline to text fields
         [nameTextField, emailTextField, passwordTextField].forEach {
@@ -94,5 +98,22 @@ class SignUpViewController: UIViewController {
                            !(emailTextField.text?.isEmpty ?? true) &&
                            !(passwordTextField.text?.isEmpty ?? true)
         signUpButton.isEnabled = isFormFilled
+    }
+    
+    @IBAction func togglePasswordVisibility3(_ sender: UIButton) {
+        togglePasswordVisibility(for: passwordTextField, button: eyebutton)
+    }
+
+    // Method to toggle password visibility and change the button image
+    func togglePasswordVisibility(for textField: UITextField, button: UIButton) {
+        if textField.isSecureTextEntry {
+            // If the text is currently hidden (dots), show it
+            textField.isSecureTextEntry = false
+            button.setImage(UIImage(named: "icons8-eye-50"), for: .normal)
+        } else {
+            // If the text is currently visible, hide it (dots)
+            textField.isSecureTextEntry = true
+            button.setImage(UIImage(named: "icons8-blind-50"), for: .normal)
+        }
     }
 }

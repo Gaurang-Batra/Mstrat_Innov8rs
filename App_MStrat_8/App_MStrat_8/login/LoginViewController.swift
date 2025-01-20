@@ -2,14 +2,15 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-    // Connect these outlets from your storyboard
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet var circleview: [UIView]!
     
+    @IBOutlet weak var eyebutton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        passwordTextField.isSecureTextEntry = true
         
         // Add underline to text fields
         addUnderline(to: emailTextField)
@@ -22,7 +23,7 @@ class LoginViewController: UIViewController {
         
         // Initially disable the login button
         loginButton.isEnabled = false
-        loginButton.alpha = 0.5 // Optional: Dim the button for visual feedback
+        loginButton.alpha = 0.5
         
         // Make circle views properly circular
         for view in circleview {
@@ -53,7 +54,7 @@ class LoginViewController: UIViewController {
         let isFormFilled = !(emailTextField.text?.isEmpty ?? true) &&
                            !(passwordTextField.text?.isEmpty ?? true)
         loginButton.isEnabled = isFormFilled
-        loginButton.alpha = isFormFilled ? 1.0 : 0.5 // Adjust button opacity for feedback
+        loginButton.alpha = isFormFilled ? 1.0 : 0.5
     }
     
     // Action for the Login button
@@ -68,7 +69,7 @@ class LoginViewController: UIViewController {
             return
         }
         
-        // Get the stored email and password
+        // Get the stored email and password from UserDefaults
         let storedEmail = UserDefaults.standard.string(forKey: "userEmail") ?? ""
         let storedPassword = UserDefaults.standard.string(forKey: "userPassword") ?? ""
         
@@ -89,4 +90,22 @@ class LoginViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
+    
+    @IBAction func togglePasswordVisibility3(_ sender: UIButton) {
+        togglePasswordVisibility(for: passwordTextField, button: eyebutton)
+    }
+
+    // Method to toggle password visibility and change the button image
+    func togglePasswordVisibility(for textField: UITextField, button: UIButton) {
+        if textField.isSecureTextEntry {
+            // If the text is currently hidden (dots), show it
+            textField.isSecureTextEntry = false
+            button.setImage(UIImage(named: "icons8-eye-50"), for: .normal)
+        } else {
+            // If the text is currently visible, hide it (dots)
+            textField.isSecureTextEntry = true
+            button.setImage(UIImage(named: "icons8-blind-50"), for: .normal)
+        }
+    }
+
 }
