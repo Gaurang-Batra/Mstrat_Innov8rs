@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="myV-Lb-yML">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sbJ-cx-RRT">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
@@ -740,12 +740,12 @@ Try it!</string>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pog-Y0-vVC">
-                                                                <rect key="frame" x="51" y="79" width="92" height="35"/>
+                                                                <rect key="frame" x="11" y="80" width="175" height="35"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" title="Add goal"/>
                                                                 <connections>
-                                                                    <segue destination="df8-DQ-YY0" kind="presentation" id="HS5-bb-hqX"/>
+                                                                    <segue destination="df8-DQ-YY0" kind="presentation" identifier="showGoalViewController" id="HS5-bb-hqX"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -766,21 +766,21 @@ Try it!</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total Expense" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtX-XE-B50">
-                                                        <rect key="frame" x="238" y="7" width="106" height="21"/>
+                                                        <rect key="frame" x="228" y="8" width="106" height="21"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rs.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2md-jb-rpz">
-                                                        <rect key="frame" x="236" y="34" width="108" height="32"/>
+                                                        <rect key="frame" x="247" y="46" width="108" height="32"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                         <color key="textColor" systemColor="systemRedColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rs.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aWK-LA-NW6">
-                                                        <rect key="frame" x="20" y="34" width="127" height="32"/>
+                                                        <rect key="frame" x="26" y="46" width="127" height="32"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                         <color key="textColor" red="0.31372550129999999" green="0.58039218189999997" blue="0.30196079609999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -841,6 +841,7 @@ Try it!</string>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
+                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </collectionViewCellContentView>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <size key="customSize" width="147" height="86"/>
@@ -1021,6 +1022,7 @@ Try it!</string>
                     <size key="freeformSize" width="393" height="1188"/>
                     <connections>
                         <outlet property="AddExpense" destination="V3e-9l-rPO" id="63M-Bp-xL8"/>
+                        <outlet property="Addgoalgoalbutton" destination="pog-Y0-vVC" id="KL8-z9-Bfc"/>
                         <outlet property="collectionView" destination="mve-cc-Y4u" id="RBf-nP-YEO"/>
                         <outlet property="expensebutton" destination="qjO-jj-e29" id="03U-tA-HUf"/>
                         <outlet property="remaininfAllowancelabel" destination="aWK-LA-NW6" id="oFg-qq-1bs"/>
@@ -1231,9 +1233,6 @@ Try it!</string>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Save  &amp; Continue"/>
-                                <connections>
-                                    <action selector="saveAndContinueTapped:" destination="7BO-dJ-jNt" eventType="touchUpInside" id="hHQ-e9-4mO"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter new password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pOr-F1-nfr">
                                 <rect key="frame" x="16" y="252" width="177" height="24"/>
@@ -1248,11 +1247,46 @@ Try it!</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SmD-VD-SIW">
+                                <rect key="frame" x="319" y="141" width="74" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="icons8-blind-50"/>
+                                <connections>
+                                    <action selector="togglePasswordVisibility1:" destination="QaU-ev-kmc" eventType="touchUpInside" id="vQv-9q-ZQK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FP1-cJ-P29">
+                                <rect key="frame" x="319" y="267" width="74" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="icons8-blind-50"/>
+                                <connections>
+                                    <action selector="togglePasswordVisibility2:" destination="QaU-ev-kmc" eventType="touchUpInside" id="mvp-Xb-bcM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p8w-eh-5YL">
+                                <rect key="frame" x="319" y="394" width="74" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="icons8-blind-50"/>
+                                <connections>
+                                    <action selector="togglePasswordVisibility3:" destination="QaU-ev-kmc" eventType="touchUpInside" id="FEa-Lm-aJO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DP2-jX-7rq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="SyO-Wa-Jzf"/>
+                    <connections>
+                        <outlet property="eyeButton1" destination="SmD-VD-SIW" id="btB-Qe-Pbr"/>
+                        <outlet property="eyeButton2" destination="FP1-cJ-P29" id="Sbx-AW-vEF"/>
+                        <outlet property="eyeButton3" destination="p8w-eh-5YL" id="hO3-jn-YcY"/>
+                        <outlet property="passwordTextField1" destination="T74-Ca-vbl" id="gBE-mI-ziU"/>
+                        <outlet property="passwordTextField2" destination="YRg-df-R4u" id="a1H-Ty-lMV"/>
+                        <outlet property="passwordTextField3" destination="pRS-1o-geD" id="cp2-RU-cFO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gE8-XU-AIo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1795,9 +1829,16 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                 <action selector="cancelbutton:" destination="OVj-fr-TMF" id="gq7-1A-2Yd"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="nNJ-wl-2Xu"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="nNJ-wl-2Xu">
+                            <connections>
+                                <action selector="savebuttonTapped:" destination="OVj-fr-TMF" id="49u-4P-cXL"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="GoalAmount" destination="8kn-lT-FDW" id="sX8-8m-7Nh"/>
+                        <outlet property="Goaldeadline" destination="ykK-iv-LBb" id="Dwy-Ym-zgd"/>
+                        <outlet property="Goaltitletextfield" destination="WQD-QJ-mWF" id="UXD-1d-hsv"/>
                         <outlet property="savebutton" destination="nNJ-wl-2Xu" id="n4x-md-Df5"/>
                     </connections>
                 </viewController>
@@ -3073,6 +3114,7 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="house.fill" catalog="system" width="128" height="104"/>
         <image name="icons8-@-50" width="50" height="50"/>
+        <image name="icons8-blind-50" width="25" height="25"/>
         <image name="icons8-calendar-50 1" width="25" height="25"/>
         <image name="icons8-car-16" width="16" height="16"/>
         <image name="icons8-grocery-50" width="50" height="50"/>

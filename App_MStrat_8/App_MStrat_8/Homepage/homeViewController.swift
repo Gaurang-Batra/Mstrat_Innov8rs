@@ -1,6 +1,6 @@
 import UIKit
 
-class homeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class homeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, GoalViewControllerDelegate {
    
     @IBOutlet weak var expensebutton: UIButton!
     
@@ -18,6 +18,9 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var totalexpenselabel: UILabel!
     
     @IBOutlet weak var remaininfAllowancelabel: UILabel!
+    
+    
+    @IBOutlet weak var Addgoalgoalbutton: UIButton!
     
     
     var expenses: [Expense] = []  // Declare this variable
@@ -53,6 +56,21 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         NotificationCenter.default.addObserver(self, selector: #selector(updateTotalExpense), name: NSNotification.Name("remaininfAllowancelabel"), object: nil)
             
     }
+    
+    func didAddGoal(title: String, amount: Int, deadline: Date) {
+           // Update the Addgoalgoalbutton with the goal amount
+           Addgoalgoalbutton.setTitle("\(amount)", for: .normal)
+           print("New Goal Added: \(title), Amount: \(amount), Deadline: \(deadline)")
+       }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showGoalViewController", // Ensure the identifier matches
+           let goalVC = segue.destination as? GoalViewController {
+            goalVC.delegate = self // Set the delegate
+        }
+    }
+
+
     @objc private func updateTotalExpense() {
         // Calculate the total of all allowances
         let totalExpense = AllowanceDataModel.shared.getAllAllowances().reduce(0) { $0 + $1.amount }
@@ -131,14 +149,27 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? SetExpenseCollectionViewCell else {
-            fatalError("Unable to dequeue SetExpenseCollectionViewCell")
-        }
-        
-        // Configure the cell with the latest expenses data
-        let expense = expenses[indexPath.row]
-        cell.configure(with: expense)
-        
-        return cell
+               fatalError("Unable to dequeue SetExpenseCollectionViewCell")
+           }
+
+           // Configure the cell with the latest expenses data
+           let expense = expenses[indexPath.row]
+           cell.configure(with: expense)
+           
+           // Add shadow to the cell
+//           cell.layer.shadowColor = UIColor.black.cgColor  // Use black shadow or adjust to any color
+//           cell.layer.shadowOpacity = 1  // Adjust shadow opacity
+//           cell.layer.shadowOffset = CGSize(width: 10, height: 50)  // Adjust shadow offset
+//           cell.layer.shadowRadius = 4  // Adjust shadow blur radius
+//           cell.layer.masksToBounds = false  // Allow shadow to extend outside the bounds of the cell
+           
+           // Round the corners of the cell
+           cell.layer.cornerRadius = 10  // Adjust the corner radius to your preference
+           cell.layer.masksToBounds = true  // Clip the cell’s content to the rounded corners
+           
+           return cell
     }
 }

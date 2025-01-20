@@ -14,7 +14,7 @@ struct Goal {
     var title: String
     var amount: Int
     var deadline: Date
-    var savings: Int
+    var savings: Int?
     var type: GoalType
 }
 enum GoalType {
@@ -53,11 +53,11 @@ class GoalDataModel {
     }
     func addSavings(toGoalWithId id: Int, amount: Int) {
         guard let index = goals.firstIndex(where: { $0.id == id }) else { return }
-        goals[index].savings += amount
-        if goals[index].savings > goals[index].amount {
+        goals[index].savings! += amount
+        if goals[index].savings! > goals[index].amount {
             print("Congratulations! You've exceeded your goal savings for \(goals[index].title).")
         } else {
-            print("Added \(amount) to \(goals[index].title). Current savings: \(goals[index].savings) out of \(goals[index].amount).")
+            print("Added \(amount) to \(goals[index].title). Current savings: \(String(describing: goals[index].savings)) out of \(goals[index].amount).")
         }
     }
 

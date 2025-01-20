@@ -24,6 +24,8 @@ class BillViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     @IBOutlet weak var paidbytextfield: UITextField!
     
+    
+    
     let transparentview = UIView()
     let tableview = UITableView()
     var selectedbutton = UIButton()

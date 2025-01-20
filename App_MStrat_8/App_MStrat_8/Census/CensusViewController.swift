@@ -66,7 +66,7 @@ class CensusViewController: UIViewController,UITableViewDelegate,UITableViewData
             // Configure the cell with expense data
             cell.expenseimage.image = expense.image
             cell.pricelabel.text = "$\(expense.amount)"
-//            cell.categorylabel.text = expense.category
+            cell.categorylabel.text = expense.category.rawValue.trimmingCharacters(in: .whitespacesAndNewlines)
             cell.titlelabel.text = expense.itemName
 
             return cell

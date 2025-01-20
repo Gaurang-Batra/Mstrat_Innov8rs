@@ -16,11 +16,11 @@ enum ExpenseCategory: String, CaseIterable {
 
     var associatedImage: UIImage {
         switch self {
-        case .car: return UIImage(named: "icons8-car-16") ?? UIImage()
-        case .rent: return UIImage(named: "icons8-rent-50") ?? UIImage()
-        case .grocery: return UIImage(named: "icons8-grocery-50") ?? UIImage()
-        case .gym: return UIImage(named: "icons8-gym-50") ?? UIImage()
-        case .other: return UIImage(named: "icons8-group-50") ?? UIImage()
+        case .car: return UIImage(named: "icons8-car-50") ?? UIImage()
+        case .rent: return UIImage(named: "icons8-home-50") ?? UIImage()
+        case .grocery: return UIImage(named: "icons8-grocery-50 1") ?? UIImage()
+        case .gym: return UIImage(named: "icons8-gym-50 1") ?? UIImage()
+        case .other: return UIImage(named: "icons8-money-transfer-48") ?? UIImage()
         }
     }
 }

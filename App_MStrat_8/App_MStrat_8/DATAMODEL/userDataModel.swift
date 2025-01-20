@@ -72,21 +72,21 @@ class UserDataModel {
         guard let index = users.firstIndex(where: { $0.id == userId }) else { return }
         users[index].currentGoal = goal
 
-        let badge: String
-        switch goal.type {
-        case .yearly:
-            badge = "Monthly Achiever"
-        case .monthly:
-            badge = "Weekly Achiever"
-        case .weekly:
-            badge = "Daily Achiever"
-        case .daily:
-            badge = "Quick Challenger"
-        case .custom:
-            badge = "Custom Achiever"
-        }
+//        let badge: String
+//        switch goal.type {
+//        case .yearly:
+//            badge = "Monthly Achiever"
+//        case .monthly:
+//            badge = "Weekly Achiever"
+//        case .weekly:
+//            badge = "Daily Achiever"
+//        case .daily:
+//            badge = "Quick Challenger"
+//        case .custom:
+//            badge = "Custom Achiever"
+//        }
 
-        users[index].badges.append(badge)
+//        users[index].badges.append(badge)
     }
 
     func getUserBadges(for userId: Int) -> [String] {
