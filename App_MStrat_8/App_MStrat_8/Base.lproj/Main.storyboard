@@ -1179,7 +1179,9 @@ Try it!</string>
                     </view>
                     <navigationItem key="navigationItem" id="8ey-ID-pOg"/>
                     <connections>
+                        <outlet property="EmailTextfield" destination="fCV-S9-Qhv" id="wiW-Hb-Psr"/>
                         <outlet property="Nametextfield" destination="Wid-di-64m" id="ssj-qX-zeV"/>
+                        <outlet property="PhoneTextfield" destination="xx2-l9-0wZ" id="Ko1-kg-DeX"/>
                         <outlet property="saveandcontinue" destination="b6X-LQ-eyZ" id="mJJ-8C-Qua"/>
                     </connections>
                 </viewController>

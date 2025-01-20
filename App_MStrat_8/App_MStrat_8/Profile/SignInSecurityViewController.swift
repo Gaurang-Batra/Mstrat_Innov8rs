@@ -24,6 +24,10 @@ class SignInSecurityViewController: UIViewController {
             eyeButton1.setImage(UIImage(named: "icons8-blind-50"), for: .normal)
             eyeButton2.setImage(UIImage(named: "icons8-blind-50"), for: .normal)
             eyeButton3.setImage(UIImage(named: "icons8-blind-50"), for: .normal)
+            
+            passwordTextField1.placeholder = "Enter your current password"
+            passwordTextField2.placeholder = "Enter your new password"
+            passwordTextField3.placeholder = "Re-enter your new password"
         }
 
         // Action for eye button 1 (current password visibility toggle)
