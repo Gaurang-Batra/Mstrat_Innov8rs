@@ -53,4 +53,36 @@ class SignInSecurityViewController: UIViewController {
                 button.setImage(UIImage(named: "icons8-blind-50"), for: .normal)  // Change image to show eye with a line through it (password hidden)
             }
         }
+    @IBAction func saveAndContinueTapped(_ sender: UIButton) {
+            // Check if new password matches the confirmation
+            if passwordTextField2.text == passwordTextField3.text {
+                // Passwords match, show success alert
+                let alertController = UIAlertController(
+                    title: "Password Changed",
+                    message: "Your password has been changed successfully.",
+                    preferredStyle: .alert
+                )
+                
+                // Add OK action to dismiss the alert
+                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alertController.addAction(okAction)
+                
+                // Present the alert
+                present(alertController, animated: true, completion: nil)
+            } else {
+                // Passwords do not match, show error alert
+                let alertController = UIAlertController(
+                    title: "Error",
+                    message: "Please re-enter your new password carefully.",
+                    preferredStyle: .alert
+                )
+                
+                // Add OK action to dismiss the alert
+                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alertController.addAction(okAction)
+                
+                // Present the alert
+                present(alertController, animated: true, completion: nil)
+            }
+        }
     }
