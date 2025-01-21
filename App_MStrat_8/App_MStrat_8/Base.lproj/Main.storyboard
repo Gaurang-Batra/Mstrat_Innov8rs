@@ -15,11 +15,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="SplitpalViewController" customModule="App_MStrat_8" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vK9-xO-FTG">
-                                <rect key="frame" x="16" y="121" width="369" height="104"/>
+                                <rect key="frame" x="16" y="168" width="369" height="104"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total Balance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fU7-zK-ncr">
                                         <rect key="frame" x="18" y="23" width="102" height="21"/>
@@ -71,7 +71,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="If3-2M-3CG">
-                                <rect key="frame" x="16" y="245" width="369" height="539"/>
+                                <rect key="frame" x="16" y="292" width="369" height="502"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CCt-sV-c0S">
                                         <rect key="frame" x="23" y="91" width="331" height="180"/>
@@ -264,7 +264,7 @@ Try it!</string>
             <objects>
                 <viewController id="nrf-Uc-qM6" customClass="GroupDetailViewController" customModule="App_MStrat_8" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AL2-zW-wFq">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cNL-gS-grP">
@@ -500,7 +500,7 @@ Try it!</string>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="4np-Qh-Nir">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="108"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -517,7 +517,7 @@ Try it!</string>
             <objects>
                 <viewController id="Pba-u9-Mga" customClass="CensusViewController" customModule="App_MStrat_8" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Akf-ON-5f4">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7fz-Jk-WA3">
@@ -612,7 +612,7 @@ Try it!</string>
             <objects>
                 <viewController id="JbP-iR-woU" customClass="ViewAllCensusViewController" customModule="App_MStrat_8" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="baB-XC-zU7">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="GRE-OF-VLc">
@@ -714,8 +714,8 @@ Try it!</string>
         <scene sceneID="qSo-6a-3lG">
             <objects>
                 <viewController id="O8k-wi-UOw" customClass="homeViewController" customModule="App_MStrat_8" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="dLA-gq-W2E">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="1178"/>
+                    <view key="view" contentMode="scaleToFill" id="dLA-gq-W2E">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="1188"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PPb-u7-rsb">
@@ -1043,7 +1043,7 @@ Try it!</string>
             <objects>
                 <viewController id="agm-hM-wEo" customClass="PersonalInformationViewController" customModule="App_MStrat_8" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CnA-ns-4Vf">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="DLP-wa-2O6">
@@ -1106,7 +1106,7 @@ Try it!</string>
             </objects>
             <point key="canvasLocation" x="1185.4961832061069" y="2931.6901408450703"/>
         </scene>
-        <!--Personal Info View Controller-->
+        <!--Personal Infromation-->
         <scene sceneID="l0z-bG-bl8">
             <objects>
                 <viewController storyboardIdentifier="a" id="7BO-dJ-jNt" customClass="PersonalInfoViewController" customModule="App_MStrat_8" customModuleProvider="target" sceneMemberID="viewController">
@@ -1177,7 +1177,7 @@ Try it!</string>
                         <viewLayoutGuide key="safeArea" id="FLg-um-c6n"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="8ey-ID-pOg"/>
+                    <navigationItem key="navigationItem" title="Personal Infromation" largeTitleDisplayMode="never" id="8ey-ID-pOg"/>
                     <connections>
                         <outlet property="EmailTextfield" destination="fCV-S9-Qhv" id="wiW-Hb-Psr"/>
                         <outlet property="Nametextfield" destination="Wid-di-64m" id="ssj-qX-zeV"/>
@@ -1187,9 +1187,9 @@ Try it!</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N1r-pi-RT4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2432.8244274809158" y="2778.8732394366198"/>
+            <point key="canvasLocation" x="3359.5419847328244" y="2778.8732394366198"/>
         </scene>
-        <!--Sign In Security View Controller-->
+        <!--Sign In & Security-->
         <scene sceneID="Ddp-BY-mRj">
             <objects>
                 <viewController storyboardIdentifier="b" id="QaU-ev-kmc" customClass="SignInSecurityViewController" customModule="App_MStrat_8" customModuleProvider="target" sceneMemberID="viewController">
@@ -1276,7 +1276,7 @@ Try it!</string>
                         <viewLayoutGuide key="safeArea" id="DP2-jX-7rq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="SyO-Wa-Jzf"/>
+                    <navigationItem key="navigationItem" title="Sign In &amp; Security" largeTitleDisplayMode="never" id="SyO-Wa-Jzf"/>
                     <connections>
                         <outlet property="eyeButton1" destination="SmD-VD-SIW" id="btB-Qe-Pbr"/>
                         <outlet property="eyeButton2" destination="FP1-cJ-P29" id="Sbx-AW-vEF"/>
@@ -1288,9 +1288,9 @@ Try it!</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gE8-XU-AIo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3047" y="2779"/>
+            <point key="canvasLocation" x="4900" y="2778.8732394366198"/>
         </scene>
-        <!--Privacy Policy View Controller-->
+        <!--Privacy Policy-->
         <scene sceneID="tyw-xs-0fO">
             <objects>
                 <viewController storyboardIdentifier="c" id="Qq4-mY-sa9" customClass="PrivacyPolicyViewController" customModule="App_MStrat_8" customModuleProvider="target" sceneMemberID="viewController">
@@ -1299,18 +1299,11 @@ Try it!</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bjw-F8-aDg">
-                                <rect key="frame" x="16" y="135" width="377" height="543"/>
+                                <rect key="frame" x="16" y="103" width="361" height="543"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <string key="text">At [App Name], we prioritize the privacy and safety of our users. Your personal information is securely stored and never shared with unauthorized parties. We adhere to strict data protection regulations to ensure your details remain confidential. Features like encrypted communications and secure authentication mechanisms safeguard your account and sensitive information. Our commitment to transparency ensures you are always aware of how your data is used, providing you with the tools to control your privacy settings and tailor your experience to your comfort level.
+                                <mutableString key="text">At MStrat, we prioritize the privacy and safety of our users. Your personal information is securely stored and never shared with unauthorized parties. We adhere to strict data protection regulations to ensure your details remain confidential. Features like encrypted communications and secure authentication mechanisms safeguard your account and sensitive information. Our commitment to transparency ensures you are always aware of how your data is used, providing you with the tools to control your privacy settings and tailor your experience to your comfort level.
 
-To enhance safety, we’ve implemented robust measures to protect against unauthorized access and security breaches. Our app includes features like two-factor authentication, real-time alerts for suspicious activity, and stringent password requirements to keep your account secure. Additionally, we continuously monitor and update our systems to meet evolving security standards, so you can use [App Name] with peace of mind, knowing your privacy and safety are our top priorities.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Privacy and Policy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fuR-BU-UeJ">
-                                <rect key="frame" x="16" y="106" width="138" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+To enhance safety, we’ve implemented robust measures to protect against unauthorized access and security breaches. Our app includes features like two-factor authentication, real-time alerts for suspicious activity, and stringent password requirements to keep your account secure. Additionally, we continuously monitor and update our systems to meet evolving security standards, so you can use [App Name] with peace of mind, knowing your privacy and safety are our top priorities.</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1319,11 +1312,11 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                         <viewLayoutGuide key="safeArea" id="PFt-aI-CsZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="lJJ-pd-P22"/>
+                    <navigationItem key="navigationItem" title="Privacy Policy" largeTitleDisplayMode="never" id="lJJ-pd-P22"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2K1-CY-tpv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3672.5190839694656" y="2778.8732394366198"/>
+            <point key="canvasLocation" x="6452.6717557251905" y="2778.8732394366198"/>
         </scene>
         <!--Home-->
         <scene sceneID="Rgh-iN-qza">
@@ -1335,7 +1328,7 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="1ek-PI-6MU">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="108"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1354,7 +1347,7 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                     <tabBarItem key="tabBarItem" title="Census" image="icons8-history-50" selectedImage="icons8-history-50-2" id="gnX-JY-vVz"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="zKe-FA-rPc">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="108"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1375,7 +1368,7 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="gq0-Cf-BJ4">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="108"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1433,7 +1426,7 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
             <objects>
                 <tableViewController id="KKV-r0-1aq" customClass="MembersListTableViewController" customModule="App_MStrat_8" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="zna-sK-wcw">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -2932,7 +2925,7 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter OTP" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SX7-lS-bu2">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SX7-lS-bu2">
                                 <rect key="frame" x="66" y="317" width="245" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -2943,6 +2936,9 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Resend OTP"/>
+                                <connections>
+                                    <action selector="resendOtpButtonTapped:" destination="OmZ-FX-Eic" eventType="touchUpInside" id="ABB-Ou-lkK"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DeP-m3-IAz">
                                 <rect key="frame" x="-59" y="-38" width="222" height="216"/>
@@ -3028,7 +3024,7 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                     <color key="baseBackgroundColor" red="0.83137255909999996" green="0.83137255909999996" blue="0.83137255909999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="sbJ-cx-RRT" kind="show" id="wt4-Oy-qC0"/>
+                                    <action selector="continueButtonTapped:" destination="OmZ-FX-Eic" eventType="touchUpInside" id="36G-JQ-YfP"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Verification Code " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hhe-fP-1yx">
@@ -3116,6 +3112,60 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yfU-oG-zDz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-4219" y="1040"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="k4b-7Y-7vN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hfX-Mp-FYY" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qNZ-T9-JFo">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="7BO-dJ-jNt" kind="relationship" relationship="rootViewController" id="0TV-Wn-L1u"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VAG-Yc-oWh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2432.8244274809158" y="2778.8732394366198"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="TFq-dC-NGv">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iQ8-NN-fev" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bdx-m2-bxq">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="QaU-ev-kmc" kind="relationship" relationship="rootViewController" id="bJc-AV-F4Q"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="apN-r5-0uv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3973.2824427480914" y="2778.8732394366198"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="CaB-iw-RPh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Yay-Nn-FZx" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="h3q-Yn-YLg">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Qq4-mY-sa9" kind="relationship" relationship="rootViewController" id="bsY-V9-vyp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U7m-kc-W0X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5525.9541984732823" y="2778.8732394366198"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
