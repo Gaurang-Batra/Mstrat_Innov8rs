@@ -19,8 +19,10 @@ enum ExpenseCategory: String, CaseIterable {
     var associatedImage: UIImage {
         switch self {
         case .food:
+//            print("inside food")
             return UIImage(named: "icons8-kawaii-pizza-50") ?? UIImage()
         case .grocery:
+//            print("inside grocery")
             return UIImage(named: "icons8-vegetarian-food-50") ?? UIImage()
         case .fuel:
             return UIImage(named: "icons8-fuel-50") ?? UIImage()
@@ -32,6 +34,35 @@ enum ExpenseCategory: String, CaseIterable {
             return UIImage(named: "icons8-more-50-2") ?? UIImage()
         }
     }
+    
+//    var associatedImage: UIImage {
+//            switch self {
+//            case .food:
+//                let image = UIImage(named: "icons8-kawaii-pizza-50")
+//                print("Food image loaded: \(image != nil)")
+//                return image ?? UIImage()
+//            case .grocery:
+//                let image = UIImage(named: "icons8-vegetarian-food-50")
+//                print("Grocery image loaded: \(image != nil)")
+//                return image ?? UIImage()
+//            case .fuel:
+//                let image = UIImage(named: "icons8-fuel-50")
+//                print("Fuel image loaded: \(image != nil)")
+//                return image ?? UIImage()
+//            case .bills:
+//                let image = UIImage(named: "icons8-cheque-50")
+//                print("Bills image loaded: \(image != nil)")
+//                return image ?? UIImage()
+//            case .travel:
+//                let image = UIImage(named: "icons8-holiday-50")
+//                print("Travel image loaded: \(image != nil)")
+//                return image ?? UIImage()
+//            case .other:
+//                let image = UIImage(named: "icons8-more-50-2")
+//                print("Other image loaded: \(image != nil)")
+//                return image ?? UIImage()
+//            }
+//        }
 }
 
 struct Expense {

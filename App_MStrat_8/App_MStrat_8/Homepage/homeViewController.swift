@@ -1,66 +1,73 @@
 import UIKit
 
+
+// MARK: - HomeViewController
 class homeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, GoalViewControllerDelegate {
-   
+
     @IBOutlet weak var expensebutton: UIButton!
-    
     @IBOutlet weak var mainlabel: UIView!
-    
     @IBOutlet var circleview: [UIView]!
-    
     @IBOutlet weak var collectionView: UICollectionView!
-    
     @IBOutlet var roundcornerciew: [UIView]!
-    
     @IBOutlet weak var AddExpense: UITextField!
-    
     @IBOutlet weak var totalexpenselabel: UILabel!
-    
     @IBOutlet weak var remaininfAllowancelabel: UILabel!
-    
     @IBOutlet weak var Addgoalgoalbutton: UIButton!
-    
+
     var expenses: [Expense] = []  // Declare this variable
-    
+    var currentGoal: Goal?
+
+    var goals: [Goal] = []  // Array to hold multiple goals
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Layout adjustments should be delayed until view is fully loaded
         mainlabel.layoutIfNeeded()
         createVerticalDottedLineInBalanceContainer()
-        
         circleview.forEach { makeCircular(view: $0) }
-        
         roundcornerciew.forEach { roundCorners(of: $0, radius: 10) }
-        
+
         expensebutton.layer.cornerRadius = expensebutton.frame.size.width / 2
         expensebutton.clipsToBounds = true
-        
+
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.collectionViewLayout = createLayout()
 
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(refreshExpenses),
-            name: NSNotification.Name("ExpenseAdded"),
-            object: nil
-        )
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshExpenses), name: NSNotification.Name("ExpenseAdded"), object: nil)
+
         styleTextField(AddExpense)
-        
-        // Initial load of expenses
         refreshExpenses()
         updateTotalExpense()
-        
         NotificationCenter.default.addObserver(self, selector: #selector(updateTotalExpense), name: NSNotification.Name("remaininfAllowancelabel"), object: nil)
     }
-    
-    func didAddGoal(title: String, amount: Int, deadline: Date) {
-        Addgoalgoalbutton.setTitle("\(amount)", for: .normal)
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateGoalButton()
+    }
+
+    func didAddGoal(title: String, amount: Int, deadline: Date, initialSavings: Int) {
+        // Create a new goal and store it locally
+        let newGoal = Goal(title: title, amount: amount, deadline: deadline, savings: initialSavings)
+        goals.append(newGoal)
+
+        // Update the button to reflect the goal's progress
+        DispatchQueue.main.async {
+            self.updateGoalButton()
+        }
         print("New Goal Added: \(title), Amount: \(amount), Deadline: \(deadline)")
     }
-    
+
+    private func updateGoalButton() {
+        guard let goal = currentGoal else {
+            Addgoalgoalbutton.setTitle("Add Goal", for: .normal)
+            print("check")
+            return
+        }
+        Addgoalgoalbutton.setTitle("\(goal.amount)", for: .normal)
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showGoalViewController",
            let goalVC = segue.destination as? GoalViewController {
@@ -90,12 +97,12 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         expenses = ExpenseDataModel.shared.getAllExpenses()
         collectionView.reloadData()
     }
-    
+
     private func roundCorners(of view: UIView, radius: CGFloat) {
         view.layer.cornerRadius = radius
         view.layer.masksToBounds = true
     }
-    
+
     private func makeCircular(view: UIView) {
         let size = min(view.frame.width, view.frame.height)
         view.layer.cornerRadius = size / 2
@@ -120,11 +127,11 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             return section
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return expenses.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? SetExpenseCollectionViewCell else {
             fatalError("Unable to dequeue SetExpenseCollectionViewCell")
@@ -135,13 +142,13 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         cell.layer.masksToBounds = true
         return cell
     }
-    
+
     func createVerticalDottedLineInBalanceContainer() {
         let dottedLine = CAShapeLayer()
         let path = UIBezierPath()
         let centerX = mainlabel.bounds.width / 2
-        let startY: CGFloat = 10 // Padding from top
-        let endY = mainlabel.bounds.height - 10 // Padding from bottom
+        let startY: CGFloat = 10
+        let endY = mainlabel.bounds.height - 10
         path.move(to: CGPoint(x: centerX, y: startY))
         path.addLine(to: CGPoint(x: centerX, y: endY))
         dottedLine.path = path.cgPath
@@ -150,4 +157,5 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         dottedLine.lineDashPattern = [6, 2]
         mainlabel.layer.addSublayer(dottedLine)
     }
+    
 }

@@ -1761,7 +1761,7 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
             </objects>
             <point key="canvasLocation" x="3395" y="-798"/>
         </scene>
-        <!--Goal View Controller-->
+        <!--Add your Goal-->
         <scene sceneID="8x8-Vs-da3">
             <objects>
                 <viewController id="OVj-fr-TMF" customClass="GoalViewController" customModule="App_MStrat_8" customModuleProvider="target" sceneMemberID="viewController">
@@ -1812,7 +1812,7 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                         <viewLayoutGuide key="safeArea" id="T2G-uT-i8w"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="dQc-4L-N7F">
+                    <navigationItem key="navigationItem" title="Add your Goal" id="dQc-4L-N7F">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="unn-Oq-IQj">
                             <connections>
                                 <action selector="cancelbutton:" destination="OVj-fr-TMF" id="gq7-1A-2Yd"/>
@@ -2017,11 +2017,11 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                         <outlet property="itemNameTextField" destination="3wp-9l-eYO" id="7pE-FB-mnQ"/>
                         <outlet property="recurringSwitch" destination="dXp-KS-aCQ" id="n7a-lG-IQQ"/>
                         <outletCollection property="CategoryButton" destination="P6I-aV-6AD" collectionClass="NSMutableArray" id="Bks-Eo-NHd"/>
-                        <outletCollection property="CategoryButton" destination="kzJ-nr-rEe" collectionClass="NSMutableArray" id="0e4-GM-vB3"/>
-                        <outletCollection property="CategoryButton" destination="Gq6-zf-Nrb" collectionClass="NSMutableArray" id="tbN-0d-FFj"/>
-                        <outletCollection property="CategoryButton" destination="d8a-w0-gdy" collectionClass="NSMutableArray" id="GED-lg-SWO"/>
-                        <outletCollection property="CategoryButton" destination="PlM-GA-bUO" collectionClass="NSMutableArray" id="Sbi-7f-vX8"/>
-                        <outletCollection property="CategoryButton" destination="KpQ-3f-6E9" collectionClass="NSMutableArray" id="maO-m4-gkl"/>
+                        <outletCollection property="CategoryButton" destination="Gq6-zf-Nrb" collectionClass="NSMutableArray" id="Bv3-9y-dYy"/>
+                        <outletCollection property="CategoryButton" destination="d8a-w0-gdy" collectionClass="NSMutableArray" id="Ugc-lc-dhq"/>
+                        <outletCollection property="CategoryButton" destination="kzJ-nr-rEe" collectionClass="NSMutableArray" id="bma-Dd-Zff"/>
+                        <outletCollection property="CategoryButton" destination="KpQ-3f-6E9" collectionClass="NSMutableArray" id="PvC-xq-sEY"/>
+                        <outletCollection property="CategoryButton" destination="PlM-GA-bUO" collectionClass="NSMutableArray" id="cto-cJ-oEO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ak2-mQ-i39" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -3189,7 +3189,7 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
         <segue reference="slq-dV-Nfy"/>
         <segue reference="axb-SC-zZr"/>
         <segue reference="HMP-H4-Ezh"/>
-        <segue reference="5Pz-bk-SPw"/>
+        <segue reference="o86-rk-2IY"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Group" width="766.80194091796875" height="500.94793701171875"/>

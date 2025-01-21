@@ -56,7 +56,7 @@ class ViewAllCensusViewController: UIViewController, UITableViewDelegate, UITabl
 
         // Configure cell with expense details
         cell.expenseimage.image = expense.image
-        cell.pricelabel.text = "$\(expense.amount)"
+        cell.pricelabel.text = "Rs \(expense.amount)"
         cell.categorylabel.text = expense.category.rawValue.trimmingCharacters(in: .whitespacesAndNewlines)  // Display category name
         cell.titlelabel.text = expense.itemName
 

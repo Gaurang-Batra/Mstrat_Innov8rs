@@ -28,11 +28,19 @@ class CategoryNameViewController: UIViewController {
 
         // Setup category buttons with images only (no titles)
         for (index, button) in CategoryButton.enumerated() {
+            
             if index < categories.count {
+                
                 let category = categories[index]
+                
                 button.setImage(category.associatedImage, for: .normal)
+              
+                
                 button.setTitle(nil, for: .normal) // Remove the title
-                button.tag = index // Assign a tag for identification
+                button.tag = index
+                // Assign a tag for identification
+                
+                
                 button.addTarget(self, action: #selector(categoryButtonTapped(_:)), for: .touchUpInside)
 
                 // Adjust the image view content mode if necessary
