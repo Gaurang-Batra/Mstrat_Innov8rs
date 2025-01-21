@@ -12,7 +12,7 @@ class CategoryNameViewController: UIViewController {
     @IBOutlet weak var deadlineview: UIView!
 
     private let datePicker = UIDatePicker()
-    private let categories: [ExpenseCategory] = [.car, .rent, .grocery, .gym, .other]
+    private let categories: [ExpenseCategory] = [.food, .grocery, .fuel, .bills, .travel, .other]
     private var selectedCategory: ExpenseCategory? // To store the selected category
     private var selectedImage: UIImage?
 

@@ -29,9 +29,8 @@ enum Duration: String {
     case custom = "Custom"
 }
 
-let firstAllowance = Allowance(amount: 50.0, isRecurring: true, duration: .oneWeek, customDate: nil)
-let secondAllowance = Allowance(amount: 100.0, isRecurring: false, duration: nil, customDate: Date())
-let thirdAllowance = Allowance(amount: 75.0, isRecurring: true, duration: .oneMonth, customDate: nil)
+let firstAllowance = Allowance(amount: 0.0, isRecurring: true, duration: .oneWeek, customDate: nil)
+
 
 class AllowanceDataModel {
     private var allowances: [Allowance] = []
@@ -39,8 +38,7 @@ class AllowanceDataModel {
     
     private init() {
         allowances.append(firstAllowance)
-        allowances.append(secondAllowance)
-        allowances.append(thirdAllowance)
+       
     }
     
     func getAllAllowances() -> [Allowance] {

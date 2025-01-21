@@ -594,6 +594,15 @@ Try it!</string>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="3iU-Yf-m8n">
+                                <rect key="frame" x="49" y="183" width="312" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Weekly"/>
+                                    <segment title="Monthly"/>
+                                    <segment title="Yearly"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8rH-sV-Ct0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -605,7 +614,7 @@ Try it!</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zkN-8q-Uag" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1185" y="1665"/>
+            <point key="canvasLocation" x="1183.969465648855" y="1664.7887323943662"/>
         </scene>
         <!--View All Census View Controller-->
         <scene sceneID="f5d-a7-PgB">
@@ -710,50 +719,20 @@ Try it!</string>
             </objects>
             <point key="canvasLocation" x="-976" y="1131"/>
         </scene>
-        <!--Home View Controller-->
+        <!--Home-->
         <scene sceneID="qSo-6a-3lG">
             <objects>
                 <viewController id="O8k-wi-UOw" customClass="homeViewController" customModule="App_MStrat_8" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dLA-gq-W2E">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="1188"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="1240"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PPb-u7-rsb">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="1232"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="1280"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MUj-7w-AZc">
-                                        <rect key="frame" x="0.0" y="-58" width="399" height="1190"/>
+                                        <rect key="frame" x="0.0" y="24" width="399" height="1318"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hi, Welcome to Mstrat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mq6-oA-Whn">
-                                                <rect key="frame" x="12" y="67" width="313" height="43"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EiV-w4-HS5">
-                                                <rect key="frame" x="111" y="118" width="200" height="200"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <subviews>
-                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tJq-EH-jyb">
-                                                        <rect key="frame" x="3" y="3" width="194" height="194"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pog-Y0-vVC">
-                                                                <rect key="frame" x="11" y="80" width="175" height="35"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="plain" title="Add goal"/>
-                                                                <connections>
-                                                                    <segue destination="df8-DQ-YY0" kind="presentation" identifier="showGoalViewController" id="HS5-bb-hqX"/>
-                                                                </connections>
-                                                            </button>
-                                                        </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </view>
-                                                </subviews>
-                                                <color key="backgroundColor" red="0.1411764771" green="0.14509806040000001" blue="0.14509806040000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            </view>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TVD-xy-qy6">
                                                 <rect key="frame" x="15" y="399" width="363" height="100"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -834,9 +813,9 @@ Try it!</string>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Car Rent" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YaO-NY-voj">
-                                                                            <rect key="frame" x="19" y="57" width="120" height="21"/>
+                                                                            <rect key="frame" x="19" y="51" width="120" height="21"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
@@ -949,20 +928,31 @@ Try it!</string>
                                                     <color key="baseBackgroundColor" red="0.77647060160000003" green="0.77647060160000003" blue="0.77647060160000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </buttonConfiguration>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S6W-J3-xpb">
-                                                <rect key="frame" x="304" y="73" width="55" height="63"/>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EiV-w4-HS5">
+                                                <rect key="frame" x="99" y="118" width="200" height="200"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="icons8-wallet-30"/>
-                                                <connections>
-                                                    <segue destination="GhW-Ek-5Cu" kind="presentation" id="nst-qx-wup"/>
-                                                </connections>
-                                            </button>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tJq-EH-jyb">
+                                                        <rect key="frame" x="3" y="3" width="194" height="194"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pog-Y0-vVC">
+                                                                <rect key="frame" x="11" y="80" width="175" height="35"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain" title="Add goal"/>
+                                                                <connections>
+                                                                    <segue destination="df8-DQ-YY0" kind="presentation" identifier="showGoalViewController" id="HS5-bb-hqX"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.1411764771" green="0.14509806040000001" blue="0.14509806040000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="922" id="g7l-q6-EfF"/>
-                                        </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -1018,13 +1008,21 @@ Try it!</string>
                             <constraint firstItem="PPb-u7-rsb" firstAttribute="leading" secondItem="7gb-2L-mRY" secondAttribute="leading" id="w0p-V0-zNc"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="vHb-ik-ke1"/>
-                    <size key="freeformSize" width="393" height="1188"/>
+                    <navigationItem key="navigationItem" title="Home" id="vHb-ik-ke1">
+                        <barButtonItem key="rightBarButtonItem" image="icons8-wallet-100" id="Zvu-xK-tdR">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <segue destination="GhW-Ek-5Cu" kind="presentation" id="NIw-ze-gha"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <size key="freeformSize" width="393" height="1240"/>
                     <connections>
                         <outlet property="AddExpense" destination="V3e-9l-rPO" id="63M-Bp-xL8"/>
                         <outlet property="Addgoalgoalbutton" destination="pog-Y0-vVC" id="KL8-z9-Bfc"/>
                         <outlet property="collectionView" destination="mve-cc-Y4u" id="RBf-nP-YEO"/>
                         <outlet property="expensebutton" destination="qjO-jj-e29" id="03U-tA-HUf"/>
+                        <outlet property="mainlabel" destination="TVD-xy-qy6" id="JSZ-3e-4KJ"/>
                         <outlet property="remaininfAllowancelabel" destination="aWK-LA-NW6" id="oFg-qq-1bs"/>
                         <outlet property="totalexpenselabel" destination="2md-jb-rpz" id="qIJ-5O-Chx"/>
                         <outletCollection property="circleview" destination="tJq-EH-jyb" collectionClass="NSMutableArray" id="ZRi-gy-eli"/>
@@ -1301,9 +1299,9 @@ Try it!</string>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bjw-F8-aDg">
                                 <rect key="frame" x="16" y="103" width="361" height="543"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <mutableString key="text">At MStrat, we prioritize the privacy and safety of our users. Your personal information is securely stored and never shared with unauthorized parties. We adhere to strict data protection regulations to ensure your details remain confidential. Features like encrypted communications and secure authentication mechanisms safeguard your account and sensitive information. Our commitment to transparency ensures you are always aware of how your data is used, providing you with the tools to control your privacy settings and tailor your experience to your comfort level.
+                                <string key="text">At MStrat, we prioritize the privacy and safety of our users. Your personal information is securely stored and never shared with unauthorized parties. We adhere to strict data protection regulations to ensure your details remain confidential. Features like encrypted communications and secure authentication mechanisms safeguard your account and sensitive information. Our commitment to transparency ensures you are always aware of how your data is used, providing you with the tools to control your privacy settings and tailor your experience to your comfort level.
 
-To enhance safety, we’ve implemented robust measures to protect against unauthorized access and security breaches. Our app includes features like two-factor authentication, real-time alerts for suspicious activity, and stringent password requirements to keep your account secure. Additionally, we continuously monitor and update our systems to meet evolving security standards, so you can use [App Name] with peace of mind, knowing your privacy and safety are our top priorities.</mutableString>
+To enhance safety, we’ve implemented robust measures to protect against unauthorized access and security breaches. Our app includes features like two-factor authentication, real-time alerts for suspicious activity, and stringent password requirements to keep your account secure. Additionally, we continuously monitor and update our systems to meet evolving security standards, so you can use [App Name] with peace of mind, knowing your privacy and safety are our top priorities.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1703,8 +1701,8 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="88y-l4-Day">
                                 <rect key="frame" x="22" y="467" width="320" height="324"/>
                             </datePicker>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Duration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8NR-Zr-EWx">
-                                <rect key="frame" x="16" y="304" width="90" height="27.666666666666686"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8NR-Zr-EWx">
+                                <rect key="frame" x="16" y="316.33333333333331" width="90" height="27.666666666666686"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1892,34 +1890,44 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P6I-aV-6AD">
-                                <rect key="frame" x="16" y="336" width="96" height="48"/>
+                                <rect key="frame" x="16" y="336" width="112" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" image="icons8-car-16"/>
+                                <buttonConfiguration key="configuration" style="gray" image="icons8-kawaii-pizza-50" title="Food">
+                                    <color key="baseForegroundColor" systemColor="darkTextColor"/>
+                                </buttonConfiguration>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KpQ-3f-6E9">
+                                <rect key="frame" x="145" y="397" width="112" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" image="icons8-holiday-50" title="Travel">
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d8a-w0-gdy">
-                                <rect key="frame" x="296" y="336" width="96" height="48"/>
+                                <rect key="frame" x="274" y="335" width="112" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" image="icons8-grocery-50"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gq6-zf-Nrb">
-                                <rect key="frame" x="156" y="336" width="96" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" image="icons8-house-16"/>
+                                <buttonConfiguration key="configuration" style="gray" image="icons8-fuel-50" title="Fuel">
+                                    <color key="baseForegroundColor" systemColor="darkTextColor"/>
+                                </buttonConfiguration>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PlM-GA-bUO">
-                                <rect key="frame" x="156" y="397" width="96" height="48"/>
+                                <rect key="frame" x="274" y="397" width="112" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" image="icons8-group-50"/>
+                                <buttonConfiguration key="configuration" style="gray" image="icons8-more-50-2" title="Other">
+                                    <color key="baseForegroundColor" systemColor="darkTextColor"/>
+                                </buttonConfiguration>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kzJ-nr-rEe">
-                                <rect key="frame" x="16" y="397" width="96" height="48"/>
+                                <rect key="frame" x="16" y="397" width="112" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" image="icons8-gym-16"/>
+                                <buttonConfiguration key="configuration" style="gray" image="icons8-cheque-50" title="Bills">
+                                    <color key="baseForegroundColor" systemColor="darkTextColor"/>
+                                </buttonConfiguration>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xiH-Vt-plY">
                                 <rect key="frame" x="16" y="283" width="95" height="28"/>
@@ -1976,6 +1984,14 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemFillColor"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gq6-zf-Nrb">
+                                <rect key="frame" x="145" y="335" width="112" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" image="icons8-vegetarian-food-50" title="Grocery">
+                                    <color key="baseForegroundColor" systemColor="darkTextColor"/>
+                                </buttonConfiguration>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="36X-uy-TVZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -2005,11 +2021,12 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                         <outletCollection property="CategoryButton" destination="Gq6-zf-Nrb" collectionClass="NSMutableArray" id="tbN-0d-FFj"/>
                         <outletCollection property="CategoryButton" destination="d8a-w0-gdy" collectionClass="NSMutableArray" id="GED-lg-SWO"/>
                         <outletCollection property="CategoryButton" destination="PlM-GA-bUO" collectionClass="NSMutableArray" id="Sbi-7f-vX8"/>
+                        <outletCollection property="CategoryButton" destination="KpQ-3f-6E9" collectionClass="NSMutableArray" id="maO-m4-gkl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ak2-mQ-i39" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3258.7786259541986" y="-2322.535211267606"/>
+            <point key="canvasLocation" x="3258.7786259541986" y="-2323.9436619718313"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="sAw-t5-Nif">
@@ -3184,19 +3201,24 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
         <image name="icons8-@-50" width="50" height="50"/>
         <image name="icons8-blind-50" width="25" height="25"/>
         <image name="icons8-calendar-50 1" width="25" height="25"/>
-        <image name="icons8-car-16" width="16" height="16"/>
+        <image name="icons8-cheque-50" width="25" height="25"/>
+        <image name="icons8-fuel-50" width="25" height="25"/>
         <image name="icons8-grocery-50" width="50" height="50"/>
-        <image name="icons8-group-50" width="50" height="50"/>
-        <image name="icons8-gym-16" width="16" height="16"/>
         <image name="icons8-history-50" width="16.666666030883789" height="16.666666030883789"/>
         <image name="icons8-history-50-2" width="25" height="25"/>
-        <image name="icons8-house-16" width="16" height="16"/>
+        <image name="icons8-holiday-50" width="25" height="25"/>
         <image name="icons8-instagram-verification-badge-48" width="48" height="48"/>
+        <image name="icons8-kawaii-pizza-50" width="25" height="25"/>
+        <image name="icons8-more-50-2" width="25" height="25"/>
         <image name="icons8-security-lock-50" width="25" height="25"/>
         <image name="icons8-user-50" width="25" height="25"/>
-        <image name="icons8-wallet-30" width="30" height="30"/>
+        <image name="icons8-vegetarian-food-50" width="25" height="25"/>
+        <image name="icons8-wallet-100" width="33.333332061767578" height="33.333332061767578"/>
         <image name="person.crop.circle" catalog="system" width="128" height="123"/>
         <image name="person.crop.circle.fill" catalog="system" width="128" height="123"/>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -17,7 +17,7 @@ class SetExpenseCollectionViewCell: UICollectionViewCell {
     func configure(with expense: Expense) {
             categoryimage.image = expense.image
             titlelabel.text = expense.itemName
-            pricelabel.text = "$\(expense.amount)"
+            pricelabel.text = "Rs.\(expense.amount)"
             
             // Optional styling
             layer.cornerRadius = 10

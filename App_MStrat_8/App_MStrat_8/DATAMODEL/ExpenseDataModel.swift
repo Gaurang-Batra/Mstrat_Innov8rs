@@ -8,19 +8,28 @@ import Foundation
 import UIKit
 
 enum ExpenseCategory: String, CaseIterable {
-    case car = "Car Rent"
-    case rent = "Home Rent"
+    case food = "Food"
     case grocery = "Grocery"
-    case gym = "Gym"
+    case fuel = "Fuel"
+    case bills = "Bills"
+    case travel = "Travel"
     case other = "Other"
+    
 
     var associatedImage: UIImage {
         switch self {
-        case .car: return UIImage(named: "icons8-car-50") ?? UIImage()
-        case .rent: return UIImage(named: "icons8-home-50") ?? UIImage()
-        case .grocery: return UIImage(named: "icons8-grocery-50 1") ?? UIImage()
-        case .gym: return UIImage(named: "icons8-gym-50 1") ?? UIImage()
-        case .other: return UIImage(named: "icons8-money-transfer-48") ?? UIImage()
+        case .food:
+            return UIImage(named: "icons8-kawaii-pizza-50") ?? UIImage()
+        case .grocery:
+            return UIImage(named: "icons8-vegetarian-food-50") ?? UIImage()
+        case .fuel:
+            return UIImage(named: "icons8-fuel-50") ?? UIImage()
+        case .bills:
+            return UIImage(named: "icons8-cheque-50") ?? UIImage()
+        case .travel:
+            return UIImage(named: "icons8-holiday-50") ?? UIImage()
+        case .other:
+            return UIImage(named: "icons8-more-50-2") ?? UIImage()
         }
     }
 }
@@ -37,27 +46,27 @@ struct Expense {
 
 let firstExpense = Expense(
     id: 1,
-    itemName: "Buy a New Laptop",
+    itemName: "food wash",
     amount: 1200,
-    image: ExpenseCategory.car.associatedImage,
-    category: .car,
+    image: ExpenseCategory.food.associatedImage,
+    category: .food,
     duration: DateFormatter().date(from: "2024-01-15"),
     isRecurring: false
 )
 
 let secondExpense = Expense(
     id: 2,
-    itemName: "Vacation Fund",
+    itemName: "home grocery",
     amount: 3000,
-    image: ExpenseCategory.rent.associatedImage,
-    category: .rent,
+    image: ExpenseCategory.grocery.associatedImage,
+    category: .grocery,
     duration: DateFormatter().date(from: "2024-06-01"),
     isRecurring: true
 )
 
 let thirdExpense = Expense(
     id: 3,
-    itemName: "Emergency Savings",
+    itemName: "Banana",
     amount: 5000,
     image: ExpenseCategory.grocery.associatedImage,
     category: .grocery,
@@ -67,20 +76,20 @@ let thirdExpense = Expense(
 
 let fourthExpense = Expense(
     id: 4,
-    itemName: "Pay Car Insurance",
+    itemName: "Pay food Insurance",
     amount: 1500,
-    image: ExpenseCategory.car.associatedImage,
-    category: .car,
+    image: ExpenseCategory.food.associatedImage,
+    category: .food,
     duration: DateFormatter().date(from: "2020-01-15"),
     isRecurring: false
 )
 
 let fifthExpense = Expense(
     id: 5,
-    itemName: "Monthly Rent",
+    itemName: "Monthly grocery",
     amount: 3000,
-    image: ExpenseCategory.rent.associatedImage,
-    category: .rent,
+    image: ExpenseCategory.grocery.associatedImage,
+    category: .grocery,
     duration: DateFormatter().date(from: "2025-06-01"),
     isRecurring: true
 )
