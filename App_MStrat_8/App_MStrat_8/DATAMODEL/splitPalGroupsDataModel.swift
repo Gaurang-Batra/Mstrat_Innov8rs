@@ -13,13 +13,12 @@ extension Notification.Name {
 }
 
 struct Group {
-//    var id: Int
+    var id: Int  // Unique identifier for each group
     var groupName: String
     var category: UIImage?
     var members: [Int]
     var expenses: [ExpenseSplitForm]?
 }
-
 
 class GroupDataModel {
     private var groups: [Group] = []
@@ -33,32 +32,67 @@ class GroupDataModel {
         users.append(User(id: 102, email: "user2@example.com", fullname: "Steve", password: "password", isVerified: true, badges: [], currentGoal: nil, expenses: []))
         users.append(User(id: 103, email: "user3@example.com", fullname: "Jack", password: "password", isVerified: true, badges: [], currentGoal: nil, expenses: []))
 
-        // Sample groups
+        // Sample groups with expenses
+        let expense1 = ExpenseSplitForm(
+            name: "Dinner with Friends",
+            category: "Food",
+            totalAmount: 100.0,
+            paidBy: "John Doe",
+            groupId: 1,
+            image: UIImage(named: "icons8-holiday-50")!,
+            splitOption: .equally,
+            splitAmounts: nil,
+            payee: "kj",
+            date: Date(),
+            ismine: true
+        )
+        
+        let expense2 = ExpenseSplitForm(
+            name: "Hotel Stay",
+            category: "Accommodation",
+            totalAmount: 300.0,
+            paidBy: "Steve",
+            groupId: 2,
+            image: UIImage(named: "icons8-holiday-50")!,
+            splitOption: .unequally,
+            splitAmounts: ["Jack": 100.0, "Steve": 200.0],
+            payee: "lo",
+            date: Date(),
+            
+            ismine: false
+        )
+        
+        // Sample groups with expenses
         groups.append(Group(
+            id: 1, // Added an ID for each group
             groupName: "Tech Lovers",
-            category: UIImage(named: "icons8-group-50"),
+            category: UIImage(named: "icons8-holiday-50"),
             members: [101, 102],
-            expenses: nil
+            expenses: [expense1]
         ))
         groups.append(Group(
+            id: 2, // Added an ID for each group
             groupName: "Travel Enthusiasts",
-            category: UIImage(named: "icons8-group-50"),
+            category: UIImage(named: "icons8-holiday-50"),
             members: [103],
-            expenses: nil
+            expenses: [expense2]
         ))
     }
     
     func createGroup(groupName: String, category: UIImage?, members: [Int]) {
-           // Ensure that members array is not empty
-           if members.isEmpty {
-               print("Cannot create a group without members.")
-               return
-           }
+        // Ensure that members array is not empty
+        if members.isEmpty {
+            print("Cannot create a group without members.")
+            return
+        }
 
-           let newGroup = Group(groupName: groupName, category: category, members: members)
-           groups.insert(newGroup, at: 0)
-           print("New group added: \(newGroup.groupName)")  // Debugging line
-           NotificationCenter.default.post(name: .newGroupAdded, object: nil)  // Notify the ViewController to reload the table view
+        let newGroup = Group(id: groups.count + 1, groupName: groupName, category: category, members: members, expenses: nil)
+        groups.insert(newGroup, at: 0)
+        print("New group added: \(newGroup.groupName)")  // Debugging line
+        NotificationCenter.default.post(name: .newGroupAdded, object: nil)  // Notify the ViewController to reload the table view
+    }
+    func getAllGroups() -> [Group] {
+           return self.groups
        }
 
     // Fetch user data by userId
@@ -67,26 +101,63 @@ class GroupDataModel {
     }
     
     // Add a member to a group by groupName and userId
-    func addMemberToGroup(groupName: String, userId: Int) {
-        guard let groupIndex = groups.firstIndex(where: { $0.groupName == groupName }) else {
+    func addMemberToGroup(groupId: Int, userId: Int) {
+        guard let groupIndex = groups.firstIndex(where: { $0.id == groupId }) else {
             print("Group not found!")
             return
         }
 
         if !groups[groupIndex].members.contains(userId) {
             groups[groupIndex].members.append(userId)
-            print("User \(userId) added to group \(groupName).")
+            print("User \(userId) added to group \(groupId).")
         } else {
             print("User \(userId) is already a member of the group.")
         }
     }
-    
-    func getAllGroups() -> [Group] {
-        return self.groups
+
+    // Function to automatically calculate split amounts for equally split expenses
+    func calculateEqualSplit(for expense: ExpenseSplitForm, groupMembers: [String]) -> [String: Double] {
+        guard expense.splitOption == .equally else {
+            return [:]
+        }
+
+        let splitAmount = expense.totalAmount / Double(groupMembers.count)
+        var splitAmounts: [String: Double] = [:]
+
+        for member in groupMembers {
+            splitAmounts[member] = splitAmount
+        }
+
+        return splitAmounts
     }
+
+    // Add a new expense to a group and calculate the split amounts
+    func addExpenseToGroup(groupId: Int, expense: ExpenseSplitForm) {
+        guard var group = groups.first(where: { $0.id == groupId }) else {
+            print("Group not found!")
+            return
+        }
+
+        // Now expense is mutable, so we can modify its properties
+        var mutableExpense = expense
+
+        if mutableExpense.splitOption == .equally {
+            // Fetch the group members' names (you can update this to use actual names from the users array)
+            let groupMembers = group.members.map { getUserById($0)?.fullname ?? "Unknown" }
+            // Calculate split amounts
+            mutableExpense.splitAmounts = calculateEqualSplit(for: mutableExpense, groupMembers: groupMembers)
+        }
+
+        // Add the expense to the group
+        if group.expenses == nil {
+            group.expenses = []
+        }
+
+        group.expenses?.append(mutableExpense)
+        print("Expense added to group \(groupId): \(mutableExpense.name)")
+    }
+
 }
-
-
 
 //
 //import Foundation

@@ -7,13 +7,15 @@
 
 import UIKit
 
-class CreatedgroupTableViewCell: UITableViewCell {
+class ExpenseAddedTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var createdgroupimage: UIImageView!
     
-    @IBOutlet weak var createdgroupname: UILabel!
-
-   
+    @IBOutlet weak var Expenseaddedimage: UIImageView!
+    
+    @IBOutlet weak var ExpenseAddedlabel: UILabel!
+    @IBOutlet weak var Paidbylabel: UILabel!
+    @IBOutlet weak var ExoenseAmountlabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
 //        createdgroupimage.layer.cornerRadius = 10

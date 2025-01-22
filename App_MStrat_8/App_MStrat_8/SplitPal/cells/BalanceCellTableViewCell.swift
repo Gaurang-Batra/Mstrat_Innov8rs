@@ -21,7 +21,7 @@ class BalanceCellTableViewCell: UITableViewCell {
     
     @IBOutlet weak var balancecellview: UIView!
     
-    var balance: Balance?
+    var balance: ExpenseSplitForm?
     
 
     
@@ -45,14 +45,14 @@ class BalanceCellTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
-    func configure(with balance: Balance) {
-        senderprofilename.text = balance.payer
-        receiverprofilename.text = balance.payee
-        Sendingamount.text = "$\(balance.amount)"
+    func configure(with balance: ExpenseSplitForm) {
+        senderprofilename.text = balance.paidBy
+        receiverprofilename.text = balance.payee  // Assuming balance.payee is the person receiving money
+        Sendingamount.text = "$\(balance.totalAmount)"
     }
     
     @IBAction func settlementButtonTapped(_ sender: UIButton) {
-        if let balanceAmount = balance?.amount {
+        if let balanceAmount = balance?.totalAmount {
              // Get the parent view controller
              if let viewController = self.parentViewController() as? GroupDetailViewController {
                  viewController.navigateToSettlement(with: balanceAmount)

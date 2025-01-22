@@ -32,9 +32,9 @@ class AddmemberCellTableViewCell: UITableViewCell {
             print("User's name: \(user.fullname)")  // Print user data to console
             
             // Optionally add the user to a group (if needed)
-            if let groupName = groupName {
-                GroupDataModel.shared.addMemberToGroup(groupName: groupName, userId: userId)
-            }
+//            if let groupName = groupName {
+//                GroupDataModel.shared.addMemberToGroup(groupName: groupName, userId: userId)
+//            }
             
             // Change button state to indicate that the invitation was sent
             invitebutton.setTitle("Sent", for: .normal)
