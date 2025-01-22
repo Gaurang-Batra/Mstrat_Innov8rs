@@ -6,62 +6,66 @@
 //
 import UIKit
 
-class AddMemberViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
-  
+protocol AddMemberDelegate: AnyObject {
+    func didUpdateSelectedMembers(_ members: [Int])
+}
+
+
+class AddMemberViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, AddMemberCellDelegate {
+    
     @IBOutlet weak var Mysearchtext: UISearchBar!
-    
     @IBOutlet weak var Mytable: UITableView!
-  
-    
- 
-    
-    @IBAction func cancelbutton(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+
+    var users: [User] = []       // To hold all users
+    var searchUsers: [User] = [] // To hold the filtered users
+    var selectedMembers: [Int] = [] // Array to store selected member IDs
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Fetch all users from the UserDataModel
+        users = UserDataModel.shared.getAllUsers()
+        searchUsers = users // Initialize searchUsers with all users
+
+        Mytable.delegate = self
+        Mytable.dataSource = self
+        Mysearchtext.delegate = self
     }
-    
-    var users: [User] = [] // To hold all users
-       var searchUsers: [User] = [] // To hold the filtered users
 
-       override func viewDidLoad() {
-           super.viewDidLoad()
+    // MARK: - UITableViewDataSource
 
-           // Fetch all users from the UserDataModel
-           users = UserDataModel.shared.getAllUsers()
-           searchUsers = users // Initializing searchUsers with all users
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return searchUsers.count
+    }
 
-           Mytable.delegate = self
-           Mytable.dataSource = self
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = Mytable.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? AddmemberCellTableViewCell else {
+            return UITableViewCell()
+        }
 
-       
-       }
+        let user = searchUsers[indexPath.row]
+        cell.configure(with: user)
+        cell.delegate = self // Set the delegate to self
+        return cell
+    }
 
-       // TableView DataSource Methods
-       func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-           return searchUsers.count
-       }
+    // MARK: - UISearchBarDelegate
 
-       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-           // Ensure the cell is dequeued properly with the correct identifier
-           guard let cell = Mytable.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? AddmemberCellTableViewCell else {
-               return UITableViewCell() // Return a default cell if casting fails
-           }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            searchUsers = users
+        } else {
+            searchUsers = users.filter { $0.fullname.lowercased().contains(searchText.lowercased()) }
+        }
+        Mytable.reloadData()
+    }
 
-           // Configure the cell
-           let user = searchUsers[indexPath.row]
-           cell.configure(with: user.id, groupName: "Tech Lovers") // Assuming you want to add the user to this group
-           cell.textLabel?.text = user.fullname
+    // MARK: - AddMemberCellDelegate
 
-           return cell
-       }
-
-       // Search Bar Delegate Method
-       func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-           // Filter users based on search text
-           if searchText.isEmpty {
-               searchUsers = users // If empty, show all users
-           } else {
-               searchUsers = users.filter { $0.fullname.lowercased().contains(searchText.lowercased()) }
-           }
-           Mytable.reloadData()
-       }
+    func didTapInviteButton(for user: User) {
+        if !selectedMembers.contains(user.id) {
+            selectedMembers.append(user.id)
+            print("Selected Members: \(selectedMembers)")
+        }
+    }
 }

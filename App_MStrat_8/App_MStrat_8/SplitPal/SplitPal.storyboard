@@ -192,14 +192,19 @@
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="tinted" title="invite"/>
-                                                    <connections>
-                                                        <action selector="inviteButtonClicked:" destination="uLU-61-Nlq" eventType="touchUpInside" id="ofv-Da-37D"/>
-                                                    </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AG8-Ym-VAn">
+                                                    <rect key="frame" x="20" y="4" width="138" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="invitebutton" destination="oK5-Hd-I01" id="F3Z-nF-7uk"/>
+                                            <outlet property="nameLabel" destination="AG8-Ym-VAn" id="fcM-XH-peL"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -213,11 +218,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add Friend" id="Lla-Lf-xW0">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="CBK-Ig-Og8">
-                            <connections>
-                                <action selector="cancelbutton:" destination="kg8-IJ-hG2" id="ptq-mW-1nZ"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="CBK-Ig-Og8"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="39U-kc-G8F"/>
                     </navigationItem>
                     <connections>
@@ -271,7 +272,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray3Color">
-            <color red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

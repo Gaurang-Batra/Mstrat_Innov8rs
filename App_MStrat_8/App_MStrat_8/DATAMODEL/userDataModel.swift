@@ -67,6 +67,7 @@ class UserDataModel {
     func getUser(by id: Int) -> User? {
         return users.first { $0.id == id }
     }
+   
 
     func assignGoal(to userId: Int, goal: Goal) {
         guard let index = users.firstIndex(where: { $0.id == userId }) else { return }
