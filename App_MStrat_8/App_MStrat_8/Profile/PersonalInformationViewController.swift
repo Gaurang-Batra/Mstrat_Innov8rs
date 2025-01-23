@@ -32,8 +32,8 @@ class PersonalInformationViewController: UIViewController, UITableViewDelegate, 
     func configureProfileImage() {
         profileimage.layer.cornerRadius = profileimage.frame.size.width / 2
         profileimage.clipsToBounds = true
-        profileimage.layer.borderWidth = 2.0
-        profileimage.layer.borderColor = UIColor.systemBlue.cgColor
+//        profileimage.layer.borderWidth = 2.0
+//        profileimage.layer.borderColor = UIColor.systemBlue.cgColor
         profileimage.contentMode = .scaleAspectFill
     }
     
