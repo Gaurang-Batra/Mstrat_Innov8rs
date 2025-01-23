@@ -6,9 +6,9 @@
 //
 import UIKit
 
-protocol AddMemberDelegate: AnyObject {
-    func didUpdateSelectedMembers(_ members: [Int])
-}
+//protocol AddMemberDelegate: AnyObject {
+//    func didUpdateSelectedMembers(_ members: [Int])
+//}
 
 
 class AddMemberViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, AddMemberCellDelegate {

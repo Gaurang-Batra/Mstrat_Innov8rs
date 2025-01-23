@@ -23,7 +23,12 @@ struct cgroup {
    
 }
 
-class CreateGroupViewController: UIViewController {
+protocol AddMemberDelegate: AnyObject {
+    func didUpdateSelectedMembers(_ members: [Int])
+}
+
+
+class CreateGroupViewController: UIViewController, UITableViewDelegate,UITableViewDataSource, AddMemberCellDelegate, UISearchBarDelegate {
 
     
     
@@ -35,10 +40,18 @@ class CreateGroupViewController: UIViewController {
     
     @IBOutlet var creategroupbutton: UIView!
     
+    @IBOutlet weak var Mytable: UITableView!
+    
+    @IBOutlet weak var Mysearchtext: UISearchBar!
+
+    
     let imageNames = ["traveler", "icons8-rent-50", "icons8-runners-crossing-finish-line-50", "icons8-grocery-50", "icons8-gym-50", "icons8-group-50"]
        
        var selectedImage: UIImage?
-    var selectedMembers: [Int] = []
+    
+    var users: [User] = []       // To hold all users
+    var searchUsers: [User] = [] // To hold the filtered users
+    var selectedMembers: [Int] = [] 
 
        override func viewDidLoad() {
            super.viewDidLoad()
@@ -50,6 +63,14 @@ class CreateGroupViewController: UIViewController {
                    button.setImage(image, for: .normal)
                }
            }
+           
+           users = UserDataModel.shared.getAllUsers()
+           searchUsers = users // Initialize searchUsers with all users
+
+           Mytable.delegate = self
+           Mytable.dataSource = self
+           Mysearchtext.delegate = self
+
 
            let newHeight: CGFloat = 50
            var frame = textField.frame
@@ -58,6 +79,39 @@ class CreateGroupViewController: UIViewController {
 
            addSFSymbolToAddMemberButton()
        }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return searchUsers.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = Mytable.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? AddmemberCellTableViewCell else {
+            return UITableViewCell()
+        }
+
+        let user = searchUsers[indexPath.row]
+        cell.configure(with: user)
+        cell.delegate = self // Set the delegate to self
+        return cell
+    }
+    
+    func didTapInviteButton(for user: User) {
+        if !selectedMembers.contains(user.id) {
+            selectedMembers.append(user.id)
+            print("Selected Members: \(selectedMembers)")
+        }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            searchUsers = users
+        } else {
+            searchUsers = users.filter { $0.fullname.lowercased().contains(searchText.lowercased()) }
+        }
+        Mytable.reloadData()
+    }
+
+
 
     @IBAction func categoryButtontapped(_ sender: UIButton) {
         // Reset button tint to gray
@@ -122,14 +176,14 @@ class CreateGroupViewController: UIViewController {
        func addSFSymbolToAddMemberButton() {
            if let symbolImage = UIImage(systemName: "person.fill.badge.plus") {
                let symbolConfig = UIImage.SymbolConfiguration(weight: .regular)
-               let outlinedSymbolImage = symbolImage.withConfiguration(symbolConfig).withRenderingMode(.alwaysTemplate)
-               addmemberbutton.setImage(outlinedSymbolImage, for: .normal)
-               addmemberbutton.tintColor = .blue
+//               let outlinedSymbolImage = symbolImage.withConfiguration(symbolConfig).withRenderingMode(.alwaysTemplate)
+//               addmemberbutton.setImage(outlinedSymbolImage, for: .normal)
+//               addmemberbutton.tintColor = .blue
                
                var config = UIButton.Configuration.plain()
                config.imagePadding = 8
                config.imagePlacement = .leading
-               addmemberbutton.configuration = config
+//               addmemberbutton.configuration = config
            }
        }
 
