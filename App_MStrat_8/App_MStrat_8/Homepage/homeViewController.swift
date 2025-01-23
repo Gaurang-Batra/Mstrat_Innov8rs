@@ -1,6 +1,5 @@
 import UIKit
 
-
 // MARK: - HomeViewController
 class homeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, GoalViewControllerDelegate {
 
@@ -13,12 +12,14 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var totalexpenselabel: UILabel!
     @IBOutlet weak var remaininfAllowancelabel: UILabel!
     @IBOutlet weak var Addgoalgoalbutton: UIButton!
+    @IBOutlet weak var addSaving: UIButton!
 
-    
     var expenses: [Expense] = []  // Declare this variable
     var currentGoal: Goal?
 
     var goals: [Goal] = []  // Array to hold multiple goals
+
+    private var goalSavings: Int = 0 // This variable will store the total savings added through AddExpense
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,9 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         refreshExpenses()
         updateTotalExpense()
         NotificationCenter.default.addObserver(self, selector: #selector(updateTotalExpense), name: NSNotification.Name("remaininfAllowancelabel"), object: nil)
+        
+        // Set initial title of Addgoalgoalbutton
+        Addgoalgoalbutton.setTitle("Add Goal", for: .normal)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -61,12 +65,27 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
 
     private func updateGoalButton() {
-        guard let goal = currentGoal else {
+        if goalSavings == 0 {
             Addgoalgoalbutton.setTitle("Add Goal", for: .normal)
-            print("check")
+        } else {
+            Addgoalgoalbutton.setTitle("Rs. \(goalSavings)", for: .normal)
+        }
+    }
+
+    @IBAction func addSavingTapped(_ sender: UIButton) {
+        guard let expenseText = AddExpense.text, !expenseText.isEmpty, let expenseValue = Int(expenseText) else {
+            showAlert(title: "Invalid Input", message: "Please enter a valid number.")
             return
         }
-        Addgoalgoalbutton.setTitle("\(goal.amount)", for: .normal)
+
+        // Add the entered value to the current savings
+        goalSavings += expenseValue
+
+        // Update the goal button title
+        updateGoalButton()
+
+        // Clear the AddExpense text field after adding
+        AddExpense.text = nil
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -78,7 +97,7 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
     @objc private func updateTotalExpense() {
         let totalExpense = AllowanceDataModel.shared.getAllAllowances().reduce(0) { $0 + $1.amount }
-        remaininfAllowancelabel.text = String(format: " Rs.%.2f", totalExpense)
+        remaininfAllowancelabel.text = String(format: " Rs.%.1f", totalExpense)
     }
 
     private func styleTextField(_ textField: UITextField) {
@@ -159,4 +178,10 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         mainlabel.layer.addSublayer(dottedLine)
     }
     
+    private func showAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
 }

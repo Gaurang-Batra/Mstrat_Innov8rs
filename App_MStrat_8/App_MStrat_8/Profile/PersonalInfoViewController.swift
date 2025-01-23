@@ -46,15 +46,11 @@ class PersonalInfoViewController: UIViewController {
     func enableEditing() {
         Nametextfield.isEnabled = true
         PhoneTextfield.isEnabled = true
-        Nametextfield.borderStyle = .roundedRect
-        PhoneTextfield.borderStyle = .roundedRect
     }
     
     func disableEditing() {
         Nametextfield.isEnabled = false
         PhoneTextfield.isEnabled = false
-        Nametextfield.borderStyle = .none
-        PhoneTextfield.borderStyle = .none
     }
     
     func updateSaveAndContinueButtonState() {
@@ -73,7 +69,14 @@ class PersonalInfoViewController: UIViewController {
         Nametextfield.placeholder = "Enter your name"
         PhoneTextfield.placeholder = "Enter your phone number"
         EmailTextfield.placeholder = "Email address cannot be changed"
+        
+        Nametextfield.isEnabled = false
+        PhoneTextfield.isEnabled = false
         EmailTextfield.isEnabled = false
+        
+        // Set the borders to always be visible
+        Nametextfield.borderStyle = .roundedRect
+        PhoneTextfield.borderStyle = .roundedRect
         EmailTextfield.textColor = UIColor.gray
     }
     
@@ -96,6 +99,7 @@ class PersonalInfoViewController: UIViewController {
             UserDefaults.standard.set(Nametextfield.text, forKey: "userName")
             UserDefaults.standard.set(PhoneTextfield.text, forKey: "userPhone")
             
+            // Notify other view controllers about the name change
             NotificationCenter.default.post(
                 name: Notification.Name("NameUpdated"),
                 object: nil,

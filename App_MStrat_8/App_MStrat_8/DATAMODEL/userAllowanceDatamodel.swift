@@ -9,7 +9,7 @@ import Foundation
 
 struct Allowance {
     var amount: Double
-    var isRecurring: Bool
+    var isRecurring: Bool?
     var duration: Duration?
     var customDate: Date?
     mutating func deductAmount(_ expenseAmount: Double) {
