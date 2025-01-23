@@ -11,33 +11,41 @@ class SplashViewController: UIViewController {
     
     @IBOutlet var circleview: [UIView]!
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Create the UIView
-        for view in circleview {
-                   // Ensure the view is a square by setting equal width and height
-                   let size = min(view.frame.width, view.frame.height)
-                   view.frame.size = CGSize(width: size, height: size)
-                   
-                   // Make the view circular
-                   view.layer.cornerRadius = size / 2
-                   view.layer.masksToBounds = true
-               }
+        
+        // Make all circle views circular and set their color to very light gray
+        for (index, view) in circleview.enumerated() {
+            // Ensure the view is a square by setting equal width and height
+            let size = min(view.frame.width, view.frame.height)
+            view.frame.size = CGSize(width: size, height: size)
+            
+            // Make the view circular
+            view.layer.cornerRadius = size / 2
+            view.layer.masksToBounds = true
+            
+            // Set the color to very light gray
+            view.backgroundColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.0) // Light gray
+            
+            // Add animation
+//            addBounceAnimation(to: view, delay: Double(index) * 0.2)
+        }
+        
+        // Hide the navigation bar
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-
-        // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+//    private func addBounceAnimation(to view: UIView, delay: TimeInterval) {
+//        // Create the bounce animation
+//        let animation = CABasicAnimation(keyPath: "transform.scale")
+//        animation.fromValue = 1.0
+//        animation.toValue = 1.1
+//        animation.duration = 1.0
+//        animation.autoreverses = true
+//        animation.repeatCount = .infinity
+//        animation.beginTime = CACurrentMediaTime() + delay
+//        
+//        // Add animation to the layer
+//        view.layer.add(animation, forKey: "bounce")
+//    }
 }

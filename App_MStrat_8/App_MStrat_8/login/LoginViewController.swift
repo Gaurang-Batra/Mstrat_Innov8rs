@@ -8,6 +8,7 @@ class LoginViewController: UIViewController {
     @IBOutlet var circleview: [UIView]!
     
     @IBOutlet weak var eyebutton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         passwordTextField.isSecureTextEntry = true
@@ -25,14 +26,35 @@ class LoginViewController: UIViewController {
         loginButton.isEnabled = false
         loginButton.alpha = 0.5
         
-        // Make circle views properly circular
-        for view in circleview {
+        // Make circle views properly circular and set them to light grey with opacity 0.95
+        for (index, view) in circleview.enumerated() {
             let size = min(view.frame.width, view.frame.height)
             view.frame.size = CGSize(width: size, height: size)
             view.layer.cornerRadius = size / 2
             view.layer.masksToBounds = true
+            
+            // Set the background color to light gray with opacity 0.95
+            view.backgroundColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1)
+            
+            // Add bounce animation with a slight delay for each circle
+//            addBounceAnimation(to: view, delay: Double(index) * 0.3)
         }
     }
+    
+    // Add animation to each circle (bounce effect)
+//    private func addBounceAnimation(to view: UIView, delay: TimeInterval) {
+//        // Create the bounce animation
+//        let animation = CABasicAnimation(keyPath: "transform.scale")
+//        animation.fromValue = 1.0
+//        animation.toValue = 1.1
+//        animation.duration = 0.8
+//        animation.autoreverses = true
+//        animation.repeatCount = .infinity
+//        animation.beginTime = CACurrentMediaTime() + delay
+//        
+//        // Add animation to the layer
+//        view.layer.add(animation, forKey: "bounce")
+//    }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -107,5 +129,4 @@ class LoginViewController: UIViewController {
             button.setImage(UIImage(named: "icons8-blind-50"), for: .normal)
         }
     }
-
 }

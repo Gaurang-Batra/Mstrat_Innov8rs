@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sbJ-cx-RRT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="myV-Lb-yML">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
@@ -1047,8 +1047,21 @@ Try it!</string>
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.crop.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="6cS-5c-T7e">
+                                <rect key="frame" x="131" y="145.66666666666652" width="130" height="130"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nWk-4g-p7c">
+                                <rect key="frame" x="126" y="144" width="135" height="134"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                                <connections>
+                                    <action selector="profilebuttonedit:" destination="agm-hM-wEo" eventType="touchUpInside" id="tEP-A3-1jO"/>
+                                </connections>
+                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="DLP-wa-2O6">
-                                <rect key="frame" x="0.0" y="315" width="393" height="198"/>
+                                <rect key="frame" x="-3" y="341" width="393" height="198"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
@@ -1067,21 +1080,8 @@ Try it!</string>
                                     <outlet property="delegate" destination="agm-hM-wEo" id="z6k-a6-cvO"/>
                                 </connections>
                             </tableView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.crop.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="6cS-5c-T7e">
-                                <rect key="frame" x="131" y="145.66666666666652" width="130" height="130"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nWk-4g-p7c">
-                                <rect key="frame" x="126" y="144" width="135" height="134"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain"/>
-                                <connections>
-                                    <action selector="profilebuttonedit:" destination="agm-hM-wEo" eventType="touchUpInside" id="tEP-A3-1jO"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dfx-LH-Cq7">
-                                <rect key="frame" x="16" y="521" width="361" height="41"/>
+                                <rect key="frame" x="13" y="547" width="361" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1092,12 +1092,27 @@ Try it!</string>
                                     <segue destination="b4h-7j-JCg" kind="show" identifier="LoginViewController" id="WJu-5e-rgA"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wAB-af-pZD">
+                                <rect key="frame" x="158" y="284" width="90" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9On-7X-wLq">
+                                <rect key="frame" x="0.0" y="284" width="393" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="XBJ-rF-uZm"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="gIT-if-R7s"/>
                     <connections>
+                        <outlet property="nameLabel" destination="9On-7X-wLq" id="DLi-gV-9Xc"/>
                         <outlet property="profileimage" destination="6cS-5c-T7e" id="c8l-IQ-qFf"/>
                         <outlet property="signOutButton" destination="dfx-LH-Cq7" id="SKl-sU-UwB"/>
                         <outlet property="tableView" destination="DLP-wa-2O6" id="aUb-34-bgK"/>
@@ -1149,7 +1164,7 @@ Try it!</string>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xx2-l9-0wZ">
-                                <rect key="frame" x="69" y="282" width="308" height="34"/>
+                                <rect key="frame" x="72" y="282" width="305" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -1178,7 +1193,9 @@ Try it!</string>
                         <viewLayoutGuide key="safeArea" id="FLg-um-c6n"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Personal Infromation" largeTitleDisplayMode="never" id="8ey-ID-pOg"/>
+                    <navigationItem key="navigationItem" title="Personal Infromation" largeTitleDisplayMode="never" id="8ey-ID-pOg">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="edit" id="L5M-JV-5X2"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="EmailTextfield" destination="fCV-S9-Qhv" id="wiW-Hb-Psr"/>
                         <outlet property="Nametextfield" destination="Wid-di-64m" id="ssj-qX-zeV"/>
@@ -1864,7 +1881,7 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
             </objects>
             <point key="canvasLocation" x="2433" y="-798"/>
         </scene>
-        <!--Category Name View Controller-->
+        <!--Add Expense-->
         <scene sceneID="zgw-Dl-2xL">
             <objects>
                 <viewController id="Sc7-Lg-RKP" customClass="CategoryNameViewController" customModule="App_MStrat_8" customModuleProvider="target" sceneMemberID="viewController">
@@ -2007,7 +2024,7 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                         <viewLayoutGuide key="safeArea" id="36X-uy-TVZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="5fj-n6-aD6">
+                    <navigationItem key="navigationItem" title="Add Expense" id="5fj-n6-aD6">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="VHD-vg-O8N">
                             <connections>
                                 <action selector="cancelbuttontapped:" destination="Sc7-Lg-RKP" id="tdG-gW-sPp"/>
@@ -2085,13 +2102,6 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SEm-P7-Hnc">
                                 <rect key="frame" x="175" y="389" width="0.0" height="0.0"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Track Finances Daily" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwq-g1-VXq">
-                                <rect key="frame" x="118" y="357" width="156" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -2178,8 +2188,8 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemMintColor"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="M$trat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7eg-7e-Uyh">
-                                <rect key="frame" x="141" y="309" width="110" height="73"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MƧƬЯΛƬ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7eg-7e-Uyh">
+                                <rect key="frame" x="119" y="309" width="155" height="73"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <nil key="textColor"/>
@@ -2190,6 +2200,13 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemPinkColor"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Track Finances Daily" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwq-g1-VXq">
+                                <rect key="frame" x="102" y="350" width="178" height="78"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ehH-n8-46W"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -2233,17 +2250,17 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
             <objects>
                 <viewController id="Sgv-CM-Ofn" customClass="ForgotPasswordViewController" customModule="App_MStrat_8" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BV8-gR-hpM">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KLi-R9-rcc">
-                                <rect key="frame" x="31" y="300" width="317" height="34"/>
+                                <rect key="frame" x="76" y="312" width="275" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LZm-kz-8rP">
-                                <rect key="frame" x="73" y="407" width="200" height="50"/>
+                                <rect key="frame" x="96" y="405" width="200" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Send Email">
@@ -2265,7 +2282,7 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uuN-Vf-Mep">
-                                <rect key="frame" x="210" y="162" width="60" height="51"/>
+                                <rect key="frame" x="300" y="81" width="60" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemPinkColor"/>
                             </view>
@@ -2274,13 +2291,8 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemMintColor"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qnz-zS-fVf">
-                                <rect key="frame" x="28" y="162" width="95" height="68"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBrownColor"/>
-                            </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AnO-eJ-rzS">
-                                <rect key="frame" x="143" y="201" width="60" height="51"/>
+                                <rect key="frame" x="333" y="140" width="60" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemPinkColor"/>
                             </view>
@@ -2288,11 +2300,6 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                 <rect key="frame" x="171" y="75" width="121" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemMintColor"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CYj-rL-Cce">
-                                <rect key="frame" x="137" y="145" width="60" height="51"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemPinkColor"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cka-RY-4ov">
                                 <rect key="frame" x="233" y="690" width="251" height="242"/>
@@ -2329,22 +2336,19 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemMintColor"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Forget Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HfY-U0-JUg">
-                                <rect key="frame" x="44" y="134" width="275" height="62"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icons8-gmail-50-3" translatesAutoresizingMaskIntoConstraints="NO" id="Nv8-qT-AMl">
+                                <rect key="frame" x="31" y="308" width="32" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Already have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rrh-hK-Dum">
-                                <rect key="frame" x="117" y="494" width="202" height="34"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Already a user?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sBE-oT-jg7">
+                                <rect key="frame" x="108" y="491" width="118" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7qV-Y9-XwN">
-                                <rect key="frame" x="311" y="493" width="66" height="35"/>
+                                <rect key="frame" x="219" y="484" width="66" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Login"/>
@@ -2352,6 +2356,23 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                     <segue destination="olV-qE-FMW" kind="show" id="T0n-pq-x5b"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CYj-rL-Cce">
+                                <rect key="frame" x="261" y="16" width="60" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemPinkColor"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="𝐅𝐨𝐫𝐠𝐞𝐭 𝐏𝐚𝐬𝐬𝐰𝐨𝐫𝐝" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HfY-U0-JUg">
+                                <rect key="frame" x="54" y="182" width="284" height="62"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qnz-zS-fVf">
+                                <rect key="frame" x="-49" y="145" width="95" height="68"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBrownColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hAV-Eo-fxY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -2378,45 +2399,45 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zs1-ge-DKf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4782" y="1865"/>
+            <point key="canvasLocation" x="-4408.3969465648852" y="1864.7887323943662"/>
         </scene>
         <!--Recovery Password View Controller-->
         <scene sceneID="xq9-Mu-Z88">
             <objects>
                 <viewController id="RMq-VS-R4f" customClass="RecoveryPasswordViewController" customModule="App_MStrat_8" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KyW-gz-Ks8">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="st6-Yi-BWX">
-                                <rect key="frame" x="76" y="361" width="240" height="2"/>
+                                <rect key="frame" x="78" y="399" width="240" height="2"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jGc-Rt-Pcd">
-                                <rect key="frame" x="76" y="469" width="240" height="2"/>
+                                <rect key="frame" x="78" y="483" width="240" height="2"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bGx-6X-nJ3">
-                                <rect key="frame" x="76" y="262" width="240" height="2"/>
+                                <rect key="frame" x="78" y="327" width="240" height="2"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KbF-6d-enc">
-                                <rect key="frame" x="71" y="329" width="245" height="34"/>
+                                <rect key="frame" x="78" y="367" width="240" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="C8i-zh-fsh">
-                                <rect key="frame" x="71" y="437" width="245" height="34"/>
+                                <rect key="frame" x="78" y="451" width="240" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Otp" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pyg-GI-XTv">
-                                <rect key="frame" x="76" y="230" width="245" height="34"/>
+                                <rect key="frame" x="78" y="295" width="240" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -2432,7 +2453,7 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dzN-zh-X2s">
-                                <rect key="frame" x="212" y="164" width="60" height="51"/>
+                                <rect key="frame" x="302" y="67" width="60" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemPinkColor"/>
                             </view>
@@ -2442,7 +2463,7 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                 <color key="backgroundColor" systemColor="systemMintColor"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KK3-fw-QPE">
-                                <rect key="frame" x="30" y="164" width="95" height="68"/>
+                                <rect key="frame" x="-50" y="164" width="95" height="68"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBrownColor"/>
                             </view>
@@ -2457,7 +2478,7 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                 <color key="backgroundColor" systemColor="systemMintColor"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0pV-EU-ZEl">
-                                <rect key="frame" x="139" y="147" width="60" height="51"/>
+                                <rect key="frame" x="313" y="143" width="60" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemPinkColor"/>
                             </view>
@@ -2496,15 +2517,8 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemMintColor"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reset Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rsN-PE-UXt">
-                                <rect key="frame" x="8" y="123" width="252" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="crl-uJ-yLn">
-                                <rect key="frame" x="100" y="509" width="200" height="50"/>
+                                <rect key="frame" x="98" y="534" width="200" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Reset">
@@ -2515,6 +2529,25 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                     <segue destination="olV-qE-FMW" kind="show" id="Klm-aH-o7Q"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icons8-one-time-password-50" translatesAutoresizingMaskIntoConstraints="NO" id="xfu-mv-Au1">
+                                <rect key="frame" x="38" y="295" width="32" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icons8-password-64" translatesAutoresizingMaskIntoConstraints="NO" id="kFJ-MQ-fye">
+                                <rect key="frame" x="38" y="363" width="32" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icons8-password-64" translatesAutoresizingMaskIntoConstraints="NO" id="G3k-Zd-lCL">
+                                <rect key="frame" x="38" y="443" width="32" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="𝐑𝐞𝐬𝐞𝐭 𝐏𝐚𝐬𝐬𝐰𝐨𝐫𝐝" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rsN-PE-UXt">
+                                <rect key="frame" x="61" y="187" width="274" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="eRB-Ns-Cx4"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -2543,7 +2576,7 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xj1-oc-ffE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3695" y="1865"/>
+            <point key="canvasLocation" x="-3695.419847328244" y="1864.7887323943662"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="jkl-p2-hkS">
@@ -2554,13 +2587,13 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7dn-l5-MDt">
-                                <rect key="frame" x="79" y="355" width="245" height="34"/>
+                                <rect key="frame" x="99" y="353" width="245" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AWb-2W-AkL">
-                                <rect key="frame" x="79" y="444" width="245" height="34"/>
+                                <rect key="frame" x="99" y="442" width="245" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -2576,12 +2609,8 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                     <segue destination="Sgv-CM-Ofn" kind="show" id="axb-SC-zZr"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icons8-@-50" translatesAutoresizingMaskIntoConstraints="NO" id="W3q-aV-sRr">
-                                <rect key="frame" x="24" y="360" width="32" height="42"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icons8-security-lock-50" translatesAutoresizingMaskIntoConstraints="NO" id="k4F-Hd-pee">
-                                <rect key="frame" x="24" y="448.33333333333326" width="32" height="42"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icons8-gmail-50-3" translatesAutoresizingMaskIntoConstraints="NO" id="W3q-aV-sRr">
+                                <rect key="frame" x="49" y="349" width="32" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yKr-l3-hIG">
@@ -2608,7 +2637,7 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b2o-rr-jGa">
-                                <rect key="frame" x="209" y="172" width="60" height="51"/>
+                                <rect key="frame" x="258" y="127" width="60" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemPinkColor"/>
                             </view>
@@ -2622,28 +2651,16 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBrownColor"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Shk-G5-l0W">
-                                <rect key="frame" x="142" y="211" width="60" height="51"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemPinkColor"/>
-                            </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9ds-8T-cwy">
                                 <rect key="frame" x="170" y="85" width="121" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemMintColor"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7LD-Md-fkG">
-                                <rect key="frame" x="136" y="155" width="60" height="51"/>
+                                <rect key="frame" x="54" y="232" width="60" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemPinkColor"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="muC-g8-IRU">
-                                <rect key="frame" x="153" y="174" width="86" height="62"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vcg-wX-nBa">
                                 <rect key="frame" x="229" y="730" width="251" height="242"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2660,19 +2677,21 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                 <color key="backgroundColor" systemColor="systemPinkColor"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PAH-g3-V5T">
-                                <rect key="frame" x="27" y="652" width="121" height="62"/>
+                                <rect key="frame" x="0.0" y="802" width="70" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="trT-4C-ajl">
+                                        <rect key="frame" x="82" y="-19" width="121" height="62"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" systemColor="systemMintColor"/>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemMintColor"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hq3-gO-FCh">
                                 <rect key="frame" x="72" y="760" width="60" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemPinkColor"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="trT-4C-ajl">
-                                <rect key="frame" x="100" y="634" width="121" height="62"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemMintColor"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4qX-0V-6r2">
                                 <rect key="frame" x="345" y="616" width="124" height="80"/>
@@ -2697,16 +2716,16 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJU-sP-6fr">
-                                <rect key="frame" x="102" y="698" width="189" height="35"/>
+                                <rect key="frame" x="223" y="695" width="126" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="New to App? Register"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Register here"/>
                                 <connections>
                                     <segue destination="uup-HX-cZq" kind="show" identifier="" id="Jbn-pP-PaK"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DfC-ps-xDv">
-                                <rect key="frame" x="275" y="442" width="49" height="39"/>
+                                <rect key="frame" x="295" y="440" width="49" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="icons8-blind-50"/>
@@ -2714,6 +2733,29 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                     <action selector="togglePasswordVisibility3:" destination="olV-qE-FMW" eventType="touchUpInside" id="xca-QC-8cG"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Don't have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yi9-Tg-pVv">
+                                <rect key="frame" x="54" y="702" width="179" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icons8-password-64" translatesAutoresizingMaskIntoConstraints="NO" id="k4F-Hd-pee">
+                                <rect key="frame" x="49" y="440" width="32" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Shk-G5-l0W">
+                                <rect key="frame" x="260" y="34" width="60" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemPinkColor"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="𝐋𝐨𝐠𝐢𝐧" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="muC-g8-IRU">
+                                <rect key="frame" x="154" y="178" width="97" height="62"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pqm-Cw-ezG"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -2734,17 +2776,17 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                         <outletCollection property="circleview" destination="7LD-Md-fkG" collectionClass="NSMutableArray" id="2B5-WJ-0Kg"/>
                         <outletCollection property="circleview" destination="ubp-Qd-CRO" collectionClass="NSMutableArray" id="QUS-0S-k4J"/>
                         <outletCollection property="circleview" destination="PAH-g3-V5T" collectionClass="NSMutableArray" id="dJf-KA-p6P"/>
-                        <outletCollection property="circleview" destination="trT-4C-ajl" collectionClass="NSMutableArray" id="n4F-ZW-0LD"/>
                         <outletCollection property="circleview" destination="4qX-0V-6r2" collectionClass="NSMutableArray" id="PtA-8D-baY"/>
                         <outletCollection property="circleview" destination="vcg-wX-nBa" collectionClass="NSMutableArray" id="y5s-KD-G0T"/>
                         <outletCollection property="circleview" destination="hq3-gO-FCh" collectionClass="NSMutableArray" id="FtF-Vm-D6t"/>
                         <outletCollection property="circleview" destination="KUd-oq-IF7" collectionClass="NSMutableArray" id="lfg-a5-USF"/>
                         <outletCollection property="circleview" destination="i9Z-md-RzE" collectionClass="NSMutableArray" id="i6u-PB-V2k"/>
+                        <outletCollection property="circleview" destination="trT-4C-ajl" collectionClass="NSMutableArray" id="n4F-ZW-0LD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uyb-cO-2RD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3448" y="1075"/>
+            <point key="canvasLocation" x="-3448.0916030534349" y="1074.6478873239437"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="D3E-iv-UJV">
@@ -2754,36 +2796,6 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jNi-AW-mfJ">
-                                <rect key="frame" x="62" y="383" width="245" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8LO-is-45X">
-                                <rect key="frame" x="62" y="449" width="245" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yLj-Ha-qfR">
-                                <rect key="frame" x="62" y="311" width="245" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icons8-@-50" translatesAutoresizingMaskIntoConstraints="NO" id="Wlr-Ea-N65">
-                                <rect key="frame" x="15" y="387.33333333333326" width="32" height="42"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icons8-security-lock-50" translatesAutoresizingMaskIntoConstraints="NO" id="CEG-pf-RvD">
-                                <rect key="frame" x="16" y="453.33333333333326" width="32" height="42"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icons8-user-50" translatesAutoresizingMaskIntoConstraints="NO" id="Ep6-98-99r">
-                                <rect key="frame" x="16" y="315.33333333333326" width="32" height="42"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tze-9L-UkC">
                                 <rect key="frame" x="-100" y="-71" width="222" height="216"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2795,7 +2807,7 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="deH-fT-aTJ">
-                                <rect key="frame" x="209" y="170" width="60" height="51"/>
+                                <rect key="frame" x="317" y="24" width="60" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemPinkColor"/>
                             </view>
@@ -2810,7 +2822,7 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                 <color key="backgroundColor" systemColor="systemBrownColor"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lKe-CE-eO5">
-                                <rect key="frame" x="142" y="209" width="60" height="51"/>
+                                <rect key="frame" x="-19" y="206" width="60" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemPinkColor"/>
                             </view>
@@ -2820,7 +2832,7 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                 <color key="backgroundColor" systemColor="systemMintColor"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IyU-xA-df9">
-                                <rect key="frame" x="136" y="153" width="60" height="51"/>
+                                <rect key="frame" x="305" y="135" width="60" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemPinkColor"/>
                             </view>
@@ -2835,12 +2847,12 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dkn-SZ-lFE">
-                                <rect key="frame" x="139" y="707" width="60" height="51"/>
+                                <rect key="frame" x="133" y="719" width="60" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemPinkColor"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FWQ-It-oUW">
-                                <rect key="frame" x="27" y="638" width="121" height="62"/>
+                                <rect key="frame" x="7" y="811" width="65" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemMintColor"/>
                             </view>
@@ -2850,7 +2862,7 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                 <color key="backgroundColor" systemColor="systemPinkColor"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KmU-ii-trb">
-                                <rect key="frame" x="100" y="620" width="121" height="62"/>
+                                <rect key="frame" x="-39" y="707" width="121" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemMintColor"/>
                             </view>
@@ -2859,13 +2871,6 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemMintColor"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sign up" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eav-UX-Vjk">
-                                <rect key="frame" x="138" y="191" width="117" height="43"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j2Z-RE-IpM">
                                 <rect key="frame" x="16" y="655" width="154" height="0.66666666666666663"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2883,15 +2888,6 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uPB-EE-6gN">
-                                <rect key="frame" x="102" y="698" width="200" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="already have a account"/>
-                                <connections>
-                                    <segue destination="olV-qE-FMW" kind="show" id="slq-dV-Nfy"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qL0-fU-W1x">
                                 <rect key="frame" x="94" y="527" width="200" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2904,8 +2900,38 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                     <action selector="signUpButtonTapped:" destination="uup-HX-cZq" eventType="touchUpInside" id="IJ3-0y-5Dd"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jNi-AW-mfJ">
+                                <rect key="frame" x="86" y="382" width="245" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8LO-is-45X">
+                                <rect key="frame" x="86" y="448" width="245" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yLj-Ha-qfR">
+                                <rect key="frame" x="86" y="310" width="245" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icons8-gmail-50-3" translatesAutoresizingMaskIntoConstraints="NO" id="Wlr-Ea-N65">
+                                <rect key="frame" x="40" y="382" width="32" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icons8-password-64" translatesAutoresizingMaskIntoConstraints="NO" id="CEG-pf-RvD">
+                                <rect key="frame" x="40" y="448" width="32" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icons8-name-50" translatesAutoresizingMaskIntoConstraints="NO" id="Ep6-98-99r">
+                                <rect key="frame" x="40" y="312" width="32" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v6h-it-CCo">
-                                <rect key="frame" x="253" y="444" width="49" height="39"/>
+                                <rect key="frame" x="277" y="443" width="49" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="icons8-blind-50"/>
@@ -2913,6 +2939,29 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                     <action selector="togglePasswordVisibility3:" destination="uup-HX-cZq" eventType="touchUpInside" id="37v-zj-DT3"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uPB-EE-6gN">
+                                <rect key="frame" x="211" y="683" width="66" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Login"/>
+                                <connections>
+                                    <segue destination="olV-qE-FMW" kind="show" id="slq-dV-Nfy"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Already a user?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U2m-rL-3xj">
+                                <rect key="frame" x="100" y="690" width="118" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="𝐒𝐢𝐠𝐧 𝐮𝐩" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eav-UX-Vjk">
+                                <rect key="frame" x="145" y="183" width="126" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="uEX-e3-kfy"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -2943,7 +2992,7 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nlT-cs-IKz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2734" y="1110"/>
+            <point key="canvasLocation" x="-2744.2748091603053" y="1074.6478873239437"/>
         </scene>
         <!--Verifyotp View Controller-->
         <scene sceneID="aC9-Sc-cah">
@@ -2953,14 +3002,14 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SX7-lS-bu2">
-                                <rect key="frame" x="66" y="317" width="245" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter otp" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SX7-lS-bu2">
+                                <rect key="frame" x="85" y="352" width="245" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mB2-AC-OJC">
-                                <rect key="frame" x="234" y="374" width="119" height="35"/>
+                                <rect key="frame" x="258" y="394" width="119" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Resend OTP"/>
@@ -2979,32 +3028,32 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NYr-CJ-1pB">
-                                <rect key="frame" x="250" y="203" width="60" height="51"/>
+                                <rect key="frame" x="-24" y="292" width="60" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemPinkColor"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ULA-6t-Chv">
-                                <rect key="frame" x="138" y="134" width="121" height="62"/>
+                                <rect key="frame" x="147" y="116" width="121" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemMintColor"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gfx-m7-UDN">
-                                <rect key="frame" x="68" y="203" width="95" height="68"/>
+                                <rect key="frame" x="-41" y="216" width="95" height="68"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBrownColor"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wLo-3Z-sdl">
-                                <rect key="frame" x="183" y="242" width="60" height="51"/>
+                                <rect key="frame" x="317" y="158" width="60" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemPinkColor"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lba-rd-4fR">
-                                <rect key="frame" x="211" y="116" width="121" height="62"/>
+                                <rect key="frame" x="250" y="88" width="121" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemMintColor"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CvG-cy-l3x">
-                                <rect key="frame" x="177" y="186" width="60" height="51"/>
+                                <rect key="frame" x="301" y="0.0" width="60" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemPinkColor"/>
                             </view>
@@ -3044,7 +3093,7 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                 <color key="backgroundColor" systemColor="systemMintColor"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cmh-qD-bmN">
-                                <rect key="frame" x="88" y="442" width="200" height="50"/>
+                                <rect key="frame" x="88" y="481" width="200" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Continue">
@@ -3055,8 +3104,12 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                     <action selector="continueButtonTapped:" destination="OmZ-FX-Eic" eventType="touchUpInside" id="36G-JQ-YfP"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Verification Code " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hhe-fP-1yx">
-                                <rect key="frame" x="45" y="199" width="302" height="76"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icons8-one-time-password-50" translatesAutoresizingMaskIntoConstraints="NO" id="8GB-wa-Nnc">
+                                <rect key="frame" x="45" y="348" width="32" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="𝐕𝐞𝐫𝐢𝐟𝐢𝐜𝐚𝐭𝐢𝐨𝐧 𝐂𝐨𝐝𝐞" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hhe-fP-1yx">
+                                <rect key="frame" x="56" y="186" width="302" height="76"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <nil key="textColor"/>
@@ -3079,11 +3132,18 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                         <outletCollection property="circleview" destination="Gfx-m7-UDN" collectionClass="NSMutableArray" id="FDQ-9P-MiK"/>
                         <outletCollection property="circleview" destination="NYr-CJ-1pB" collectionClass="NSMutableArray" id="Gxm-dQ-JkZ"/>
                         <outletCollection property="circleview" destination="CvG-cy-l3x" collectionClass="NSMutableArray" id="TK9-rm-oMI"/>
+                        <outletCollection property="circleview" destination="FiG-k6-tXH" collectionClass="NSMutableArray" id="TbH-wp-vER"/>
+                        <outletCollection property="circleview" destination="voW-YL-1ko" collectionClass="NSMutableArray" id="KDE-rh-07L"/>
+                        <outletCollection property="circleview" destination="mik-fY-5xK" collectionClass="NSMutableArray" id="mb2-RL-SAQ"/>
+                        <outletCollection property="circleview" destination="Qi9-K1-bwN" collectionClass="NSMutableArray" id="NrL-9G-ERE"/>
+                        <outletCollection property="circleview" destination="lwO-zD-APX" collectionClass="NSMutableArray" id="LWr-dt-lMF"/>
+                        <outletCollection property="circleview" destination="39V-c6-uzO" collectionClass="NSMutableArray" id="yA5-nL-gxd"/>
+                        <outletCollection property="circleview" destination="JAT-1V-mxu" collectionClass="NSMutableArray" id="LMZ-PI-Wkz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uU4-jn-K7d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1984" y="1110"/>
+            <point key="canvasLocation" x="-2059" y="1075"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1qy-tP-5UM">
@@ -3197,9 +3257,9 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="slq-dV-Nfy"/>
-        <segue reference="mFT-xW-tw8"/>
-        <segue reference="HMP-H4-Ezh"/>
+        <segue reference="Klm-aH-o7Q"/>
+        <segue reference="axb-SC-zZr"/>
+        <segue reference="WJu-5e-rgA"/>
         <segue reference="5Pz-bk-SPw"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -3209,11 +3269,11 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
         <image name="fruits" width="21.333333969116211" height="21.333333969116211"/>
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="house.fill" catalog="system" width="128" height="104"/>
-        <image name="icons8-@-50" width="50" height="50"/>
         <image name="icons8-blind-50" width="25" height="25"/>
         <image name="icons8-calendar-50 1" width="25" height="25"/>
         <image name="icons8-cheque-50" width="25" height="25"/>
         <image name="icons8-fuel-50" width="25" height="25"/>
+        <image name="icons8-gmail-50-3" width="50" height="50"/>
         <image name="icons8-grocery-50" width="50" height="50"/>
         <image name="icons8-history-50" width="16.666666030883789" height="16.666666030883789"/>
         <image name="icons8-history-50-2" width="25" height="25"/>
@@ -3221,8 +3281,9 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
         <image name="icons8-instagram-verification-badge-48" width="48" height="48"/>
         <image name="icons8-kawaii-pizza-50" width="25" height="25"/>
         <image name="icons8-more-50-2" width="25" height="25"/>
-        <image name="icons8-security-lock-50" width="25" height="25"/>
-        <image name="icons8-user-50" width="25" height="25"/>
+        <image name="icons8-name-50" width="50" height="50"/>
+        <image name="icons8-one-time-password-50" width="50" height="50"/>
+        <image name="icons8-password-64" width="64" height="64"/>
         <image name="icons8-vegetarian-food-50" width="25" height="25"/>
         <image name="icons8-wallet-100" width="33.333332061767578" height="33.333332061767578"/>
         <image name="person.crop.circle" catalog="system" width="128" height="123"/>

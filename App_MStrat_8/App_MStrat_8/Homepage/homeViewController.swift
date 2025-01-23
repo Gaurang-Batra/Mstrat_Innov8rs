@@ -14,6 +14,7 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var remaininfAllowancelabel: UILabel!
     @IBOutlet weak var Addgoalgoalbutton: UIButton!
 
+    
     var expenses: [Expense] = []  // Declare this variable
     var currentGoal: Goal?
 
