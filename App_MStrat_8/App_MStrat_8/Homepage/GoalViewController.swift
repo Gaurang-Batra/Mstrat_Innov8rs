@@ -3,6 +3,7 @@ import Foundation
 
 // MARK: - Protocol for GoalViewControllerDelegate
 protocol GoalViewControllerDelegate: AnyObject {
+    
     func didAddGoal(title: String, amount: Int, deadline: Date, initialSavings: Int)
 }
 
@@ -35,6 +36,7 @@ class GoalViewController: UIViewController {
 
         // Pass data to the delegate with initial savings set to 0
         delegate?.didAddGoal(title: title, amount: amount, deadline: deadline, initialSavings: 0)
+//        print("Goal details: Title: \(title), Amount: \(amount), Deadline: \(deadline)")
         self.dismiss(animated: true, completion: nil)
     }
 }

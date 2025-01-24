@@ -22,6 +22,7 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     private var goalSavings: Int = 0 // This variable will store the total savings added through AddExpense
 
     override func viewDidLoad() {
+//        print(currentGoal)
         super.viewDidLoad()
         
         mainlabel.layoutIfNeeded()
@@ -54,6 +55,7 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
     func didAddGoal(title: String, amount: Int, deadline: Date, initialSavings: Int) {
         // Create a new goal and store it locally
+        print("call")
         let newGoal = Goal(title: title, amount: amount, deadline: deadline, savings: initialSavings)
         goals.append(newGoal)
 
