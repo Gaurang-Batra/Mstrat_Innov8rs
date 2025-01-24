@@ -951,6 +951,20 @@ Try it!</string>
                                                                     <segue destination="df8-DQ-YY0" kind="presentation" identifier="showGoalViewController" id="HS5-bb-hqX"/>
                                                                 </connections>
                                                             </button>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-------------------------" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hha-Ap-m4j">
+                                                                <rect key="frame" x="1" y="87" width="194" height="21"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zwl-EV-eLI">
+                                                                <rect key="frame" x="0.0" y="109" width="194" height="21"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
@@ -1029,8 +1043,10 @@ Try it!</string>
                         <outlet property="addSaving" destination="nWC-YH-uMU" id="5wB-cy-vdJ"/>
                         <outlet property="collectionView" destination="mve-cc-Y4u" id="RBf-nP-YEO"/>
                         <outlet property="expensebutton" destination="qjO-jj-e29" id="03U-tA-HUf"/>
+                        <outlet property="lineDotted" destination="Hha-Ap-m4j" id="p0D-rn-Xne"/>
                         <outlet property="mainlabel" destination="TVD-xy-qy6" id="JSZ-3e-4KJ"/>
                         <outlet property="remaininfAllowancelabel" destination="aWK-LA-NW6" id="oFg-qq-1bs"/>
+                        <outlet property="savedAmountLabel" destination="Zwl-EV-eLI" id="Kvb-Ue-S8h"/>
                         <outlet property="totalexpenselabel" destination="2md-jb-rpz" id="qIJ-5O-Chx"/>
                         <outletCollection property="circleview" destination="tJq-EH-jyb" collectionClass="NSMutableArray" id="ZRi-gy-eli"/>
                         <outletCollection property="circleview" destination="EiV-w4-HS5" collectionClass="NSMutableArray" id="c40-vO-oeB"/>

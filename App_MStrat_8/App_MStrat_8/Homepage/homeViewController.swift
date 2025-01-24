@@ -1,7 +1,6 @@
 import UIKit
 
-// MARK: - HomeViewController
-class homeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, GoalViewControllerDelegate {
+class homeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var expensebutton: UIButton!
     @IBOutlet weak var mainlabel: UIView!
@@ -14,17 +13,16 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var Addgoalgoalbutton: UIButton!
     @IBOutlet weak var addSaving: UIButton!
 
+    @IBOutlet weak var lineDotted: UILabel!
+    @IBOutlet weak var savedAmountLabel: UILabel!
     var expenses: [Expense] = []  // Declare this variable
     var currentGoal: Goal?
-
     var goals: [Goal] = []  // Array to hold multiple goals
-
     private var goalSavings: Int = 0 // This variable will store the total savings added through AddExpense
 
     override func viewDidLoad() {
-//        print(currentGoal)
         super.viewDidLoad()
-        
+        lineDotted.isHidden = true
         mainlabel.layoutIfNeeded()
         createVerticalDottedLineInBalanceContainer()
         circleview.forEach { makeCircular(view: $0) }
@@ -38,39 +36,68 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         collectionView.collectionViewLayout = createLayout()
 
         NotificationCenter.default.addObserver(self, selector: #selector(refreshExpenses), name: NSNotification.Name("ExpenseAdded"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateSavedAmount(_:)), name: NSNotification.Name("GoalAdded"), object: nil)
 
         styleTextField(AddExpense)
         refreshExpenses()
         updateTotalExpense()
         NotificationCenter.default.addObserver(self, selector: #selector(updateTotalExpense), name: NSNotification.Name("remaininfAllowancelabel"), object: nil)
+        loadGoals()
         
         // Set initial title of Addgoalgoalbutton
         Addgoalgoalbutton.setTitle("Add Goal", for: .normal)
     }
+    @objc func updateSavedAmount(_ notification: Notification) {
+        // Get the goal amount from the notification
+        if let userInfo = notification.userInfo,
+           let goalAmount = userInfo["goalAmount"] as? Int {
+            
+            // Update the label with the goal amount
+            savedAmountLabel.text = "\(goalAmount)"
+            UIView.animate(withDuration: 0.1) {
+                        // Shift the button 29 units upwards (modify its y position)
+                        self.Addgoalgoalbutton.frame.origin.y -= 22
+                    }
+
+            // Check if there are any goals and show/hide the dotted line
+            loadGoals() // Reload goals to check if any exist
+        }
+    }
+
+    deinit {
+            NotificationCenter.default.removeObserver(self, name: NSNotification.Name("GoalAdded"), object: nil)
+        }
+
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateGoalButton()
     }
 
-    func didAddGoal(title: String, amount: Int, deadline: Date, initialSavings: Int) {
-        // Create a new goal and store it locally
-        print("call")
-        let newGoal = Goal(title: title, amount: amount, deadline: deadline, savings: initialSavings)
-        goals.append(newGoal)
-
-        // Update the button to reflect the goal's progress
-        DispatchQueue.main.async {
-            self.updateGoalButton()
+    private func loadGoals() {
+        // Get all goals from the shared GoalDataModel
+        goals = GoalDataModel.shared.getAllGoals()
+        
+        // Update the title of the Add Goal button to reflect the first goal's amount if exists
+        if let firstGoal = goals.first {
+            Addgoalgoalbutton.setTitle("0", for: .normal)
+            Addgoalgoalbutton.setTitleColor(.black, for: .normal)
+            // Show the dotted line if a goal is present
+            lineDotted.isHidden = false
+        } else {
+            Addgoalgoalbutton.setTitle("Add Goal", for: .normal)
+            // Hide the dotted line if no goal is present
+            lineDotted.isHidden = true
         }
-        print("New Goal Added: \(title), Amount: \(amount), Deadline: \(deadline)")
     }
+
 
     private func updateGoalButton() {
         if goalSavings == 0 {
             Addgoalgoalbutton.setTitle("Add Goal", for: .normal)
         } else {
-            Addgoalgoalbutton.setTitle("Rs. \(goalSavings)", for: .normal)
+            Addgoalgoalbutton.setTitle("\(goalSavings)", for: .normal)
         }
     }
 
@@ -90,16 +117,14 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         AddExpense.text = nil
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showGoalViewController",
-           let goalVC = segue.destination as? GoalViewController {
-            goalVC.delegate = self
-        }
-    }
-
     @objc private func updateTotalExpense() {
         let totalExpense = AllowanceDataModel.shared.getAllAllowances().reduce(0) { $0 + $1.amount }
         remaininfAllowancelabel.text = String(format: " Rs.%.1f", totalExpense)
+    }
+
+    @objc private func refreshExpenses() {
+        expenses = ExpenseDataModel.shared.getAllExpenses()
+        collectionView.reloadData()
     }
 
     private func styleTextField(_ textField: UITextField) {
@@ -113,11 +138,6 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let maskLayer = CAShapeLayer()
         maskLayer.path = maskPath.cgPath
         textField.layer.mask = maskLayer
-    }
-
-    @objc private func refreshExpenses() {
-        expenses = ExpenseDataModel.shared.getAllExpenses()
-        collectionView.reloadData()
     }
 
     private func roundCorners(of view: UIView, radius: CGFloat) {
@@ -179,7 +199,7 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         dottedLine.lineDashPattern = [6, 2]
         mainlabel.layer.addSublayer(dottedLine)
     }
-    
+
     private func showAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)

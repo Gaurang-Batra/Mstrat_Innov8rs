@@ -1,20 +1,10 @@
 import UIKit
-import Foundation
 
-// MARK: - Protocol for GoalViewControllerDelegate
-protocol GoalViewControllerDelegate: AnyObject {
-    
-    func didAddGoal(title: String, amount: Int, deadline: Date, initialSavings: Int)
-}
-
-// MARK: - GoalViewController
 class GoalViewController: UIViewController {
     @IBOutlet weak var savebutton: UIBarButtonItem!
     @IBOutlet weak var Goaltitletextfield: UITextField!
     @IBOutlet weak var GoalAmount: UITextField!
     @IBOutlet weak var Goaldeadline: UIDatePicker!
-
-    weak var delegate: GoalViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,9 +24,18 @@ class GoalViewController: UIViewController {
         let deadline = Goaldeadline.date
         print("Goal details: Title: \(title), Amount: \(amount), Deadline: \(deadline)")
 
-        // Pass data to the delegate with initial savings set to 0
-        delegate?.didAddGoal(title: title, amount: amount, deadline: deadline, initialSavings: 0)
-//        print("Goal details: Title: \(title), Amount: \(amount), Deadline: \(deadline)")
+        // Create a Goal object
+        let newGoal = Goal(title: title, amount: amount, deadline: deadline, savings: 0)
+
+        // Save the goal in the shared GoalDataModel
+        GoalDataModel.shared.addGoal(newGoal)
+
+        // Post a notification with the goal amount
+        NotificationCenter.default.post(name: NSNotification.Name("GoalAdded"), object: nil, userInfo: ["goalAmount": amount])
+
+        // Dismiss the view controller
         self.dismiss(animated: true, completion: nil)
     }
+
+
 }
