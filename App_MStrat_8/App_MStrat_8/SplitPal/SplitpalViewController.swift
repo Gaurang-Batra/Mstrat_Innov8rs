@@ -183,6 +183,11 @@ class SplitpalViewController:  UIViewController, UITableViewDelegate, UITableVie
         // Set the selected group index
         selectedGroupIndex = indexPath.section
         
+        
+        
+       
+       
+        
         // Perform segue to the group details screen
         performSegue(withIdentifier: "Groupsdetails", sender: self)
     }
@@ -210,8 +215,15 @@ class SplitpalViewController:  UIViewController, UITableViewDelegate, UITableVie
             // Fetch the selected group from the model
             let selectedGroup = GroupDataModel.shared.getAllGroups()[selectedIndex]
             
+            print("Group Name: \(selectedGroup.groupName)")
+            print("Category: \(String(describing: selectedGroup.category))")
+            
+            print("Group ID: \(selectedGroup.id)")
+               print("Members: \(selectedGroup.members)")
+            
             // Pass the selected group to the detail view controller
             destinationVC.groupItem = selectedGroup
+            
         }
         //    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         //        let view = UIView()

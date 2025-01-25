@@ -15,7 +15,7 @@ struct ExpenseSplitForm {
     var category: String
     var totalAmount: Double
     var paidBy: String
-    var groupId: Int
+    var groupId: Int?
     var image: UIImage?
     var splitOption: SplitOption?
     var splitAmounts: [String: Double]?

@@ -33,6 +33,12 @@ class GroupDetailViewController: UIViewController, UITableViewDataSource, UITabl
     
     var groupItem: Group?
     
+    
+    @IBAction func addedmemberbuttontapped(_ sender: UIButton) {
+        print(groupItem?.groupName)
+        print (groupItem?.id)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -124,7 +130,7 @@ class GroupDetailViewController: UIViewController, UITableViewDataSource, UITabl
                 cell.Expenseaddedimage.image = nil // Or set a placeholder image if needed
             }
             
-            // Return the custom configured cell
+            // Return the custom configured cell!!!!!!!
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "BalanceCell", for: indexPath) as! BalanceCellTableViewCell
@@ -206,6 +212,11 @@ class GroupDetailViewController: UIViewController, UITableViewDataSource, UITabl
         performSegue(withIdentifier: "Settlement", sender: amount)
     }
     
+    
+    @IBAction func ExpenseSplitbuttontapped(_ sender: Any) {
+        performSegue(withIdentifier: "ExpenseSplit", sender: sender)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Settlement" {
             if let destinationVC = segue.destination as? SettlementViewController,
@@ -214,5 +225,24 @@ class GroupDetailViewController: UIViewController, UITableViewDataSource, UITabl
                 destinationVC.labelText = amount
             }
         }
+        else if segue.identifier == "ExpenseSplit" {
+            if let destinationVC = segue.destination as? BillViewController {
+                if let member = groupItem?.members {
+                    destinationVC.groupMembers = member
+                              print("Sending groupItem IDs: \(member)")
+                          }
+                
+            }
+        }
+        else if segue.identifier == "invitedmemberlist" {
+            if let destinationVC = segue.destination as? MembersListTableViewController {
+                if let member = groupItem?.members {
+                    destinationVC.members = member
+                              print("Sending groupItem IDs: \(member)")
+                          }
+                
+            }
+        }
+        
     }
 }

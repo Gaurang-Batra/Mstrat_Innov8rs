@@ -21,13 +21,19 @@ class BillViewController: UIViewController, UITableViewDelegate, UITableViewData
     let transparentview = UIView()
     let tableview = UITableView()
     var selectedbutton = UIButton()
-    var dataSource = [String]()  // List of items to show in the tableview
+    
+    
+    var membersdataSource = [String]()
+    var dataSource: [(name: String, image: UIImage?)] = []
+// List of items to show in the tableview
+    
+    var groupMembers : [Int] = []
 
     private let users = UserDataModel.shared.getAllUsers()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+       
         // Customizing the text fields
         customizeTextField(titletextfield)
         customizeTextField(pricetextfield)
@@ -122,16 +128,43 @@ class BillViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     @IBAction func Payerbuttontapped(_ sender: Any) {
+        // Ensure `groupMembers` is not nil
+//        guard let groupMembers = groupMembers else {
+//            print("Group members not found!")
+//            return
+//        }
+//        
+        // Clear the existing `membersdataSource` to avoid duplicate entries
+        membersdataSource.removeAll()
         
-        dataSource = ["ajay", "Arush", "deepak"]
+        // Map `groupMembers` IDs to their respective names and append them to `membersdataSource`
+        for memberId in groupMembers {
+            if let user = users.first(where: { $0.id == memberId }) {
+                membersdataSource.append(user.fullname)
+            }
+        }
+        
+        // Debug log to verify the updated `membersdataSource`
+        print("Members Data Source: \(membersdataSource)")
+        print (groupMembers)
+        
+        // Set the `dataSource` for the tableview and show the transparent view
+        dataSource = membersdataSource.map { (name: $0, image: UIImage(named: "defaultImage")) }
         selectedbutton = payerbutton
         addtransparentView(frames: payerbutton.frame)
-        
     }
-    
+
     // Action when category button is clicked
     @IBAction func Categorybutton(_ sender: Any) {
-        dataSource = ["Grocery", "Food", "Rent", "Fuel", "Car","Entertainment","Grocery", "Food", "Rent", "Fuel", "Car","Entertainment"]
+        dataSource = [
+                ("Grocery", UIImage(named: "icons8-holiday-50")),
+                ("Food", UIImage(named: "icons8-holiday-50")),
+                ("Rent", UIImage(named: "icons8-holiday-50")),
+                ("Fuel", UIImage(named: "icons8-holiday-50")),
+                ("Car", UIImage(named: "icons8-holiday-50")),
+                ("Entertainment", UIImage(named: "icons8-holiday-50"))
+            ]
+        print(dataSource)
         selectedbutton = categorybutton
         addtransparentView(frames: categorybutton.frame)
     }
@@ -144,19 +177,22 @@ class BillViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! Cellclass
         
-        // Set the text of each cell
-        cell.textLabel?.text = dataSource[indexPath.row]
-        
-        // Uncomment and customize if you want to use user data instead of strings
-        // let user = users[indexPath.row]
-        // cell.textLabel?.text = user.fullname
-        
+        // Access the tuple (name, image)
+        let item = dataSource[indexPath.row]
+
+        // Set the text of each cell to the name
+        cell.textLabel?.text = item.name
+
+        // Set the image of the cell
+//        cell.imageView?.image = item.image
+
         return cell
     }
 
     // Action when a table row is selected
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedbutton.setTitle(dataSource[indexPath.row], for: .normal)
+        let selectedItem = dataSource[indexPath.row]
+        selectedbutton.setTitle(selectedItem.name, for: .normal)
         removeTransparentView()
     }
 

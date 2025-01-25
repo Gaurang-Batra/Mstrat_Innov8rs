@@ -28,9 +28,9 @@ class GroupDataModel {
 
     private init() {
         // Sample users
-        users.append(User(id: 101, email: "user1@example.com", fullname: "John", password: "password", isVerified: true, badges: [], currentGoal: nil, expenses: []))
-        users.append(User(id: 102, email: "user2@example.com", fullname: "Steve", password: "password", isVerified: true, badges: [], currentGoal: nil, expenses: []))
-        users.append(User(id: 103, email: "user3@example.com", fullname: "Jack", password: "password", isVerified: true, badges: [], currentGoal: nil, expenses: []))
+        users.append(User(id: 1, email: "user1@example.com", fullname: "John", password: "password", isVerified: true, badges: [], currentGoal: nil, expenses: []))
+        users.append(User(id: 2, email: "user2@example.com", fullname: "Steve", password: "password", isVerified: true, badges: [], currentGoal: nil, expenses: []))
+        users.append(User(id: 3, email: "user3@example.com", fullname: "Jack", password: "password", isVerified: true, badges: [], currentGoal: nil, expenses: []))
 
         // Sample groups with expenses
         let expense1 = ExpenseSplitForm(
@@ -67,14 +67,14 @@ class GroupDataModel {
             id: 1, // Added an ID for each group
             groupName: "Tech Lovers",
             category: UIImage(named: "icons8-holiday-50"),
-            members: [101, 102],
+            members: [1, 2],
             expenses: [expense1]
         ))
         groups.append(Group(
             id: 2, // Added an ID for each group
             groupName: "Travel Enthusiasts",
             category: UIImage(named: "icons8-holiday-50"),
-            members: [103],
+            members: [3],
             expenses: [expense2]
         ))
     }
