@@ -339,7 +339,7 @@ Try it!</string>
                                     <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                     <connections>
                                         <action selector="ExpenseSplitbuttontapped:" destination="nrf-Uc-qM6" eventType="touchUpInside" id="71h-TF-ENz"/>
-                                        <segue destination="9Of-KT-3AT" kind="presentation" identifier="ExpenseSplit" id="hGu-sC-1jM"/>
+                                        <segue destination="8TU-Nc-dcB" kind="presentation" identifier="ExpenseSplit" id="hGu-sC-1jM"/>
                                     </connections>
                                 </button>
                                 <prototypes>
@@ -1620,24 +1620,16 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                     <action selector="Payerbuttontapped:" destination="9Of-KT-3AT" eventType="touchUpInside" id="SP5-pr-Tbf"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ed-vV-HhR">
-                                <rect key="frame" x="312" y="6" width="55" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Add"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GDP-2t-LLq">
-                                <rect key="frame" x="30" y="6" width="74" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="cancel"/>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xeU-mv-Xbs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Bill" id="sLa-AY-XHV">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="3Bm-rS-yFK"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="DHQ-j0-Kr4">
+                            <connections>
+                                <action selector="cancelbuttontapped:" destination="9Of-KT-3AT" id="rwN-XQ-vM3"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="Nca-Pr-fun"/>
                     </navigationItem>
                     <connections>
@@ -1649,7 +1641,7 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RHq-u3-xoG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3973" y="520"/>
+            <point key="canvasLocation" x="4898.4732824427483" y="519.71830985915494"/>
         </scene>
         <!--Allowance View Controller-->
         <scene sceneID="u7z-Ut-dqt">
@@ -3269,6 +3261,24 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U7m-kc-W0X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5525.9541984732823" y="2778.8732394366198"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Yos-77-RMq">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8TU-Nc-dcB" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zHC-f3-2NO">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="9Of-KT-3AT" kind="relationship" relationship="rootViewController" id="vMD-mT-tXz"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EEW-yL-wCT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3971.7557251908397" y="519.71830985915494"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

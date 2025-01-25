@@ -226,14 +226,14 @@ class GroupDetailViewController: UIViewController, UITableViewDataSource, UITabl
             }
         }
         else if segue.identifier == "ExpenseSplit" {
-            if let destinationVC = segue.destination as? BillViewController {
-                if let member = groupItem?.members {
-                    destinationVC.groupMembers = member
-                              print("Sending groupItem IDs: \(member)")
-                          }
-                
-            }
-        }
+               if let navigationController = segue.destination as? UINavigationController,
+                  let destinationVC = navigationController.topViewController as? BillViewController {
+                   if let member = groupItem?.members {
+                       destinationVC.groupMembers = member
+                       print("Sending groupItem IDs: \(member)")
+                   }
+               }
+           }
         else if segue.identifier == "invitedmemberlist" {
             if let destinationVC = segue.destination as? MembersListTableViewController {
                 if let member = groupItem?.members {

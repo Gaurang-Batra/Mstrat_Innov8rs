@@ -200,4 +200,8 @@ class BillViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
+    
+    @IBAction func cancelbuttontapped(_ sender: Any) {
+        self.dismiss(animated: true , completion: nil)
+    }
 }
