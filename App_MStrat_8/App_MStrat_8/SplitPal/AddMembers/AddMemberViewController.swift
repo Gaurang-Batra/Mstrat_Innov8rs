@@ -1,15 +1,4 @@
-//
-//  AddMemberViewController.swift
-//  App_MStrat_8
-//
-//  Created by student-2 on 13/01/25.
-//
 import UIKit
-
-//protocol AddMemberDelegate: AnyObject {
-//    func didUpdateSelectedMembers(_ members: [Int])
-//}
-
 
 class AddMemberViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, AddMemberCellDelegate {
     
@@ -66,6 +55,10 @@ class AddMemberViewController: UIViewController, UITableViewDelegate, UITableVie
         if !selectedMembers.contains(user.id) {
             selectedMembers.append(user.id)
             print("Selected Members: \(selectedMembers)")
+        } else {
+            // Remove the user if they are already in the list
+            selectedMembers.removeAll { $0 == user.id }
+            print("Removed Member: \(user.id), Selected Members: \(selectedMembers)")
         }
     }
 }

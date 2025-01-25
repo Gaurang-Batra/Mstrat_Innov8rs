@@ -1,9 +1,3 @@
-//
-//  AddmemberCellTableViewCell.swift
-//  App_MStrat_8
-//
-//  Created by student-2 on 14/01/25.
-//
 import UIKit
 
 protocol AddMemberCellDelegate: AnyObject {
@@ -17,6 +11,7 @@ class AddmemberCellTableViewCell: UITableViewCell {
 
     weak var delegate: AddMemberCellDelegate? // Delegate to notify the parent controller
     private var user: User?        // To store the associated user
+    private var isInvited: Bool = false // Track the current invitation state
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,23 +24,33 @@ class AddmemberCellTableViewCell: UITableViewCell {
             return
         }
 
-        // Notify the delegate
-        delegate?.didTapInviteButton(for: user)
+        // Toggle the button's state
+        isInvited.toggle()
 
-        // Update button state
-        invitebutton.setTitle("Sent", for: .normal)
-        invitebutton.setTitleColor(.white, for: .normal)
-        invitebutton.backgroundColor = .green
-        invitebutton.isEnabled = false
+        if isInvited {
+            // Notify the delegate that the user is invited
+            delegate?.didTapInviteButton(for: user)
+            invitebutton.setTitle("Sent", for: .normal)
+            invitebutton.setTitleColor(.black, for: .normal)
+            invitebutton.backgroundColor = .systemGray5
+        } else {
+            // User canceled the invitation
+            delegate?.didTapInviteButton(for: user)
+            invitebutton.setTitle("Invite", for: .normal)
+            invitebutton.setTitleColor(.systemBlue, for: .normal)
+            invitebutton.backgroundColor = .clear
+        }
     }
     
     // Configure the cell with user data
     func configure(with user: User) {
         self.user = user
         nameLabel.text = user.fullname
+
+        // Reset button state when reusing the cell
+        isInvited = false
         invitebutton.setTitle("Invite", for: .normal)
         invitebutton.setTitleColor(.systemBlue, for: .normal)
         invitebutton.backgroundColor = .clear
-        invitebutton.isEnabled = true
     }
 }
