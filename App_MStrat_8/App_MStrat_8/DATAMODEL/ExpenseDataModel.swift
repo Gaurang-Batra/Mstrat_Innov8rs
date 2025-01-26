@@ -75,77 +75,77 @@ struct Expense {
     var isRecurring: Bool
 }
 
-let firstExpense = Expense(
-    id: 1,
-    itemName: "food wash",
-    amount: 1200,
-    image: ExpenseCategory.food.associatedImage,
-    category: .food,
-    duration: DateFormatter().date(from: "2024-01-15"),
-    isRecurring: false
-)
-
-let secondExpense = Expense(
-    id: 2,
-    itemName: "home grocery",
-    amount: 3000,
-    image: ExpenseCategory.grocery.associatedImage,
-    category: .grocery,
-    duration: DateFormatter().date(from: "2024-06-01"),
-    isRecurring: true
-)
-
-let thirdExpense = Expense(
-    id: 3,
-    itemName: "Banana",
-    amount: 5000,
-    image: ExpenseCategory.grocery.associatedImage,
-    category: .grocery,
-    duration: DateFormatter().date(from: "2025-12-31"),
-    isRecurring: true
-)
-
-let fourthExpense = Expense(
-    id: 4,
-    itemName: "Pay food Insurance",
-    amount: 1500,
-    image: ExpenseCategory.food.associatedImage,
-    category: .food,
-    duration: DateFormatter().date(from: "2020-01-15"),
-    isRecurring: false
-)
-
-let fifthExpense = Expense(
-    id: 5,
-    itemName: "Monthly grocery",
-    amount: 3000,
-    image: ExpenseCategory.grocery.associatedImage,
-    category: .grocery,
-    duration: DateFormatter().date(from: "2025-06-01"),
-    isRecurring: true
-)
-
-let sixthExpense = Expense(
-    id: 6,
-    itemName: "Grocery Shopping",
-    amount: 200,
-    image: ExpenseCategory.grocery.associatedImage,
-    category: .grocery,
-    duration: DateFormatter().date(from: "2025-12-31"),
-    isRecurring: true
-)
+//let firstExpense = Expense(
+//    id: 1,
+//    itemName: "food wash",
+//    amount: 1200,
+//    image: ExpenseCategory.food.associatedImage,
+//    category: .food,
+//    duration: DateFormatter().date(from: "2024-01-15"),
+//    isRecurring: false
+//)
+//
+//let secondExpense = Expense(
+//    id: 2,
+//    itemName: "home grocery",
+//    amount: 3000,
+//    image: ExpenseCategory.grocery.associatedImage,
+//    category: .grocery,
+//    duration: DateFormatter().date(from: "2024-06-01"),
+//    isRecurring: true
+//)
+//
+//let thirdExpense = Expense(
+//    id: 3,
+//    itemName: "Banana",
+//    amount: 5000,
+//    image: ExpenseCategory.grocery.associatedImage,
+//    category: .grocery,
+//    duration: DateFormatter().date(from: "2025-12-31"),
+//    isRecurring: true
+//)
+//
+//let fourthExpense = Expense(
+//    id: 4,
+//    itemName: "Pay food Insurance",
+//    amount: 1500,
+//    image: ExpenseCategory.food.associatedImage,
+//    category: .food,
+//    duration: DateFormatter().date(from: "2020-01-15"),
+//    isRecurring: false
+//)
+//
+//let fifthExpense = Expense(
+//    id: 5,
+//    itemName: "Monthly grocery",
+//    amount: 3000,
+//    image: ExpenseCategory.grocery.associatedImage,
+//    category: .grocery,
+//    duration: DateFormatter().date(from: "2025-06-01"),
+//    isRecurring: true
+//)
+//
+//let sixthExpense = Expense(
+//    id: 6,
+//    itemName: "Grocery Shopping",
+//    amount: 200,
+//    image: ExpenseCategory.grocery.associatedImage,
+//    category: .grocery,
+//    duration: DateFormatter().date(from: "2025-12-31"),
+//    isRecurring: true
+//)
 
 class ExpenseDataModel {
     private var expenses: [Expense] = []
     static let shared = ExpenseDataModel()
 
     private init() {
-        expenses.append(firstExpense)
-        expenses.append(secondExpense)
-        expenses.append(thirdExpense)
-        expenses.append(fourthExpense)
-        expenses.append(fifthExpense)
-        expenses.append(sixthExpense)
+//        expenses.append(firstExpense)
+//        expenses.append(secondExpense)
+//        expenses.append(thirdExpense)
+//        expenses.append(fourthExpense)
+//        expenses.append(fifthExpense)
+//        expenses.append(sixthExpense)
     }
 
     func getAllExpenses() -> [Expense] {

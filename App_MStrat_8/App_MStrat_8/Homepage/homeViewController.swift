@@ -12,9 +12,9 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var remaininfAllowancelabel: UILabel!
     @IBOutlet weak var Addgoalgoalbutton: UIButton!
     @IBOutlet weak var addSaving: UIButton!
-
     @IBOutlet weak var lineDotted: UILabel!
     @IBOutlet weak var savedAmountLabel: UILabel!
+    
     var expenses: [Expense] = []  // Declare this variable
     var currentGoal: Goal?
     var goals: [Goal] = []  // Array to hold multiple goals
@@ -36,7 +36,6 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         collectionView.collectionViewLayout = createLayout()
 
         NotificationCenter.default.addObserver(self, selector: #selector(refreshExpenses), name: NSNotification.Name("ExpenseAdded"), object: nil)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(updateSavedAmount(_:)), name: NSNotification.Name("GoalAdded"), object: nil)
 
         styleTextField(AddExpense)
@@ -48,6 +47,7 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         // Set initial title of Addgoalgoalbutton
         Addgoalgoalbutton.setTitle("Add Goal", for: .normal)
     }
+
     @objc func updateSavedAmount(_ notification: Notification) {
         // Get the goal amount from the notification
         if let userInfo = notification.userInfo,
@@ -56,9 +56,9 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             // Update the label with the goal amount
             savedAmountLabel.text = "\(goalAmount)"
             UIView.animate(withDuration: 0.1) {
-                        // Shift the button 29 units upwards (modify its y position)
-                        self.Addgoalgoalbutton.frame.origin.y -= 22
-                    }
+                // Shift the button 29 units upwards (modify its y position)
+                self.Addgoalgoalbutton.frame.origin.y -= 22
+            }
 
             // Check if there are any goals and show/hide the dotted line
             loadGoals() // Reload goals to check if any exist
@@ -66,9 +66,8 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
 
     deinit {
-            NotificationCenter.default.removeObserver(self, name: NSNotification.Name("GoalAdded"), object: nil)
-        }
-
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name("GoalAdded"), object: nil)
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -92,39 +91,74 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
     }
 
-
     private func updateGoalButton() {
         if goalSavings == 0 {
             Addgoalgoalbutton.setTitle("Add Goal", for: .normal)
         } else {
+            
             Addgoalgoalbutton.setTitle("\(goalSavings)", for: .normal)
         }
+
     }
 
     @IBAction func addSavingTapped(_ sender: UIButton) {
-        guard let expenseText = AddExpense.text, !expenseText.isEmpty, let expenseValue = Int(expenseText) else {
+        guard let expenseText = AddExpense.text, !expenseText.isEmpty, let expenseValue = Int(expenseText)
+                
+                
+                
+        else {
             showAlert(title: "Invalid Input", message: "Please enter a valid number.")
             return
         }
 
         // Add the entered value to the current savings
         goalSavings += expenseValue
+        
+        
 
         // Update the goal button title
         updateGoalButton()
-
+        
+        if let goalAmountText = savedAmountLabel.text,
+               let goalAmount = Int(goalAmountText),
+               goalSavings >= goalAmount {
+                // Logic for when the goal is hit
+                print("Goal Hit! Congratulations! You have reached your goal.")
+                showAlert(title: "Goal Hit!", message: "Congratulations! You have reached your goal")
+                // Reset savings and update UI
+                goalSavings = 0
+                savedAmountLabel.text = ""
+                Addgoalgoalbutton.setTitle("Add Goal", for: .normal)
+            Addgoalgoalbutton.setTitleColor(UIColor.systemBlue, for: .normal)
+                Addgoalgoalbutton.frame.origin.y += 22
+            lineDotted.isHidden = true
+            AddExpense.text = nil
+                updateGoalButton()
+                return
+            }
         // Clear the AddExpense text field after adding
         AddExpense.text = nil
     }
 
     @objc private func updateTotalExpense() {
         let totalExpense = AllowanceDataModel.shared.getAllAllowances().reduce(0) { $0 + $1.amount }
-        remaininfAllowancelabel.text = String(format: " Rs.%.1f", totalExpense)
+        remaininfAllowancelabel.text = String(format: " Rs.%.0f", totalExpense)
     }
 
     @objc private func refreshExpenses() {
         expenses = ExpenseDataModel.shared.getAllExpenses()
         collectionView.reloadData()
+        
+        // Add functionality to update total expense label when new expense is appended
+        updateTotalExpenseLabelWithAppendedExpense()
+    }
+
+    private func updateTotalExpenseLabelWithAppendedExpense() {
+        // Calculate the total of all appended expenses
+        let appendedTotal = expenses.reduce(0) { $0 + $1.amount }
+        
+        // Update the totalexpenselabel with the new total value
+        totalexpenselabel.text = "Rs.\(appendedTotal)"
     }
 
     private func styleTextField(_ textField: UITextField) {
@@ -171,7 +205,12 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        if (expenses.count>=4){
+            return 4
+        }
+        else{
+            return expenses.count
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
