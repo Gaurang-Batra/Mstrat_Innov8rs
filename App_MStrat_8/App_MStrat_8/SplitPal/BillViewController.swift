@@ -6,6 +6,33 @@
 //
 import UIKit
 
+
+
+enum ExpenseCate: String, CaseIterable {
+    case food = "Food"
+    case grocery = "Grocery"
+    case fuel = "Fuel"
+    case bills = "Bills"
+    case travel = "Travel"
+    case other = "Other"
+    
+    var associatedImage: UIImage {
+        switch self {
+        case .food:
+            return UIImage(named: "icons8-kawaii-pizza-50") ?? UIImage()
+        case .grocery:
+            return UIImage(named: "icons8-vegetarian-food-50") ?? UIImage()
+        case .fuel:
+            return UIImage(named: "icons8-fuel-50") ?? UIImage()
+        case .bills:
+            return UIImage(named: "icons8-cheque-50") ?? UIImage()
+        case .travel:
+            return UIImage(named: "icons8-holiday-50") ?? UIImage()
+        case .other:
+            return UIImage(named: "icons8-more-50-2") ?? UIImage()
+        }
+    }
+}
 class Cellclass: UITableViewCell {
     // You can customize this cell further if needed.
 }
@@ -18,6 +45,9 @@ class BillViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     @IBOutlet weak var payerbutton: UIButton!
     
+    @IBOutlet weak var segmentedcontroller: UISegmentedControl!
+    
+    
     let transparentview = UIView()
     let tableview = UITableView()
     var selectedbutton = UIButton()
@@ -28,11 +58,19 @@ class BillViewController: UIViewController, UITableViewDelegate, UITableViewData
 // List of items to show in the tableview
     
     var groupMembers : [Int] = []
+    var selectedimage : UIImage?
+    
+    private var expenses: [ExpenseSplitForm] = []
+    
+    @IBOutlet weak var mytableview: UITableView!
+    var groupid : Int?
 
     private let users = UserDataModel.shared.getAllUsers()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        mytableview.reloadData()
        
         // Customizing the text fields
         customizeTextField(titletextfield)
@@ -47,8 +85,22 @@ class BillViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Customizing the category button with underline
         addUnderlineToButton(categorybutton)
         addUnderlineToButton(payerbutton)
+        NotificationCenter.default.addObserver(self, selector: #selector(onNewExpenseAdded), name: .newExpenseAddedInGroup, object: nil)
+
+                loadExpenses()
+        
+
 
     }
+    
+    private func loadExpenses() {
+           expenses = SplitExpenseDataModel.shared.getAllExpenseSplits()
+           mytableview.reloadData()
+       }
+
+       @objc private func onNewExpenseAdded() {
+           loadExpenses()
+       }
 
     private var underlineLayers: [UIButton: CALayer] = [:]
 
@@ -128,16 +180,11 @@ class BillViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     @IBAction func Payerbuttontapped(_ sender: Any) {
-        // Ensure `groupMembers` is not nil
-//        guard let groupMembers = groupMembers else {
-//            print("Group members not found!")
-//            return
-//        }
-//        
         // Clear the existing `membersdataSource` to avoid duplicate entries
         membersdataSource.removeAll()
         
         // Map `groupMembers` IDs to their respective names and append them to `membersdataSource`
+        membersdataSource.append("Ajay (You)")
         for memberId in groupMembers {
             if let user = users.first(where: { $0.id == memberId }) {
                 membersdataSource.append(user.fullname)
@@ -146,9 +193,9 @@ class BillViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         // Debug log to verify the updated `membersdataSource`
         print("Members Data Source: \(membersdataSource)")
-        print (groupMembers)
+        print(groupMembers)
         
-        // Set the `dataSource` for the tableview and show the transparent view
+        // Set the `dataSource` for the table view and show the transparent view
         dataSource = membersdataSource.map { (name: $0, image: UIImage(named: "defaultImage")) }
         selectedbutton = payerbutton
         addtransparentView(frames: payerbutton.frame)
@@ -156,43 +203,87 @@ class BillViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     // Action when category button is clicked
     @IBAction func Categorybutton(_ sender: Any) {
-        dataSource = [
-                ("Grocery", UIImage(named: "icons8-holiday-50")),
-                ("Food", UIImage(named: "icons8-holiday-50")),
-                ("Rent", UIImage(named: "icons8-holiday-50")),
-                ("Fuel", UIImage(named: "icons8-holiday-50")),
-                ("Car", UIImage(named: "icons8-holiday-50")),
-                ("Entertainment", UIImage(named: "icons8-holiday-50"))
-            ]
-        print(dataSource)
-        selectedbutton = categorybutton
-        addtransparentView(frames: categorybutton.frame)
-    }
+           // Populate dataSource using the enum values
+           dataSource = ExpenseCategory.allCases.map { category in
+               (category.rawValue, category.associatedImage)
+           }
+           
+           print(dataSource)
+           selectedbutton = categorybutton
+           addtransparentView(frames: categorybutton.frame)
+       }
+    
+    var selectedPayer: String?
 
     // MARK: - TableView DataSource and Delegate Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource.count
+        // Check if the tableview's identifier corresponds to "Cell"
+        if tableView.dequeueReusableCell(withIdentifier: "Cell") != nil {
+            return dataSource.count
+        }
+        
+        // Check if the tableview's identifier corresponds to "members"
+         if tableView.dequeueReusableCell(withIdentifier: "members") != nil{
+            return groupMembers.count // Assuming groupMembers is an array
+        }
+
+        // Default case
+        return 0
     }
+
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! Cellclass
-        
-        // Access the tuple (name, image)
-        let item = dataSource[indexPath.row]
-
-        // Set the text of each cell to the name
-        cell.textLabel?.text = item.name
-
-        // Set the image of the cell
-//        cell.imageView?.image = item.image
-
-        return cell
+           if tableView.dequeueReusableCell(withIdentifier: "Cell") != nil{
+            // Dequeue cell for "Cell" identifier
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! Cellclass
+            let item = dataSource[indexPath.row]
+            cell.textLabel?.text = item.name
+            cell.imageView?.image = item.image
+            return cell
+        }
+           if tableView.dequeueReusableCell(withIdentifier: "members") != nil {
+            // Dequeue cell for "members" identifier
+            let cell = tableView.dequeueReusableCell(withIdentifier: "members", for: indexPath)
+        let memberId = groupMembers[indexPath.row]
+               
+               // Use UserDataModel to find the user by ID
+               if let user = UserDataModel.shared.getUser(by: memberId) {
+                   cell.textLabel?.text = user.fullname // Display user's fullname
+               } else {
+                   cell.textLabel?.text = "Unknown User" // Fallback if user not found
+               }
+               return cell
+        }
+        else {
+            // Fallback for unknown identifier
+            let cell = UITableViewCell(style: .default, reuseIdentifier: "DefaultCell")
+            cell.textLabel?.text = "Unknown Identifier"
+            return cell
+        }
     }
+
 
     // Action when a table row is selected
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Get the selected item (payer) from the data source
         let selectedItem = dataSource[indexPath.row]
+        
+        // Update the title of the selected button to reflect the chosen payer
         selectedbutton.setTitle(selectedItem.name, for: .normal)
+        
+        // Update the payer button title to include "Paid By"
+//        payerbutton.setTitle(" paid by:\(selectedItem.name)", for: .normal)
+        if selectedbutton == payerbutton {
+                payerbutton.setTitle("\(selectedItem.name)", for: .normal)
+                selectedPayer = selectedItem.name
+                print("Selected payer: \(selectedItem.name)")
+            }
+        
+        // Store the selected payer for later use when creating the expense
+        selectedPayer = selectedItem.name
+        print("Selected payer: \(selectedItem.name)")
+        
+        // Remove the transparent view to hide the selection UI
         removeTransparentView()
     }
 
@@ -204,4 +295,51 @@ class BillViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBAction func cancelbuttontapped(_ sender: Any) {
         self.dismiss(animated: true , completion: nil)
     }
+    
+    @IBAction func addExpenseButtonTapped(_ sender: Any) {
+        // Extract the data from the input fields
+        guard let title = titletextfield.text, !title.isEmpty,
+              let priceString = pricetextfield.text, let price = Double(priceString),
+              let categoryString = categorybutton.titleLabel?.text,
+              let category = ExpenseCate(rawValue: categoryString), // Convert to ExpenseCate enum
+              let paidBy = selectedPayer else { // Ensure a payer has been selected
+            print("Error: Missing data (title, price, category, or payer)")
+            return
+        }
+        
+        // Check if the segmented control is at index 0
+        let payee = (segmentedcontroller.selectedSegmentIndex == 0) ? "All members" : "Ajay (You)"
+        
+        // Get the current date
+        let currentDate = Date()
+        
+        // Create the new expense split
+        let newExpense = ExpenseSplitForm(
+            name: title,
+            category: categoryString,  // Use the category string for the expense
+            totalAmount: price,
+            paidBy: paidBy,  // Dynamically set the selected payer
+            groupId: groupid,  // Assuming groupId is 1 for simplicity
+            image: category.associatedImage,  // Get the associated image from the enum
+            splitOption: .equally,  // You can change this to a different split option
+            splitAmounts: nil,  // Provide split amounts if needed
+            payee: payee,  // Payee based on segmented control
+            date: currentDate,
+            ismine: true  // Assuming it's always "mine" for this case
+        )
+        
+        // Add the new expense to the model
+        SplitExpenseDataModel.shared.addExpenseSplit(expense: newExpense)
+        
+        // Optionally, clear the input fields or update the UI
+        print(newExpense)
+        titletextfield.text = ""
+        pricetextfield.text = ""
+        categorybutton.setTitle("Select Category", for: .normal)
+        payerbutton.setTitle("Select Payer", for: .normal)  // Reset payer button title
+        
+        // Close the view or update UI as necessary
+        self.dismiss(animated: true, completion: nil)
+    }
+
 }

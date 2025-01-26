@@ -48,7 +48,7 @@ class BalanceCellTableViewCell: UITableViewCell {
     func configure(with balance: ExpenseSplitForm) {
         senderprofilename.text = balance.paidBy
         receiverprofilename.text = balance.payee  // Assuming balance.payee is the person receiving money
-        Sendingamount.text = "$\(balance.totalAmount)"
+        Sendingamount.text = "Rs.\(balance.totalAmount)"
     }
     
     @IBAction func settlementButtonTapped(_ sender: UIButton) {
