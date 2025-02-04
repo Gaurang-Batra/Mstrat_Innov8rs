@@ -109,7 +109,7 @@ class CategoryNameViewController: UIViewController {
     // Update button appearance to indicate selection
     private func updateButtonSelection(for selectedButton: UIButton) {
         for button in CategoryButton {
-            button.backgroundColor = button == selectedButton ? UIColor.systemBlue : UIColor.systemGray5
+            button.backgroundColor = button == selectedButton ? UIColor.systemBlue: UIColor.systemGray5
         }
     }
 

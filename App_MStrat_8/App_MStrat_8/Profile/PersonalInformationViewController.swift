@@ -109,7 +109,8 @@ class PersonalInformationViewController: UIViewController, UITableViewDelegate, 
     }
 
     @IBAction func goToLoginScreenButtonTapped(_ sender: UIButton) {
-        if let loginVC = storyboard?.instantiateViewController(withIdentifier: "Openpage") as? SplashViewController {
+        if let loginVC = storyboard?.instantiateViewController(withIdentifier: "Openpage") as? SplashViewController
+        {
             let navigationController = UINavigationController(rootViewController: loginVC)
             navigationController.setNavigationBarHidden(true, animated: false)
             (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController = navigationController

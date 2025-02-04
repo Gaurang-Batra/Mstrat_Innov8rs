@@ -58,6 +58,7 @@ class BillViewController: UIViewController, UITableViewDelegate, UITableViewData
 // List of items to show in the tableview
     
     var groupMembers : [Int] = []
+   
     var selectedimage : UIImage?
     
     private var expenses: [ExpenseSplitForm] = []
@@ -66,9 +67,15 @@ class BillViewController: UIViewController, UITableViewDelegate, UITableViewData
     var groupid : Int?
 
     private let users = UserDataModel.shared.getAllUsers()
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        groupMembers.insert(0, at: 1)
+        
+        
         
         mytableview.reloadData()
        
@@ -184,7 +191,7 @@ class BillViewController: UIViewController, UITableViewDelegate, UITableViewData
         membersdataSource.removeAll()
         
         // Map `groupMembers` IDs to their respective names and append them to `membersdataSource`
-        membersdataSource.append("Ajay (You)")
+//        membersdataSource.append("Ajay (You)")
         for memberId in groupMembers {
             if let user = users.first(where: { $0.id == memberId }) {
                 membersdataSource.append(user.fullname)
@@ -224,6 +231,7 @@ class BillViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         // Check if the tableview's identifier corresponds to "members"
          if tableView.dequeueReusableCell(withIdentifier: "members") != nil{
+             
             return groupMembers.count // Assuming groupMembers is an array
         }
 
@@ -244,13 +252,14 @@ class BillViewController: UIViewController, UITableViewDelegate, UITableViewData
            if tableView.dequeueReusableCell(withIdentifier: "members") != nil {
             // Dequeue cell for "members" identifier
             let cell = tableView.dequeueReusableCell(withIdentifier: "members", for: indexPath)
+               
         let memberId = groupMembers[indexPath.row]
                
                // Use UserDataModel to find the user by ID
                if let user = UserDataModel.shared.getUser(by: memberId) {
                    cell.textLabel?.text = user.fullname // Display user's fullname
                } else {
-                   cell.textLabel?.text = "Unknown User" // Fallback if user not found
+                   cell.textLabel?.text = "Unknown member" // Fallback if user not found
                }
                return cell
         }

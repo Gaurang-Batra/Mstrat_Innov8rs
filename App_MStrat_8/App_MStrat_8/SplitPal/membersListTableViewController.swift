@@ -21,11 +21,15 @@ class MembersListTableViewController: UITableViewController {
 //    }
 //
     var members : [Int] = []
-
+   
+    @IBOutlet var tableview: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Register the table view cell
+        
+        members.append(0)
+        
+    // Register the table view cell
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
         // Add the green plus button in the navigation bar
@@ -36,6 +40,7 @@ class MembersListTableViewController: UITableViewController {
         )
         addButton.tintColor = .green // Set the button color to green
         self.navigationItem.rightBarButtonItem = addButton
+        tableview.reloadData()
     }
 
     // MARK: - Add Button Action
@@ -65,13 +70,17 @@ class MembersListTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // Return the number of sections: 2 (members and invited)
+        print ("\(members.count)")
+        print ("\(members)")
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the count for each section
+       
         
-            return members.count // For members
+            return members.count
+        
         
         
     }
@@ -87,16 +96,18 @@ class MembersListTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
                // Retrieve the member ID
-               let memberId = members[indexPath.row]
+        let memberId = members[indexPath.row]
                
                // Fetch the user's details using the ID
-               if let user = UserDataModel.shared.getUser(by: memberId) {
-                   // Configure the cell content
-                   var content = cell.defaultContentConfiguration()
-                   content.text = user.fullname // Display the user's name
-                   content.secondaryText = user.email // Display the user's email
-                   cell.contentConfiguration = content
-               }
+        if let user = UserDataModel.shared.getUser(by: memberId) {
+            var content = cell.defaultContentConfiguration()
+            content.text = user.fullname
+            content.secondaryText = user.email
+            cell.contentConfiguration = content
+        } else {
+            print("Error: No user found for memberId \(memberId)")
+        }
+
 
                // Add a cross button (remove) on the right side of the cell
                let removeButton = UIButton(type: .custom)

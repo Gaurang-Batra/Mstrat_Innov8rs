@@ -6,30 +6,35 @@
 //
 
 import UIKit
-
 class SettlementViewController: UIViewController {
 
     @IBOutlet weak var settlementamounttextfield: UITextField!
     var labelText: Double?  // The variable that will receive the label text
+    var selectedExpense: ExpenseSplitForm? // Store the selected expense to delete
 
-        override func viewDidLoad() {
-            super.viewDidLoad()
+    @IBOutlet weak var settlementbutton: UIButton!
+    var delegate: GroupDetailViewController?
 
-            // Check if the labelText is not nil and then set it to the text field
-            if let labelText = labelText {
-                settlementamounttextfield.text = "\(labelText)"
-                print("Received label text: \(labelText)")  // Log to verify
-            }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Check if the labelText is not nil and then set it to the text field
+        if let labelText = labelText {
+            settlementamounttextfield.text = "\(labelText)"
+            print("Received label text: \(labelText)")  // Log to verify
         }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
-    */
 
+    @IBAction func settlementButtonTapped(_ sender: UIButton) {
+        if let selectedExpense = selectedExpense {
+            // Delete the expense from the data model
+            SplitExpenseDataModel.shared.deleteExpenseSplit(name: selectedExpense.name)
+
+            // Notify the delegate (GroupDetailViewController) to reload the table view
+            delegate?.reloadTableView()
+
+            // Pop back to the previous view
+            navigationController?.popViewController(animated: true)
+        }
+    }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sbJ-cx-RRT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="myV-Lb-yML">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
@@ -394,7 +394,7 @@ Try it!</string>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.crop.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="4Gc-Ff-Hai">
-                                                            <rect key="frame" x="220" y="11.666666666666657" width="41" height="29"/>
+                                                            <rect key="frame" x="239" y="6.6666666666666856" width="41" height="29"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DRs-8Z-wFU">
@@ -405,19 +405,14 @@ Try it!</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reciver" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sdL-1r-bJs">
-                                                            <rect key="frame" x="220" y="47" width="90" height="21"/>
+                                                            <rect key="frame" x="231" y="48" width="90" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X5d-3F-xrI">
-                                                            <rect key="frame" x="81" y="29" width="39" height="2"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SkF-F5-KzK">
-                                                            <rect key="frame" x="120" y="15" width="61" height="30"/>
+                                                            <rect key="frame" x="118" y="6" width="80" height="30"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                             <nil key="textColor"/>
@@ -427,13 +422,8 @@ Try it!</string>
                                                             <rect key="frame" x="32" y="8.6666666666666572" width="41" height="29"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
-                                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BE5-2g-QiY">
-                                                            <rect key="frame" x="179" y="29" width="39" height="2"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </view>
                                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6td-4M-Ycb">
-                                                            <rect key="frame" x="265" y="23" width="80" height="35"/>
+                                                            <rect key="frame" x="278" y="16" width="80" height="35"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain" title="...">
@@ -441,9 +431,18 @@ Try it!</string>
                                                             </buttonConfiguration>
                                                             <connections>
                                                                 <action selector="settlementButtonTapped:" destination="ALt-kx-NjW" eventType="touchUpInside" id="ZeD-7D-Ut1"/>
-                                                                <segue destination="ooi-GF-RYF" kind="presentation" identifier="Settlement" id="RmN-Jf-iKz"/>
+                                                                <segue destination="h39-OF-3ru" kind="presentation" identifier="Settlement" id="RmN-Jf-iKz"/>
                                                             </connections>
                                                         </button>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icons8-arrow-50" translatesAutoresizingMaskIntoConstraints="NO" id="LZL-71-kch">
+                                                            <rect key="frame" x="85" y="23" width="199" height="48"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
+                                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="krk-EM-mRb">
+                                                            <rect key="frame" x="85" y="45" width="122" height="4"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </view>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.6523516376813252" green="0.39417733970533375" blue="0.086158247387882733" alpha="0.29803921570000003" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </view>
@@ -606,6 +605,10 @@ Try it!</string>
                                     <segment title="Yearly"/>
                                 </segments>
                             </segmentedControl>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Screenshot 2025-01-27 at 8.43.17 AM" translatesAutoresizingMaskIntoConstraints="NO" id="BWq-Kf-C7X">
+                                <rect key="frame" x="41" y="222" width="310" height="264"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8rH-sV-Ct0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -747,25 +750,25 @@ Try it!</string>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rs.0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2md-jb-rpz">
-                                                        <rect key="frame" x="199" y="46" width="156" height="32"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total Expense" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtX-XE-B50">
+                                                        <rect key="frame" x="228" y="8" width="106" height="21"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rs.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2md-jb-rpz">
+                                                        <rect key="frame" x="247" y="46" width="108" height="32"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                         <color key="textColor" systemColor="systemRedColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rs.0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aWK-LA-NW6">
-                                                        <rect key="frame" x="0.0" y="46" width="170" height="32"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rs.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aWK-LA-NW6">
+                                                        <rect key="frame" x="26" y="46" width="144" height="32"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                         <color key="textColor" red="0.31372550129999999" green="0.58039218189999997" blue="0.30196079609999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total Expense" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtX-XE-B50">
-                                                        <rect key="frame" x="219" y="8" width="106" height="21"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -1225,7 +1228,7 @@ Try it!</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N1r-pi-RT4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3359.5419847328244" y="2778.8732394366198"/>
+            <point key="canvasLocation" x="3360" y="2932"/>
         </scene>
         <!--Sign In & Security-->
         <scene sceneID="Ddp-BY-mRj">
@@ -1326,7 +1329,7 @@ Try it!</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gE8-XU-AIo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4900" y="2778.8732394366198"/>
+            <point key="canvasLocation" x="4900" y="2932"/>
         </scene>
         <!--Privacy Policy-->
         <scene sceneID="tyw-xs-0fO">
@@ -1354,7 +1357,7 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2K1-CY-tpv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6452.6717557251905" y="2778.8732394366198"/>
+            <point key="canvasLocation" x="6453" y="2932"/>
         </scene>
         <!--Home-->
         <scene sceneID="Rgh-iN-qza">
@@ -1439,6 +1442,9 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="Button"/>
+                                <connections>
+                                    <action selector="settlementButtonTapped:" destination="ooi-GF-RYF" eventType="touchUpInside" id="S6m-QR-3oz"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="45A-lM-nqO">
                                 <rect key="frame" x="16" y="243" width="361" height="34"/>
@@ -1453,11 +1459,12 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                     <navigationItem key="navigationItem" title="Settle Bill" id="vrb-Gk-QC7"/>
                     <connections>
                         <outlet property="settlementamounttextfield" destination="45A-lM-nqO" id="oT5-DU-Eza"/>
+                        <outlet property="settlementbutton" destination="Rde-oG-pMr" id="BdA-3r-pV0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9a8-FY-kkl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3218" y="1056"/>
+            <point key="canvasLocation" x="4144.2748091603053" y="1055.6338028169014"/>
         </scene>
         <!--Members List Table View Controller-->
         <scene sceneID="gC0-2N-1mv">
@@ -1485,6 +1492,9 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="FQS-hS-IyO">
                         <barButtonItem key="backBarButtonItem" title="Bank" id="N0a-fh-THZ"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableview" destination="zna-sK-wcw" id="qjn-J7-CY8"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AxI-ZA-h7B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1645,9 +1655,9 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RHq-u3-xoG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4898.4732824427483" y="519.71830985915494"/>
+            <point key="canvasLocation" x="5825.1908396946565" y="519.71830985915494"/>
         </scene>
-        <!--Allowance View Controller-->
+        <!--Add Allowance-->
         <scene sceneID="u7z-Ut-dqt">
             <objects>
                 <viewController id="4aD-db-QVa" customClass="AllowanceViewController" customModule="App_MStrat_8" customModuleProvider="target" sceneMemberID="viewController">
@@ -1655,28 +1665,34 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Allowance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vC5-Yc-kMK">
-                                <rect key="frame" x="16" y="97" width="195" height="33"/>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Allowance" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cec-fN-pDC">
+                                <rect key="frame" x="16" y="138" width="361" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Allowance" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cec-fN-pDC">
-                                <rect key="frame" x="16" y="149" width="361" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                <color key="backgroundColor" systemColor="tableSeparatorDarkColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Allowance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vC5-Yc-kMK">
+                                <rect key="frame" x="32" y="102" width="108" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="xlP-ku-kl6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="C0W-MG-bxf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vC5-Yc-kMK" firstAttribute="top" secondItem="C0W-MG-bxf" secondAttribute="top" constant="46" id="K6S-8d-wGo"/>
+                            <constraint firstItem="C0W-MG-bxf" firstAttribute="trailing" secondItem="vC5-Yc-kMK" secondAttribute="trailing" constant="253" id="q6p-JC-pCD"/>
+                        </constraints>
                     </view>
                     <toolbarItems>
                         <barButtonItem id="Emo-cN-AtY"/>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" id="LED-tN-cXk">
+                    <navigationItem key="navigationItem" title="Add Allowance" id="LED-tN-cXk">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="WQv-y7-T58">
                             <connections>
                                 <action selector="cancelbutton:" destination="4aD-db-QVa" id="qVX-aa-KBD"/>
@@ -1695,7 +1711,7 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fgE-DS-L9q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3394.6564885496182" y="-798.59154929577471"/>
+            <point key="canvasLocation" x="3395" y="-798"/>
         </scene>
         <!--Add your Goal-->
         <scene sceneID="8x8-Vs-da3">
@@ -2060,6 +2076,21 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mgj-tH-Dcr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3349" y="-2043"/>
+        </scene>
+        <!--Activity Track View Controller-->
+        <scene sceneID="baS-J9-E5K">
+            <objects>
+                <viewController id="ytg-mL-MqH" customClass="ActivityTrackViewController" customModule="App_MStrat_8" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FGP-tq-csd">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Alv-tS-4RI"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1uX-dY-BFQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2423" y="-2041"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="sAw-t5-Nif">
@@ -3222,7 +3253,7 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VAG-Yc-oWh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2432.8244274809158" y="2778.8732394366198"/>
+            <point key="canvasLocation" x="2433" y="2932"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="TFq-dC-NGv">
@@ -3240,7 +3271,7 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="apN-r5-0uv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3973.2824427480914" y="2778.8732394366198"/>
+            <point key="canvasLocation" x="3973" y="2932"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="CaB-iw-RPh">
@@ -3258,7 +3289,7 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U7m-kc-W0X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5525.9541984732823" y="2778.8732394366198"/>
+            <point key="canvasLocation" x="5526" y="2932"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Yos-77-RMq">
@@ -3276,22 +3307,42 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EEW-yL-wCT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3971.7557251908397" y="519.71830985915494"/>
+            <point key="canvasLocation" x="4898.4732824427483" y="519.71830985915494"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="dFW-5U-11m">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="h39-OF-3ru" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MZw-KQ-eZh">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ooi-GF-RYF" kind="relationship" relationship="rootViewController" id="snB-ah-YEW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M6f-Ze-Qce" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3217.5572519083967" y="1055.6338028169014"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="slq-dV-Nfy"/>
         <segue reference="axb-SC-zZr"/>
-        <segue reference="WJu-5e-rgA"/>
-        <segue reference="5Pz-bk-SPw"/>
+        <segue reference="HMP-H4-Ezh"/>
+        <segue reference="o86-rk-2IY"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Group" width="766.80194091796875" height="500.94793701171875"/>
+        <image name="Screenshot 2025-01-27 at 8.43.17 AM" width="986" height="700"/>
         <image name="Split1" width="16.666666030883789" height="16.666666030883789"/>
         <image name="Splitfill" width="25" height="25"/>
         <image name="fruits" width="21.333333969116211" height="21.333333969116211"/>
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="house.fill" catalog="system" width="128" height="104"/>
+        <image name="icons8-arrow-50" width="50" height="50"/>
         <image name="icons8-blind-50" width="25" height="25"/>
         <image name="icons8-calendar-50 1" width="25" height="25"/>
         <image name="icons8-cheque-50" width="25" height="25"/>
@@ -3325,12 +3376,6 @@ To enhance safety, we’ve implemented robust measures to protect against unauth
         </systemColor>
         <systemColor name="systemGray3Color">
             <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-<<<<<<< HEAD
-=======
-        </systemColor>
-        <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
->>>>>>> 83192c2 (goal completion,total expense)
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
