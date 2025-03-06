@@ -102,6 +102,23 @@ class UserDataModel {
 
 //        users[index].badges.append(badge)
     }
+    
+    func createUser(email: String, fullname: String, password: String) -> User {
+        let newId = (users.map { $0.id }.max() ?? 0) + 1
+        let newUser = User(
+            id: newId,
+            email: email,
+            fullname: fullname,
+            password: password,
+            isVerified: false,
+            badges: [],
+            currentGoal: nil,
+            expenses: []
+        )
+        users.append(newUser)
+        return newUser
+    }
+
 
     func getUserBadges(for userId: Int) -> [String] {
         return users.first { $0.id == userId }?.badges ?? []

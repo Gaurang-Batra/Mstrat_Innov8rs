@@ -91,20 +91,19 @@ class LoginViewController: UIViewController {
             return
         }
         
-        // Get the stored email and password from UserDefaults
-        let storedEmail = UserDefaults.standard.string(forKey: "userEmail") ?? ""
-        let storedPassword = UserDefaults.standard.string(forKey: "userPassword") ?? ""
-        
-        // Check if email and password match the stored values
-        if email == storedEmail && password == storedPassword {
-            // Navigate to the home screen
+        // Search for the user with the provided email and password
+        if let user = UserDataModel.shared.getAllUsers().first(where: { $0.email == email && $0.password == password }) {
+            // User found, navigate to the home screen
+            print("User found: \(user.fullname)")  // Optionally log the user details
             guard let storyboard = storyboard else { return }
             let homeScreenVC = storyboard.instantiateViewController(withIdentifier: "homescreen")
             navigationController?.pushViewController(homeScreenVC, animated: true)
         } else {
+            // Show alert if user is not found or credentials are incorrect
             showAlert(message: "Invalid email or password.")
         }
     }
+
     
     // Helper function to show alert messages
     private func showAlert(message: String) {

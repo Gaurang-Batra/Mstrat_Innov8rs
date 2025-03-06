@@ -63,16 +63,16 @@ class SignUpViewController: UIViewController {
             return
         }
         
-        // Save user data to UserDefaults
-        UserDefaults.standard.set(name, forKey: "userName")
-        UserDefaults.standard.set(email, forKey: "userEmail")
-        UserDefaults.standard.set(password, forKey: "userPassword")
-        
+        // Create a new user using UserDataModel
+        let newUser = UserDataModel.shared.createUser(email: email, fullname: name, password: password)
+        print("New user created: \(newUser)")
+
         // Navigate to the verification screen
         guard let storyboard = storyboard else { return }
         let verifyVC = storyboard.instantiateViewController(withIdentifier: "verifycode")
         navigationController?.pushViewController(verifyVC, animated: true)
     }
+
 
     // Helper function to show alerts
     private func showAlert(message: String) {
