@@ -23,9 +23,9 @@ struct User {
 
 let firstUser = User(
     id: 1,
-    email: "johndoe@example.com",
+    email: "ankush@gmail.com",
     fullname: "John Doe",
-    password: "password123",
+    password: "99999999",
     isVerified: true,
     badges: [],
     currentGoal: nil,

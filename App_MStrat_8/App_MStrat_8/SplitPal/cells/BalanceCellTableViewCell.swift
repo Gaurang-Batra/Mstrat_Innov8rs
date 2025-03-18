@@ -44,21 +44,30 @@ class BalanceCellTableViewCell: UITableViewCell {
     
     func configure(with balance: ExpenseSplitForm) {
         senderprofilename.text = balance.paidBy
-        receiverprofilename.text = balance.payee  // Assuming balance.payee is the person receiving money
+        
+        // Display the payee name (since balance.payee only contains a single ID now)
+        if let payeeId = balance.payee.first, let payeeUser = UserDataModel.shared.getUser(by: payeeId) {
+            receiverprofilename.text = payeeUser.fullname
+        } else {
+            receiverprofilename.text = "No payee"
+        }
+        
+        // Display the total amount for the expense
         Sendingamount.text = "Rs.\(balance.totalAmount)"
     }
+
+
+
+
+
     
     @IBAction func settlementButtonTapped(_ sender: UIButton) {
         if let balanceAmount = balance?.totalAmount {
-            // Get the parent view controller (GroupDetailViewController)
             if let viewController = self.viewController() as? GroupDetailViewController {
                 viewController.navigateToSettlement(with: balanceAmount, expense: balance)            }
         }
     }
 }
-    
-    
-    // Extension to get the parent view controller from a UIView
     extension UIView {
         func viewController() -> UIViewController? {
             var nextResponder = self.next

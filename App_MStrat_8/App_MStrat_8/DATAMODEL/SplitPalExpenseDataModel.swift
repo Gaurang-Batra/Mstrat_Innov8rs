@@ -20,8 +20,8 @@ struct ExpenseSplitForm {
     var groupId: Int?
     var image: UIImage?
     var splitOption: SplitOption?
-    var splitAmounts: [String: Double]?
-    var payee: String
+    var splitAmounts: [String: Double]
+    var payee: [Int]
     var date: Date
     var ismine: Bool
 }
@@ -44,8 +44,8 @@ class SplitExpenseDataModel {
             groupId: 1,
             image: UIImage(named: "icons8-holiday-50"),
             splitOption: .equally,
-            splitAmounts: nil,
-            payee: "aj",
+            splitAmounts: ["John Doe": 200.0, "Alice Johnson": 300.0],
+            payee: [1],
             date: Date(),
             ismine: true
         )
@@ -59,7 +59,7 @@ class SplitExpenseDataModel {
             image: UIImage(named: "icons8-holiday-50"),
             splitOption: .unequally,
             splitAmounts: ["John Doe": 200.0, "Alice Johnson": 300.0],
-            payee: "kj",
+            payee: [2],
             date: Date(),
             ismine: false
         )

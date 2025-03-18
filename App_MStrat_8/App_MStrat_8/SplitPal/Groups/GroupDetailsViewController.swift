@@ -100,17 +100,13 @@ class GroupDetailViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        // Reload balances and filter them
         balances = SplitExpenseDataModel.shared.getExpenseSplits(forGroup: groupItem?.id ?? 0)
         filterBalances()
-        
-        // Reload the table view
+   
         tableView.reloadData()
 
-        // Update the total expense sum
         updateExpenseSum()
 
-        // Optionally update the segmented control state if needed
         updateSeparatorStyle()
     }
 
@@ -123,7 +119,6 @@ class GroupDetailViewController: UIViewController, UITableViewDataSource, UITabl
         updateExpenseSum()
     }
 
-    // Ensure the method is marked with @objc so it can be used as a selector
     @objc func segmentControlChanged() {
         filterBalances()
         updateSeparatorStyle()
@@ -132,20 +127,42 @@ class GroupDetailViewController: UIViewController, UITableViewDataSource, UITabl
     
     func updateExpenseSum() {
             let totalAmount = balances.reduce(0) { $0 + $1.totalAmount }
-            amountlabel.text = "Rs.\(Int(totalAmount))" // Update the label with the sum
+            amountlabel.text = "Rs.\(Int(totalAmount))"
         }
     
-    // Method to filter balances into myBalances and othersBalances
     func filterBalances() {
-        myBalances = balances.filter { $0.paidBy.contains("Ajay (You)") || $0.payee.contains("Ajay (You)") }
-        othersBalances = balances.filter { !$0.paidBy.contains("Ajay (You)") && !$0.payee.contains("Ajay (You)") }
+        var tempBalances: [ExpenseSplitForm] = []
+        
+        // Iterate over all expenses and create one entry per payee, updating the amount if necessary
+        for expense in balances {
+            for payeeId in expense.payee {
+                var payeeExpense = expense
+                payeeExpense.paidBy = expense.paidBy  // Keep the same payer
+                payeeExpense.payee = [payeeId]  // Set the payee to the current payee only
+                
+                // Check if the payer-payee combination already exists
+                if let existingExpenseIndex = tempBalances.firstIndex(where: { $0.paidBy == payeeExpense.paidBy && $0.payee == payeeExpense.payee }) {
+                    // If it exists, update the existing entry by adding the new amount
+                    tempBalances[existingExpenseIndex].totalAmount += payeeExpense.totalAmount
+                } else {
+                    // If not, add a new entry for this payee
+                    tempBalances.append(payeeExpense)
+                }
+            }
+        }
+        
+        // Now tempBalances will have one entry per payee, and updated amounts where necessary
+        myBalances = tempBalances.filter { $0.paidBy.contains("Ajay (You)") || $0.payee.contains(0) }
+        othersBalances = tempBalances.filter { !$0.paidBy.contains("Ajay (You)") && !$0.payee.contains(0) }
     }
+
+
 
     func updateSeparatorStyle() {
         if SegmentedControllerforgroup.selectedSegmentIndex == 0 {
-            tableView.separatorStyle = .singleLine // Show separator for Expense
+            tableView.separatorStyle = .singleLine
         } else {
-            tableView.separatorStyle = .none // Hide separator for Balance
+            tableView.separatorStyle = .none
         }
     }
     
@@ -155,7 +172,7 @@ class GroupDetailViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if SegmentedControllerforgroup.selectedSegmentIndex == 0 {
-            return nil // No title for the Expense section
+            return nil
         } else {
             return section == 0 ? "My Balances" : "Other's Balances"
         }
@@ -168,28 +185,24 @@ class GroupDetailViewController: UIViewController, UITableViewDataSource, UITabl
             return section == 0 ? myBalances.count : othersBalances.count
         }
     }
+
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if SegmentedControllerforgroup.selectedSegmentIndex == 0 {
-            // Dequeue the custom ExpenseAddedTableViewCell
             let cell = tableView.dequeueReusableCell(withIdentifier: "ExpenseCell", for: indexPath) as! ExpenseAddedTableViewCell
             
-            // Get the relevant expense data for the row
             let expense = balances[indexPath.row]
-            
-            // Configure the custom cell
+     
             cell.ExpenseAddedlabel.text = expense.name
             cell.Paidbylabel.text = expense.paidBy
             cell.ExoenseAmountlabel.text = "Rs.\(Int(expense.totalAmount))"
             
-            // Set image if available
             if let image = expense.image {
                 cell.Expenseaddedimage.image = image
             } else {
-                cell.Expenseaddedimage.image = nil // Or set a placeholder image if needed
+                cell.Expenseaddedimage.image = nil
             }
             
-            // Return the custom configured cell
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "BalanceCell", for: indexPath) as! BalanceCellTableViewCell
@@ -199,10 +212,12 @@ class GroupDetailViewController: UIViewController, UITableViewDataSource, UITabl
             } else {
                 balance = othersBalances[indexPath.row]
             }
+            
             cell.configure(with: balance)
             return cell
         }
     }
+
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if SegmentedControllerforgroup.selectedSegmentIndex == 0 {

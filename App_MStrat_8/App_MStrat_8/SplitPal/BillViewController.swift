@@ -37,7 +37,8 @@ class Cellclass: UITableViewCell {
     // You can customize this cell further if needed.
 }
 
-class BillViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class BillViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+
   
     @IBOutlet weak var categorybutton: UIButton!
     @IBOutlet weak var titletextfield: UITextField!
@@ -55,7 +56,7 @@ class BillViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var membersdataSource = [String]()
     var dataSource: [(name: String, image: UIImage?)] = []
-// List of items to show in the tableview
+
     
     var groupMembers : [Int] = []
    
@@ -72,6 +73,7 @@ class BillViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        pricetextfield.delegate = self
         
         groupMembers.insert(0, at: 1)
         
@@ -95,10 +97,30 @@ class BillViewController: UIViewController, UITableViewDelegate, UITableViewData
         NotificationCenter.default.addObserver(self, selector: #selector(onNewExpenseAdded), name: .newExpenseAddedInGroup, object: nil)
 
                 loadExpenses()
+        pricetextfield.addTarget(self, action: #selector(priceTextChanged(_:)), for: .editingChanged)
+        segmentedcontroller.addTarget(self, action: #selector(segmentedControlChanged), for: .valueChanged)
         
 
 
     }
+    @objc func segmentedControlChanged() {
+        // Check the selected segment and enable/disable the Splitamount field accordingly
+        let isEnabled = segmentedcontroller.selectedSegmentIndex == 1
+
+        // Iterate over each cell and enable or disable the Splitamount field
+        for (index, member) in groupMembers.enumerated() {
+            if let cell = mytableview.cellForRow(at: IndexPath(row: index, section: 0)) as? SplitAmountTableViewCell {
+                cell.Splitamount.isUserInteractionEnabled = isEnabled
+            }
+        }
+    }
+
+    @objc func priceTextChanged(_ textField: UITextField) {
+        if let priceText = textField.text, let price = Double(priceText) {
+            updateSplitAmounts(with: price)
+        }
+    }
+
     
     private func loadExpenses() {
            expenses = SplitExpenseDataModel.shared.getAllExpenseSplits()
@@ -124,6 +146,33 @@ class BillViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Store the reference to the underline layer for the button
         underlineLayers[button] = underline
     }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        // This method is called whenever the user types something into the text field
+        
+        // Make sure the change is happening in the pricetextfield
+        if textField == pricetextfield {
+            // Get the updated price as a Double
+            if let priceText = textField.text, let price = Double(priceText) {
+                // Update the split amounts in the table (assuming your tableview is already populated)
+                updateSplitAmounts(with: price)
+            }
+        }
+        return true
+    }
+    func updateSplitAmounts(with price: Double) {
+        // Assuming each expense split has a split amount field
+        let splitAmount = price / Double(groupMembers.count)
+        
+        // Iterate over the rows in the table and update the split amounts in the cells
+        for (index, member) in groupMembers.enumerated() {
+            // Reload the row that corresponds to this member to update the Splitamount text field
+            if let cell = mytableview.cellForRow(at: IndexPath(row: index, section: 0)) as? SplitAmountTableViewCell {
+                cell.Splitamount.text = String(format: "%.2f", splitAmount)
+            }
+        }
+    }
+
+
 
 
 
@@ -274,27 +323,27 @@ class BillViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     // Action when a table row is selected
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Get the selected item (payer) from the data source
-        let selectedItem = dataSource[indexPath.row]
-        
-        // Update the title of the selected button to reflect the chosen payer
-        selectedbutton.setTitle(selectedItem.name, for: .normal)
-        
-        // Update the payer button title to include "Paid By"
-//        payerbutton.setTitle(" paid by:\(selectedItem.name)", for: .normal)
-        if selectedbutton == payerbutton {
+        if tableView.accessibilityIdentifier != "members" {
+            let selectedItem = dataSource[indexPath.row]
+            
+            // Update the title of the selected button to reflect the chosen payer
+            selectedbutton.setTitle(selectedItem.name, for: .normal)
+            
+            if selectedbutton == payerbutton {
                 payerbutton.setTitle("\(selectedItem.name)", for: .normal)
                 selectedPayer = selectedItem.name
                 print("Selected payer: \(selectedItem.name)")
             }
-        
-        // Store the selected payer for later use when creating the expense
-        selectedPayer = selectedItem.name
-        print("Selected payer: \(selectedItem.name)")
-        
-        // Remove the transparent view to hide the selection UI
-        removeTransparentView()
+            
+            // Store the selected payer for later use when creating the expense
+            selectedPayer = selectedItem.name
+            print("Selected payer: \(selectedItem.name)")
+            
+            // Remove the transparent view to hide the selection UI
+            removeTransparentView()
+        }
     }
+
 
     // Set the height of each row in the tableview
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -310,31 +359,54 @@ class BillViewController: UIViewController, UITableViewDelegate, UITableViewData
         guard let title = titletextfield.text, !title.isEmpty,
               let priceString = pricetextfield.text, let price = Double(priceString),
               let categoryString = categorybutton.titleLabel?.text,
-              let category = ExpenseCate(rawValue: categoryString), // Convert to ExpenseCate enum
-              let paidBy = selectedPayer else { // Ensure a payer has been selected
+              let category = ExpenseCate(rawValue: categoryString),
+              let paidByName = selectedPayer else {
             print("Error: Missing data (title, price, category, or payer)")
             return
         }
+
+        // Assuming `paidByName` is the name of the payer, we need to convert this to an ID
+        guard let paidByUser = users.first(where: { $0.fullname == paidByName }) else {
+            print("Error: Payer not found in users list")
+            return
+        }
+
+        let paidById = paidByUser.id  // Get the payer's ID
         
-        // Check if the segmented control is at index 0
-        let payee = (segmentedcontroller.selectedSegmentIndex == 0) ? "All members" : "Ajay (You)"
-        
+        // Determine the payee by excluding the paidBy from groupMembers (groupMembers contains user IDs)
+        let payees = groupMembers.filter { $0 != paidById }  // Exclude selected payer (ID comparison)
+
+        // Split logic based on the selected option
+        var splitAmounts: [String: Double]? = nil
+        if segmentedcontroller.selectedSegmentIndex == 0 {  // Equally split
+            let splitAmount = price / Double(groupMembers.count)
+            splitAmounts = Dictionary(uniqueKeysWithValues: groupMembers.map { memberId in
+                if let member = users.first(where: { $0.id == memberId }) {
+                    return (member.fullname, splitAmount)  // Convert ID to name
+                }
+                return ("Unknown", 0.0)  // Fallback if user not found
+            })
+        } else if segmentedcontroller.selectedSegmentIndex == 1 {  // Unequally split
+            // Add custom logic to allow users to manually input unequal splits
+            // (You'll need to implement this part, like through a modal or an additional screen)
+        }
+
         // Get the current date
         let currentDate = Date()
-        
+
         // Create the new expense split
         let newExpense = ExpenseSplitForm(
             name: title,
-            category: categoryString,  // Use the category string for the expense
+            category: categoryString,
             totalAmount: price,
-            paidBy: paidBy,  // Dynamically set the selected payer
-            groupId: groupid,  // Assuming groupId is 1 for simplicity
-            image: category.associatedImage,  // Get the associated image from the enum
-            splitOption: .equally,  // You can change this to a different split option
-            splitAmounts: nil,  // Provide split amounts if needed
-            payee: payee,  // Payee based on segmented control
+            paidBy: paidByName,
+            groupId: groupid,
+            image: category.associatedImage,
+            splitOption: .equally,  // You can modify this to handle "unequally" case
+            splitAmounts: splitAmounts ?? ["John Doe": 200.0, "Alice Johnson": 300.0],  // Use calculated split amounts
+            payee: payees,  // All group members except the payer
             date: currentDate,
-            ismine: true  // Assuming it's always "mine" for this case
+            ismine: true
         )
         
         // Add the new expense to the model
@@ -346,9 +418,14 @@ class BillViewController: UIViewController, UITableViewDelegate, UITableViewData
         pricetextfield.text = ""
         categorybutton.setTitle("Select Category", for: .normal)
         payerbutton.setTitle("Select Payer", for: .normal)  // Reset payer button title
-        
+
         // Close the view or update UI as necessary
         self.dismiss(animated: true, completion: nil)
     }
+
+
+
+
+
 
 }

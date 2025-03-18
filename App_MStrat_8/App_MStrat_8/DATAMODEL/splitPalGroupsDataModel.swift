@@ -41,8 +41,8 @@ class GroupDataModel {
             groupId: 1,
             image: UIImage(named: "icons8-holiday-50")!,
             splitOption: .equally,
-            splitAmounts: nil,
-            payee: "kj",
+            splitAmounts: ["John Doe": 200.0, "Alice Johnson": 300.0],
+            payee: [1],
             date: Date(),
             ismine: true
         )
@@ -56,7 +56,7 @@ class GroupDataModel {
             image: UIImage(named: "icons8-holiday-50")!,
             splitOption: .unequally,
             splitAmounts: ["Jack": 100.0, "Steve": 200.0],
-            payee: "lo",
+            payee:[ 4],
             date: Date(),
             
             ismine: false
