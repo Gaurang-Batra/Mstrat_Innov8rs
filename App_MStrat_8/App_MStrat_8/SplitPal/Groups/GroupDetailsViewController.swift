@@ -26,6 +26,7 @@ class GroupDetailViewController: UIViewController, UITableViewDataSource, UITabl
     
     var groupItem: Group?
     var members : String = ""
+    var userId : Int?
     
     @IBAction func addedmemberbuttontapped(_ sender: UIButton) {
         print(groupItem?.groupName)
@@ -38,6 +39,8 @@ class GroupDetailViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print ("this id is present in the balance page : \(userId) ")
         
         // Check if groupItem is set, if not, print a message
         guard let group = groupItem else {
@@ -151,9 +154,22 @@ class GroupDetailViewController: UIViewController, UITableViewDataSource, UITabl
             }
         }
         
+        // Get current user's name
+        let currentUserName = userId != nil ? UserDataModel.shared.getUser(by: userId!)?.fullname : nil
+        let currentUserDisplayName = currentUserName != nil ? "\(currentUserName!) (You)" : nil
+        
         // Now tempBalances will have one entry per payee, and updated amounts where necessary
-        myBalances = tempBalances.filter { $0.paidBy.contains("Ajay (You)") || $0.payee.contains(0) }
-        othersBalances = tempBalances.filter { !$0.paidBy.contains("Ajay (You)") && !$0.payee.contains(0) }
+        myBalances = tempBalances.filter {
+            // Check if current user is the payer or payee
+            (currentUserDisplayName != nil && $0.paidBy.contains(currentUserDisplayName!)) ||
+            (userId != nil && $0.payee.contains(userId!))
+        }
+        
+        othersBalances = tempBalances.filter {
+            // Check if current user is NOT the payer or payee
+            (currentUserDisplayName == nil || !$0.paidBy.contains(currentUserDisplayName!)) &&
+            (userId == nil || !$0.payee.contains(userId!))
+        }
     }
 
 

@@ -15,13 +15,16 @@ class homeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var lineDotted: UILabel!
     @IBOutlet weak var savedAmountLabel: UILabel!
     
-    var expenses: [Expense] = []  // Declare this variable
+    var expenses: [Expense] = []
     var currentGoal: Goal?
-    var goals: [Goal] = []  // Array to hold multiple goals
-    private var goalSavings: Int = 0 // This variable will store the total savings added through AddExpense
-
+    var goals: [Goal] = []
+    private var goalSavings: Int = 0
+    var userId: Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("this id is on home page \(userId)")
         lineDotted.isHidden = true
         mainlabel.layoutIfNeeded()
         createVerticalDottedLineInBalanceContainer()

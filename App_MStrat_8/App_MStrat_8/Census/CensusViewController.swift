@@ -14,10 +14,13 @@ class CensusViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var expenses: [Expense] = []
     var groupedExpenses: [[Expense]] = []  // Array to store grouped expenses by date
     var sectionDates: [String] = []  // Dates for sections
+    
+    var userId : Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        print ( "this is om the census page : \(userId)")
         // Assign delegates
         tableView.delegate = self
         tableView.dataSource = self

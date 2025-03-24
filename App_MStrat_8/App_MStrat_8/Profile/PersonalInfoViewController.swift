@@ -8,9 +8,12 @@ class PersonalInfoViewController: UIViewController {
     @IBOutlet weak var EmailTextfield: UITextField!
     
     private var isEditingEnabled = false
+    var userId: Int?  // User ID passed from previous screen
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("This ID is in profile info: \(userId ?? -1)")
         
         configureSaveAndContinueButton()
         configureTextFields()
@@ -19,7 +22,7 @@ class PersonalInfoViewController: UIViewController {
         configureNavigationBar()
         updateSaveAndContinueButtonState()
     }
-    
+
     func configureNavigationBar() {
         let editButton = UIBarButtonItem(
             title: "Edit",
@@ -29,42 +32,41 @@ class PersonalInfoViewController: UIViewController {
         )
         navigationItem.rightBarButtonItem = editButton
     }
-    
+
     @objc func editButtonTapped() {
         isEditingEnabled.toggle()
         if isEditingEnabled {
             enableEditing()
             navigationItem.rightBarButtonItem?.title = "Done"
-            updateSaveAndContinueButtonState()
         } else {
             disableEditing()
             navigationItem.rightBarButtonItem?.title = "Edit"
-            updateSaveAndContinueButtonState()
         }
+        updateSaveAndContinueButtonState()
     }
-    
+
     func enableEditing() {
         Nametextfield.isEnabled = true
         PhoneTextfield.isEnabled = true
     }
-    
+
     func disableEditing() {
         Nametextfield.isEnabled = false
         PhoneTextfield.isEnabled = false
     }
-    
+
     func updateSaveAndContinueButtonState() {
         saveandcontinue.isEnabled = !isEditingEnabled
         saveandcontinue.alpha = saveandcontinue.isEnabled ? 1.0 : 0.5
     }
-    
+
     func configureSaveAndContinueButton() {
         saveandcontinue.setTitle("Save and Continue", for: .normal)
         saveandcontinue.setTitleColor(.white, for: .normal)
         saveandcontinue.backgroundColor = UIColor.systemBlue
         saveandcontinue.layer.cornerRadius = 8
     }
-    
+
     func configureTextFields() {
         Nametextfield.placeholder = "Enter your name"
         PhoneTextfield.placeholder = "Enter your phone number"
@@ -74,49 +76,33 @@ class PersonalInfoViewController: UIViewController {
         PhoneTextfield.isEnabled = false
         EmailTextfield.isEnabled = false
         
-        // Set the borders to always be visible
         Nametextfield.borderStyle = .roundedRect
         PhoneTextfield.borderStyle = .roundedRect
         EmailTextfield.textColor = UIColor.gray
     }
-    
+
     func preFillUserData() {
-        if let savedName = UserDefaults.standard.string(forKey: "userName"),
-           let savedPhone = UserDefaults.standard.string(forKey: "userPhone"),
-           let savedEmail = UserDefaults.standard.string(forKey: "userEmail") {
-            Nametextfield.text = savedName
-            PhoneTextfield.text = savedPhone
-            EmailTextfield.text = savedEmail
+        guard let userId = userId,
+              let user = UserDataModel.shared.getUser(by: userId) else {
+            print("User not found")
+            return
         }
+        
+        Nametextfield.text = user.fullname
+        EmailTextfield.text = user.email  // Email is not editable
+        PhoneTextfield.text = ""  // If you have phone data, set it here
     }
-    
+
     @IBAction func saveAndContinueTapped(_ sender: UIButton) {
-        if let name = Nametextfield.text, name.isEmpty {
-            showAlert(title: "Error", message: "Please enter your name.")
-        } else if let phone = PhoneTextfield.text, phone.isEmpty {
-            showAlert(title: "Error", message: "Please enter your phone number.")
-        } else {
-            UserDefaults.standard.set(Nametextfield.text, forKey: "userName")
-            UserDefaults.standard.set(PhoneTextfield.text, forKey: "userPhone")
-            
-            // Notify other view controllers about the name change
-            NotificationCenter.default.post(
-                name: Notification.Name("NameUpdated"),
-                object: nil,
-                userInfo: ["newName": Nametextfield.text ?? ""]
-            )
-            
-            let alertController = UIAlertController(
-                title: "Changes Saved",
-                message: "Your changes have been saved successfully.",
-                preferredStyle: .alert
-            )
-            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alertController.addAction(okAction)
-            present(alertController, animated: true, completion: nil)
+        guard let name = Nametextfield.text, !name.isEmpty,
+              let phone = PhoneTextfield.text, !phone.isEmpty else {
+            showAlert(title: "Error", message: "Please fill in all fields.")
+            return
         }
+
+        showAlert(title: "Changes Saved", message: "Your changes have been saved successfully.")
     }
-    
+
     func showAlert(title: String, message: String) {
         let alertController = UIAlertController(
             title: title,

@@ -123,7 +123,8 @@ Try it!</string>
                                             <color key="baseBackgroundColor" systemColor="systemGreenColor"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <segue destination="Pt0-7K-WWt" kind="show" id="Dbk-Tg-h8P"/>
+                                            <action selector="addGroupButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AV4-gL-a7M"/>
+                                            <segue destination="Pt0-7K-WWt" kind="show" identifier="createsplitgroup" id="Dbk-Tg-h8P"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -283,7 +284,7 @@ Try it!</string>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u9a-RQ-vSZ">
-                                        <rect key="frame" x="69" y="73" width="132" height="35"/>
+                                        <rect key="frame" x="69" y="73" width="164" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
@@ -704,7 +705,7 @@ Try it!</string>
         <!--Tab Bar Controller-->
         <scene sceneID="l3C-oe-X9E">
             <objects>
-                <tabBarController storyboardIdentifier="homescreen" automaticallyAdjustsScrollViewInsets="NO" id="sbJ-cx-RRT" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabbar" automaticallyAdjustsScrollViewInsets="NO" id="sbJ-cx-RRT" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="udn-Wj-Ym3"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aAn-7h-JUW">
@@ -728,7 +729,7 @@ Try it!</string>
         <!--Home-->
         <scene sceneID="qSo-6a-3lG">
             <objects>
-                <viewController id="O8k-wi-UOw" customClass="homeViewController" customModule="App_MStrat_8" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="homescreenstart" id="O8k-wi-UOw" customClass="homeViewController" customModule="App_MStrat_8" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dLA-gq-W2E">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="1240"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -737,7 +738,7 @@ Try it!</string>
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="1280"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MUj-7w-AZc">
-                                        <rect key="frame" x="0.0" y="24" width="399" height="1318"/>
+                                        <rect key="frame" x="0.0" y="-117" width="399" height="1459"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TVD-xy-qy6">
                                                 <rect key="frame" x="15" y="399" width="363" height="100"/>
@@ -1065,7 +1066,7 @@ Try it!</string>
         <!--Profile-->
         <scene sceneID="4pg-6v-AfP">
             <objects>
-                <viewController id="agm-hM-wEo" customClass="PersonalInformationViewController" customModule="App_MStrat_8" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="personalInformation" id="agm-hM-wEo" customClass="PersonalInformationViewController" customModule="App_MStrat_8" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CnA-ns-4Vf">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

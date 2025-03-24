@@ -16,9 +16,13 @@ class SignInSecurityViewController: UIViewController {
     var storedPassword: String {
         return UserDefaults.standard.string(forKey: "userPassword") ?? ""
     }
+    
+    var userId :Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print ("this id ins int he sign in & securty : \(userId)")
 
         // Set initial state for password fields (hidden dots by default)
         passwordTextField1.isSecureTextEntry = true

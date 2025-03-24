@@ -16,9 +16,11 @@ class SplitpalViewController: UIViewController, UITableViewDelegate, UITableView
 
     var selectedGroupIndex: Int? = nil
     var selectedImage: UIImage? = nil
+    var userId : Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print ("this id is on the split page : \(userId))")
 
         tableView.delegate = self
         tableView.dataSource = self
@@ -132,13 +134,27 @@ class SplitpalViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     // MARK: - Segue Preparation
+    
+    @IBAction func addGroupButtonTapped(_ sender: UIButton) {
+        performSegue(withIdentifier: "createsplitgroup", sender: self)
+    }
+
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Groupsdetails",
            let destinationVC = segue.destination as? GroupDetailViewController,
            let selectedIndex = selectedGroupIndex {
+            destinationVC.userId = self.userId
             let selectedGroup = GroupDataModel.shared.getAllGroups()[selectedIndex]
             destinationVC.groupItem = selectedGroup
+        }
+        else if segue.identifier == "createsplitgroup" {
+            if let navigationController = segue.destination as? UINavigationController,
+               let createGroupVC = navigationController.topViewController as? CreateGroupViewController {
+                
+                createGroupVC.userId = self.userId
+                print("id passed to create splitgroup form page")
+            }
         }
     }
 }

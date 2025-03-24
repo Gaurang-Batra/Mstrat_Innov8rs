@@ -16,6 +16,7 @@ struct User {
     var isVerified: Bool?
     var badges: [String]?
     var currentGoal: Goal?
+    var groups : [Int]?
     var expenses: [Expense]?
 }
 
@@ -25,10 +26,11 @@ let firstUser = User(
     id: 1,
     email: "ankush@gmail.com",
     fullname: "John Doe",
-    password: "99999999",
+    password: "9",
     isVerified: true,
     badges: [],
     currentGoal: nil,
+    groups: [1],
     expenses: []
 )
 let secondUser = User(
@@ -51,16 +53,16 @@ let thirdUser = User(
     currentGoal: nil,
     expenses: []
 )
-let zerothUser = User(
-    id: 0,
-    email: "Ajay@example.com",
-    fullname: "Ajay (You)",
-    password: "password138",
-    isVerified: true,
-    badges: [],
-    currentGoal: nil,
-    expenses: []
-)
+//let zerothUser = User(
+//    id: 0,
+//    email: "Ajay@example.com",
+//    fullname: "Ajay (You)",
+//    password: "password138",
+//    isVerified: true,
+//    badges: [],
+//    currentGoal: nil,
+//    expenses: []
+//)
 
 class UserDataModel {
     private var users: [User] = []
@@ -70,7 +72,7 @@ class UserDataModel {
         users.append(firstUser)
         users.append(secondUser)
         users.append(thirdUser)
-        users.append(zerothUser)
+//        users.append(zerothUser)
     }
 
     func getAllUsers() -> [User] {

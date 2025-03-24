@@ -7,11 +7,24 @@ class PersonalInformationViewController: UIViewController, UITableViewDelegate, 
     @IBOutlet weak var signOutButton: UIButton!
     @IBOutlet weak var nameLabel: UILabel!
     
-    let identities = ["a","b","c"]
+    let identities = ["a", "b", "c"]
     var val = ["Personal Information", "Sign In & Security", "Privacy Policy"]
+    
+    var userId: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("This is on the profile page with userId: \(userId ?? -1)")
+
+        // Fetch and display the user's name using UserDataModel
+        if let userId = userId {
+            if let user = UserDataModel.shared.getUser(by: userId) {
+                nameLabel.text = user.fullname
+            } else {
+                nameLabel.text = "User Not Found"
+            }
+        }
         
         configureProfileImage()
         configureSignOutButton()
@@ -25,35 +38,31 @@ class PersonalInformationViewController: UIViewController, UITableViewDelegate, 
             name: Notification.Name("NameUpdated"),
             object: nil
         )
-        
-        nameLabel.text = UserDefaults.standard.string(forKey: "userName") ?? "Default Name"
     }
-    
+
     func configureProfileImage() {
         profileimage.layer.cornerRadius = profileimage.frame.size.width / 2
         profileimage.clipsToBounds = true
-//        profileimage.layer.borderWidth = 2.0
-//        profileimage.layer.borderColor = UIColor.systemBlue.cgColor
         profileimage.contentMode = .scaleAspectFill
     }
-    
+
     func configureSignOutButton() {
         signOutButton.setTitle("Sign Out", for: .normal)
         signOutButton.setTitleColor(.white, for: .normal)
         signOutButton.backgroundColor = UIColor.systemRed
         signOutButton.layer.cornerRadius = 8
     }
-    
+
     @objc func handleNameUpdate(notification: Notification) {
         if let newName = notification.userInfo?["newName"] as? String {
             nameLabel.text = newName
         }
     }
-    
+
     deinit {
         NotificationCenter.default.removeObserver(self, name: Notification.Name("NameUpdated"), object: nil)
     }
-    
+
     @IBAction func profilebuttonedit(_ sender: UIButton) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -120,7 +129,24 @@ class PersonalInformationViewController: UIViewController, UITableViewDelegate, 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let vcname = identities[indexPath.row]
-        let viewController = storyboard?.instantiateViewController(withIdentifier: vcname)
-        self.navigationController?.pushViewController(viewController!, animated: true)
+        
+        if let viewController = storyboard?.instantiateViewController(withIdentifier: vcname) {
+            // For "Personal Information" (a) and "Sign In & Security" (b)
+            if indexPath.row == 0 {
+                // Explicitly cast to the correct type for Personal Information
+                if let personalInfoVC = viewController as? PersonalInfoViewController {
+                    personalInfoVC.userId = self.userId
+                    print("Passing userId: \(userId ?? -1) to \(val[indexPath.row]) screen")
+                }
+            } else if indexPath.row == 1 {
+                // For other screens, try setting via property - you'll need to add explicit casting here for those view controllers too
+                if let securityVC = viewController as? SignInSecurityViewController {  // Replace with your actual class
+                    securityVC.userId = self.userId
+                    print("Passing userId: \(userId ?? -1) to \(val[indexPath.row]) screen")
+                }
+            }
+            
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }
     }
 }

@@ -1,13 +1,5 @@
 import UIKit
 
-struct cgroup {
-    var name : String
-    var image : UIImage
-    init(name: String, image: UIImage?) {
-           self.name = name
-        self.image = image!
-       }
-}
 
 protocol AddMemberDelegate: AnyObject {
     func didUpdateSelectedMembers(_ members: [Int])
@@ -27,9 +19,12 @@ class CreateGroupViewController: UIViewController, UITableViewDelegate, UITableV
     var users: [User] = []       // To hold all users
     var searchUsers: [User] = [] // To hold the filtered users
     var selectedMembers: [Int] = []
+    
+    var userId : Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("id on the split group page : \(userId)")
 
         // Set up category buttons
         for (index, button) in categoryButton.enumerated() {
@@ -40,7 +35,16 @@ class CreateGroupViewController: UIViewController, UITableViewDelegate, UITableV
         }
 
         users = UserDataModel.shared.getAllUsers()
-        searchUsers = users // Initialize searchUsers with all users
+        
+        // Automatically add current user to selected members
+        if let currentUserId = userId {
+            selectedMembers.append(currentUserId)
+            
+            // Filter out the current user from the displayed users
+            users = users.filter { $0.id != currentUserId }
+        }
+        
+        searchUsers = users // Initialize searchUsers with filtered users
 
         Mytable.delegate = self
         Mytable.dataSource = self
@@ -49,7 +53,7 @@ class CreateGroupViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchUsers.count - 1
+        return searchUsers.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -76,7 +80,7 @@ class CreateGroupViewController: UIViewController, UITableViewDelegate, UITableV
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
-            searchUsers = users
+            searchUsers = users // users already has current user filtered out
         } else {
             searchUsers = users.filter { $0.fullname.lowercased().contains(searchText.lowercased()) }
         }
@@ -102,13 +106,31 @@ class CreateGroupViewController: UIViewController, UITableViewDelegate, UITableV
     }
 
     @IBAction func createGroupButtonTapped(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-
+        
         guard let groupName = textField.text, !groupName.isEmpty, let selectedImage = selectedImage else {
             return
         }
-
+        
+        // Check if a group with the same name already exists
+        let allGroups = GroupDataModel.shared.getAllGroups()
+        let groupExists = allGroups.contains { $0.groupName.lowercased() == groupName.lowercased() }
+        
+        if groupExists {
+            // Show an alert to inform the user
+            let alert = UIAlertController(
+                title: "Group Already Exists",
+                message: "A group with the name '\(groupName)' already exists. Please choose a different name.",
+                preferredStyle: .alert
+            )
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alert, animated: true)
+            return
+        }
+        
+        // If we get here, the group doesn't exist yet, so create it
         GroupDataModel.shared.createGroup(groupName: groupName, category: selectedImage, members: selectedMembers)
+        self.dismiss(animated: true, completion: nil)
         navigationController?.popViewController(animated: true)
     }
 
